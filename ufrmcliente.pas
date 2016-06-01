@@ -10,7 +10,12 @@ uses
   Grids, DBGrids, ComCtrls, Buttons, DBCtrls;
 
 type
+
+  { TFrmcliente }
+
   TFrmcliente = class(TFrmmodelo)
+    DBEdit1: TDBEdit;
+    DSClientes: TDataSource;
     Panel2: TPanel;
     Label11: TLabel;
     Label12: TLabel;
@@ -157,6 +162,7 @@ type
     Panel31: TPanel;
     procedure bbsairClick(Sender: TObject);
     procedure cbpessoaChange(Sender: TObject);
+    procedure DSClientesDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure rgpesquisaClick(Sender: TObject);
@@ -265,6 +271,11 @@ begin
 
 
    end;
+
+end;
+
+procedure TFrmcliente.DSClientesDataChange(Sender: TObject; Field: TField);
+begin
 
 end;
 

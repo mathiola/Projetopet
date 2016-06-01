@@ -1,19 +1,23 @@
 object DataModule1: TDataModule1
   OldCreateOrder = False
   Height = 316
-  HorizontalOffset = 358
-  VerticalOffset = 155
+  HorizontalOffset = 449
+  VerticalOffset = 201
   Width = 441
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF8
     AutoEncodeStrings = False
+    ClientCodepage = 'UTF8'
+    Catalog = 'public'
     Properties.Strings = (
       'AutoEncodeStrings='
+      'codepage=UTF8'
     )
+    TransactIsolationLevel = tiReadCommitted
     Connected = True
     HostName = 'localhost'
     Port = 0
-    Database = 'neo'
+    Database = 'sispet'
     User = 'postgres'
     Password = 'postgres'
     Protocol = 'postgresql-9'
@@ -28,12 +32,476 @@ object DataModule1: TDataModule1
   end
   object ZQuery1: TZQuery
     Connection = ZConnection1
-    Active = True
     SQL.Strings = (
-      'select  *  from empresa'
+      ''
     )
     Params = <>
     left = 195
     top = 112
+  end
+  object QueryClientes: TZQuery
+    Connection = ZConnection1
+    UpdateObject = UpCliente
+    Active = True
+    SQL.Strings = (
+      'select * from cliente'
+    )
+    Params = <>
+    left = 257
+    top = 112
+    object QueryClientescd_cliente: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_cliente'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object QueryClientescd_cidade: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_cidade'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object QueryClientescliente: TStringField
+      FieldKind = fkData
+      FieldName = 'cliente'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object QueryClientesrazao_social: TStringField
+      FieldKind = fkData
+      FieldName = 'razao_social'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object QueryClientesdata_cadastro: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'data_cadastro'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientestipo_pessoa: TStringField
+      FieldKind = fkData
+      FieldName = 'tipo_pessoa'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object QueryClientessituacao: TStringField
+      FieldKind = fkData
+      FieldName = 'situacao'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object QueryClientessexo: TStringField
+      FieldKind = fkData
+      FieldName = 'sexo'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 40
+    end
+    object QueryClientescargo: TStringField
+      FieldKind = fkData
+      FieldName = 'cargo'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object QueryClientesendereco: TStringField
+      FieldKind = fkData
+      FieldName = 'endereco'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object QueryClientesbairro: TStringField
+      FieldKind = fkData
+      FieldName = 'bairro'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object QueryClientesnumero: TLongintField
+      FieldKind = fkData
+      FieldName = 'numero'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientescomplemento: TStringField
+      FieldKind = fkData
+      FieldName = 'complemento'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 1200
+    end
+    object QueryClientescpf_cnpj: TStringField
+      FieldKind = fkData
+      FieldName = 'cpf_cnpj'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object QueryClientesrg_inscrestadual: TStringField
+      FieldKind = fkData
+      FieldName = 'rg_inscrestadual'
+      Index = 14
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object QueryClientescep: TStringField
+      FieldKind = fkData
+      FieldName = 'cep'
+      Index = 15
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 120
+    end
+    object QueryClientesuf: TStringField
+      FieldKind = fkData
+      FieldName = 'uf'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+    object QueryClientesemail: TStringField
+      FieldKind = fkData
+      FieldName = 'email'
+      Index = 17
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object QueryClientesrenda_anual: TFloatField
+      FieldKind = fkData
+      FieldName = 'renda_anual'
+      Index = 18
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 983042
+    end
+    object QueryClientestabela_preco: TLongintField
+      FieldKind = fkData
+      FieldName = 'tabela_preco'
+      Index = 19
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesdia_base: TLongintField
+      FieldKind = fkData
+      FieldName = 'dia_base'
+      Index = 20
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesdescricao: TStringField
+      FieldKind = fkData
+      FieldName = 'descricao'
+      Index = 21
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object QueryClientesmensalista: TStringField
+      FieldKind = fkData
+      FieldName = 'mensalista'
+      Index = 22
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object QueryClientesbloqueado: TStringField
+      FieldKind = fkData
+      FieldName = 'bloqueado'
+      Index = 23
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object QueryClientesauto_tel: TStringField
+      FieldKind = fkData
+      FieldName = 'auto_tel'
+      Index = 24
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object QueryClientesauto_sms: TStringField
+      FieldKind = fkData
+      FieldName = 'auto_sms'
+      Index = 25
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object QueryClientesauto_email: TStringField
+      FieldKind = fkData
+      FieldName = 'auto_email'
+      Index = 26
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object QueryClientesatualizacao_cadastro: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'atualizacao_cadastro'
+      Index = 27
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesdata_nascimento: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'data_nascimento'
+      Index = 28
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesprimeira_compra: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'primeira_compra'
+      Index = 29
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesultima_compra: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'ultima_compra'
+      Index = 30
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientestotal_compras: TLongintField
+      FieldKind = fkData
+      FieldName = 'total_compras'
+      Index = 31
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesvolor_maior_compra: TFloatField
+      FieldKind = fkData
+      FieldName = 'volor_maior_compra'
+      Index = 32
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 983042
+    end
+    object QueryClientesvalor_total_compras: TFloatField
+      FieldKind = fkData
+      FieldName = 'valor_total_compras'
+      Index = 33
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      MaxValue = 0
+      MinValue = 0
+      Precision = 983042
+    end
+    object QueryClientescd_grupo: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_grupo'
+      Index = 34
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesdata_pesquisa: TDateField
+      FieldKind = fkData
+      FieldName = 'data_pesquisa'
+      Index = 35
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientesfone1: TStringField
+      FieldKind = fkData
+      FieldName = 'fone1'
+      Index = 36
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object QueryClientesfone2: TStringField
+      FieldKind = fkData
+      FieldName = 'fone2'
+      Index = 37
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object QueryClientesfone3: TStringField
+      FieldKind = fkData
+      FieldName = 'fone3'
+      Index = 38
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 80
+    end
+    object QueryClientesrestricao_descricao: TStringField
+      FieldKind = fkData
+      FieldName = 'restricao_descricao'
+      Index = 39
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12000
+    end
+    object QueryClientesauto_carta: TStringField
+      FieldKind = fkData
+      FieldName = 'auto_carta'
+      Index = 40
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object QueryClientesrestricao_cred: TStringField
+      FieldKind = fkData
+      FieldName = 'restricao_cred'
+      Index = 41
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 12
+    end
+    object QueryClientescd_subordinado: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_subordinado'
+      Index = 42
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientescd_empresa: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_empresa'
+      Index = 43
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object QueryClientescd_funcionario: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_funcionario'
+      Index = 44
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object UpCliente: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'delete from cliente where cd_cliente=:old.cd_cliente'
+    )
+    UseSequenceFieldForRefreshSQL = False
+    left = 283
+    top = 198
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'old'
+        ParamType = ptUnknown
+      end>
   end
 end

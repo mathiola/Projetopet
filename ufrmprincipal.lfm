@@ -1,7 +1,7 @@
 object Frmprincipal: TFrmprincipal
-  Left = 665
+  Left = 495
   Height = 482
-  Top = 155
+  Top = 160
   Width = 580
   Caption = '   PetSoft'
   ClientHeight = 462

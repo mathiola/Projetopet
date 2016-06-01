@@ -1,0 +1,39 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 316
+  HorizontalOffset = 358
+  VerticalOffset = 155
+  Width = 441
+  object ZConnection1: TZConnection
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    Properties.Strings = (
+      'AutoEncodeStrings='
+    )
+    Connected = True
+    HostName = 'localhost'
+    Port = 0
+    Database = 'neo'
+    User = 'postgres'
+    Password = 'postgres'
+    Protocol = 'postgresql-9'
+    LibraryLocation = 'e:\neo\pgsql\bin\libpq.dll'
+    left = 72
+    top = 104
+  end
+  object DataSource1: TDataSource
+    DataSet = ZQuery1
+    left = 144
+    top = 80
+  end
+  object ZQuery1: TZQuery
+    Connection = ZConnection1
+    Active = True
+    SQL.Strings = (
+      'select  *  from empresa'
+    )
+    Params = <>
+    left = 195
+    top = 112
+  end
+end

@@ -1,0 +1,151 @@
+object FrmSenhaAcesso: TFrmSenhaAcesso
+  Left = 581
+  Height = 207
+  Top = 288
+  Width = 235
+  BorderIcons = []
+  BorderStyle = bsToolWindow
+  Caption = 'PETSOFT'
+  ClientHeight = 207
+  ClientWidth = 235
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  KeyPreview = True
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  Position = poDesktopCenter
+  LCLVersion = '1.6.0.4'
+  object Panel1: TPanel
+    Left = 0
+    Height = 207
+    Top = 0
+    Width = 235
+    Align = alClient
+    BorderStyle = bsSingle
+    ClientHeight = 203
+    ClientWidth = 231
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 8
+      Height = 105
+      Top = 8
+      Width = 217
+      BevelInner = bvRaised
+      BevelOuter = bvLowered
+      ClientHeight = 105
+      ClientWidth = 217
+      TabOrder = 6
+      object Label2: TLabel
+        Left = 8
+        Height = 13
+        Top = 8
+        Width = 32
+        Caption = 'Login'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 10
+        Height = 13
+        Top = 56
+        Width = 163
+        Caption = 'Senha de acesso ao sistema'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+    end
+    object Panel2: TPanel
+      Left = 8
+      Height = 41
+      Top = 128
+      Width = 217
+      BevelInner = bvRaised
+      BevelOuter = bvLowered
+      TabOrder = 4
+    end
+    object StatusBar1: TStatusBar
+      Left = 1
+      Height = 23
+      Top = 179
+      Width = 229
+      Panels = <      
+        item
+          Alignment = taCenter
+          Text = '0.1.5'
+          Width = 50
+        end      
+        item
+          Alignment = taCenter
+          Width = 90
+        end      
+        item
+          Alignment = taCenter
+          Width = 60
+        end>
+    end
+    object bbOkAcesso: TBitBtn
+      Left = 22
+      Height = 25
+      Top = 136
+      Width = 75
+      Default = True
+      DefaultCaption = True
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      Kind = bkOK
+      ModalResult = 1
+      OnClick = bbOkAcessoClick
+      ParentFont = False
+      TabOrder = 2
+    end
+    object bbCancelaAcesso: TBitBtn
+      Left = 137
+      Height = 25
+      Top = 136
+      Width = 75
+      Cancel = True
+      DefaultCaption = True
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      Kind = bkCancel
+      ModalResult = 2
+      OnClick = bbCancelaAcessoClick
+      ParentFont = False
+      TabOrder = 3
+    end
+    object EdtAcessoSistema: TEdit
+      Left = 18
+      Height = 21
+      Top = 80
+      Width = 191
+      EchoMode = emPassword
+      PasswordChar = '*'
+      TabOrder = 1
+    end
+    object edtLogin: TEdit
+      Left = 16
+      Height = 21
+      Top = 32
+      Width = 191
+      TabOrder = 0
+    end
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    left = 56
+  end
+end

@@ -1,0 +1,1906 @@
+inherited Frmcliente: TFrmcliente
+  Left = 448
+  Top = 169
+  Caption = 'Cadastro de cilentes'
+  OnCreate = FormCreate
+  inherited Panel1: TPanel
+    BevelInner = bvRaised
+    BevelOuter = bvSpace
+    inherited Image: TImage
+      Width = 749
+    end
+    inherited bbsair: TBitBtn
+      Left = 655
+      Top = 13
+    end
+  end
+  inherited PageControl1: TPageControl
+    MultiLine = True
+    OnChange = PageControl1Change
+    Options = [nboMultiLine]
+    inherited TabSheet1: TTabSheet
+      Caption = 'Pesquisa'
+      ClientHeight = 413
+      ClientWidth = 736
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -13
+      Font.Name = 'Arial'
+      inherited Panel3: TPanel
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        inherited edtpesquisa: TEdit
+          Height = 24
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        inherited bbpesquisa: TBitBtn
+          Left = 622
+          Top = 34
+          OnClick = bbpesquisaClick
+        end
+      end
+      inherited Panel20: TPanel
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 3
+        inherited Dbgpesquisa: TDBGrid
+          Columns = <          
+            item
+              Font.CharSet = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
+              PickList.Strings = (              )
+              Title.Font.CharSet = ANSI_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -13
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Title.Caption = 'Código'
+              Width = 55
+              FieldName = 'CD_CLIENTE'
+            end          
+            item
+              Font.CharSet = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
+              PickList.Strings = (              )
+              Title.Font.CharSet = ANSI_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -13
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Title.Caption = 'CLIENTE'
+              Width = 270
+              FieldName = 'CLIENTE'
+            end          
+            item
+              Font.CharSet = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
+              PickList.Strings = (              )
+              Title.Font.CharSet = ANSI_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -13
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Title.Caption = 'Telefone'
+              Width = 106
+              FieldName = 'FONE_PRI'
+            end          
+            item
+              Font.CharSet = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'MS Sans Serif'
+              PickList.Strings = (              )
+              Title.Font.CharSet = ANSI_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -13
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Title.Caption = 'CIDADE'
+              Width = 239
+              FieldName = 'CIDADE'
+            end>
+          Font.CharSet = ANSI_CHARSET
+          Font.Height = -13
+          Font.Name = 'Arial'
+          ParentFont = False
+          TitleFont.CharSet = ANSI_CHARSET
+          TitleFont.Height = -13
+          TitleFont.Name = 'Arial'
+          OnCellClick = DbgpesquisaCellClick
+          OnDblClick = DbgpesquisaDblClick
+        end
+      end
+      inherited rgpesquisa: TRadioGroup
+        Height = 60
+        Top = 17
+        Width = 233
+        ChildSizing.ControlsPerLine = 3
+        ClientHeight = 42
+        ClientWidth = 229
+        Columns = 3
+        ItemIndex = 0
+        Items.Strings = (
+          'Todos'
+          'Código'
+          'Nome'
+          'Cidade'
+          'RG'
+        )
+        OnClick = rgpesquisaClick
+      end
+      object Panel2: TPanel[3]
+        Left = 8
+        Height = 81
+        Top = 8
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        TabOrder = 1
+      end
+    end
+    inherited TabSheet2: TTabSheet
+      Caption = 'Cadastro'
+      ClientHeight = 413
+      ClientWidth = 736
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -13
+      Font.Style = [fsBold]
+      object Panel5: TPanel[0]
+        Left = 8
+        Height = 225
+        Top = 176
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 225
+        ClientWidth = 721
+        Enabled = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        ParentFont = False
+        TabOrder = 1
+        object Label11: TLabel
+          Left = 14
+          Height = 13
+          Top = 20
+          Width = 62
+          Caption = 'Telefone 1'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label12: TLabel
+          Left = 167
+          Height = 13
+          Top = 20
+          Width = 62
+          Caption = 'Telefone 2'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label13: TLabel
+          Left = 310
+          Height = 13
+          Top = 20
+          Width = 40
+          Caption = 'Celular'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label14: TLabel
+          Left = 445
+          Height = 13
+          Top = 20
+          Width = 35
+          Caption = 'E-mail'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label15: TLabel
+          Left = 14
+          Height = 13
+          Top = 86
+          Width = 55
+          Caption = 'Endereço'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label16: TLabel
+          Left = 310
+          Height = 13
+          Top = 86
+          Width = 44
+          Caption = 'Número'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label17: TLabel
+          Left = 445
+          Height = 13
+          Top = 86
+          Width = 76
+          Caption = 'Complemento'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label18: TLabel
+          Left = 14
+          Height = 13
+          Top = 151
+          Width = 34
+          Caption = 'Bairro'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label20: TLabel
+          Left = 308
+          Height = 13
+          Top = 151
+          Width = 17
+          Caption = 'UF'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label19: TLabel
+          Left = 375
+          Height = 13
+          Top = 151
+          Width = 40
+          Caption = 'Cidade'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label21: TLabel
+          Left = 573
+          Height = 13
+          Top = 151
+          Width = 23
+          Caption = 'Cep'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object edttel1: TEdit
+          Left = 14
+          Height = 21
+          Top = 42
+          Width = 137
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 0
+        end
+        object edttel2: TEdit
+          Left = 166
+          Height = 21
+          Top = 42
+          Width = 129
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 1
+        end
+        object edtcel: TEdit
+          Left = 310
+          Height = 21
+          Top = 42
+          Width = 121
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 2
+        end
+        object edtemail: TEdit
+          Left = 446
+          Height = 21
+          Top = 42
+          Width = 257
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 3
+        end
+        object edtendereco: TEdit
+          Left = 14
+          Height = 21
+          Top = 106
+          Width = 281
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 4
+        end
+        object edtnumero: TEdit
+          Left = 310
+          Height = 21
+          Top = 106
+          Width = 121
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 5
+        end
+        object edtcomplemento: TEdit
+          Left = 446
+          Height = 21
+          Top = 106
+          Width = 257
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 6
+        end
+        object edtbairro: TEdit
+          Left = 14
+          Height = 21
+          Top = 170
+          Width = 281
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 7
+        end
+        object cbuf: TComboBox
+          Left = 308
+          Height = 21
+          Top = 169
+          Width = 55
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ItemHeight = 13
+          OnChange = cbufChange
+          OnDropDown = cbufDropDown
+          ParentFont = False
+          TabOrder = 8
+        end
+        object cbcidade: TComboBox
+          Left = 376
+          Height = 21
+          Top = 170
+          Width = 185
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ItemHeight = 13
+          OnChange = cbcidadeChange
+          ParentFont = False
+          TabOrder = 9
+        end
+        object edtcep: TEdit
+          Left = 574
+          Height = 21
+          Top = 170
+          Width = 130
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 10
+        end
+      end
+      object Panel4: TPanel[1]
+        Left = 8
+        Height = 161
+        Top = 8
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 161
+        ClientWidth = 721
+        Enabled = False
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        ParentFont = False
+        TabOrder = 0
+        object lbnome: TLabel
+          Left = 15
+          Height = 13
+          Top = 54
+          Width = 33
+          Caption = 'Nome'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label2: TLabel
+          Left = 151
+          Height = 13
+          Top = 6
+          Width = 42
+          Caption = 'Pessoa'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lbrg: TLabel
+          Left = 586
+          Height = 13
+          Top = 54
+          Width = 19
+          Caption = 'RG'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label10: TLabel
+          Left = 494
+          Height = 13
+          Top = 102
+          Width = 34
+          Caption = 'Cargo'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lbempresa: TLabel
+          Left = 194
+          Height = 13
+          Top = 102
+          Width = 49
+          Caption = 'Empresa'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lbsexo: TLabel
+          Left = 17
+          Height = 13
+          Top = 102
+          Width = 29
+          Caption = 'Sexo'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lbnascimento: TLabel
+          Left = 107
+          Height = 13
+          Top = 102
+          Width = 67
+          Caption = 'Nascimento'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object lbrazao: TLabel
+          Left = 445
+          Height = 13
+          Top = 54
+          Width = 24
+          Caption = 'CPF'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label40: TLabel
+          Left = 308
+          Height = 13
+          Top = 6
+          Width = 51
+          Caption = 'Situação'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label37: TLabel
+          Left = 14
+          Height = 13
+          Top = 6
+          Width = 40
+          Caption = 'Código'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label22: TLabel
+          Left = 444
+          Height = 13
+          Top = 6
+          Width = 35
+          Caption = 'Grupo'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object edtcodigo: TEdit
+          Left = 14
+          Height = 21
+          Top = 22
+          Width = 101
+          CharCase = ecUppercase
+          Color = clScrollBar
+          TabOrder = 0
+        end
+        object cbpessoa: TComboBox
+          Left = 151
+          Height = 21
+          Top = 22
+          Width = 120
+          CharCase = ecUppercase
+          Color = clScrollBar
+          ItemHeight = 13
+          Items.Strings = (
+            'FÍSICA'
+            'JURÍDICA'
+          )
+          OnChange = cbpessoaChange
+          TabOrder = 1
+        end
+        object cbsituacao: TComboBox
+          Left = 307
+          Height = 21
+          Top = 22
+          Width = 120
+          CharCase = ecUppercase
+          Color = clScrollBar
+          ItemHeight = 13
+          Items.Strings = (
+            'ATIVO'
+            'INATIVO'
+          )
+          TabOrder = 2
+        end
+        object edtnome: TEdit
+          Left = 14
+          Height = 21
+          Top = 70
+          Width = 417
+          CharCase = ecUppercase
+          Color = clScrollBar
+          OnChange = edtnomeChange
+          TabOrder = 4
+        end
+        object edtrazao: TEdit
+          Left = 446
+          Height = 21
+          Top = 70
+          Width = 257
+          Color = clScrollBar
+          TabOrder = 5
+          Visible = False
+        end
+        object edtcargo: TEdit
+          Left = 494
+          Height = 21
+          Top = 118
+          Width = 209
+          CharCase = ecUppercase
+          Color = clScrollBar
+          TabOrder = 7
+        end
+        object cbgrupo: TComboBox
+          Left = 444
+          Height = 21
+          Top = 22
+          Width = 219
+          CharCase = ecUppercase
+          Color = clScrollBar
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ItemHeight = 13
+          OnChange = cbgrupoChange
+          OnDropDown = cbgrupoDropDown
+          ParentFont = False
+          TabOrder = 3
+        end
+        object btngrupo: TButton
+          Left = 668
+          Height = 20
+          Top = 22
+          Width = 20
+          Caption = '...'
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = btngrupoClick
+          ParentFont = False
+          TabOrder = 8
+          TabStop = False
+        end
+        object cbsexo: TComboBox
+          Left = 14
+          Height = 21
+          Top = 119
+          Width = 89
+          CharCase = ecUppercase
+          Color = clScrollBar
+          ItemHeight = 13
+          ItemIndex = 0
+          Items.Strings = (
+            'MASCULINO'
+            'FEMININO'
+          )
+          TabOrder = 6
+          Text = 'MASCULINO'
+        end
+        object bbempresa: TBitBtn
+          Left = 435
+          Height = 21
+          Top = 118
+          Width = 20
+          Caption = '...'
+          Enabled = False
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbempresaClick
+          ParentFont = False
+          TabOrder = 9
+        end
+        object Panel29: TPanel
+          Left = 190
+          Height = 27
+          Top = 117
+          Width = 241
+          BevelOuter = bvNone
+          Caption = 'Panel29'
+          ClientHeight = 27
+          ClientWidth = 241
+          Enabled = False
+          TabOrder = 10
+          object edtempresa: TEdit
+            Left = 3
+            Height = 21
+            Top = 0
+            Width = 232
+            Color = clScrollBar
+            TabOrder = 0
+          end
+        end
+        object edtinscestadual: TEdit
+          Left = 195
+          Height = 21
+          Top = 119
+          Width = 236
+          Color = clScrollBar
+          TabOrder = 11
+          Visible = False
+        end
+        object bbempresadel: TBitBtn
+          Left = 459
+          Height = 21
+          Top = 118
+          Width = 20
+          Caption = 'X'
+          Enabled = False
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbempresadelClick
+          ParentFont = False
+          TabOrder = 12
+        end
+      end
+    end
+    object TabSheet3: TTabSheet[2]
+      Caption = 'Complemento'
+      ClientHeight = 413
+      ClientWidth = 736
+      ImageIndex = 2
+      object Panel21: TPanel
+        Left = 8
+        Height = 89
+        Top = 8
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 89
+        ClientWidth = 721
+        Enabled = False
+        TabOrder = 0
+        object Label1: TLabel
+          Left = 14
+          Height = 13
+          Top = 22
+          Width = 73
+          Caption = 'Renda anual'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label4: TLabel
+          Left = 110
+          Height = 13
+          Top = 22
+          Width = 124
+          Caption = 'Cliente subordinado a'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label5: TLabel
+          Left = 422
+          Height = 13
+          Top = 22
+          Width = 119
+          Caption = 'Vendedor/Atendente'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object edtrenda: TEdit
+          Left = 14
+          Height = 21
+          Top = 38
+          Width = 81
+          Color = clScrollBar
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 0
+          Text = '0'
+        end
+        object bbsubopes: TButton
+          Left = 356
+          Height = 20
+          Top = 38
+          Width = 20
+          Caption = '...'
+          Enabled = False
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbsubopesClick
+          ParentFont = False
+          TabOrder = 1
+        end
+        object bbsubopesdel: TButton
+          Left = 381
+          Height = 20
+          Top = 38
+          Width = 20
+          Caption = 'X'
+          Enabled = False
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbsubopesdelClick
+          ParentFont = False
+          TabOrder = 2
+        end
+        object bbatenpes: TButton
+          Left = 658
+          Height = 20
+          Top = 38
+          Width = 20
+          Caption = '...'
+          Enabled = False
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbatenpesClick
+          ParentFont = False
+          TabOrder = 3
+        end
+        object bbatenpesdel: TButton
+          Left = 684
+          Height = 20
+          Top = 38
+          Width = 20
+          Caption = 'X'
+          Enabled = False
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbatenpesdelClick
+          ParentFont = False
+          TabOrder = 4
+        end
+        object Panel30: TPanel
+          Left = 102
+          Height = 25
+          Top = 37
+          Width = 249
+          BevelOuter = bvNone
+          ClientHeight = 25
+          ClientWidth = 249
+          Enabled = False
+          TabOrder = 5
+          object edtsubordinado: TEdit
+            Left = 2
+            Height = 21
+            Top = 0
+            Width = 241
+            Color = clScrollBar
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object Panel31: TPanel
+          Left = 411
+          Height = 27
+          Top = 36
+          Width = 241
+          BevelOuter = bvNone
+          ClientHeight = 27
+          ClientWidth = 241
+          Enabled = False
+          TabOrder = 6
+          object edtfuncionario: TEdit
+            Left = 8
+            Height = 21
+            Top = 0
+            Width = 231
+            Color = clScrollBar
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            OnChange = edtfuncionarioChange
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+      end
+      object Panel22: TPanel
+        Left = 8
+        Height = 80
+        Top = 95
+        Width = 273
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 80
+        ClientWidth = 273
+        Enabled = False
+        TabOrder = 1
+        object Label6: TLabel
+          Left = 182
+          Height = 13
+          Top = 17
+          Width = 51
+          Caption = 'Dia base'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object ckmensalista: TCheckBox
+          Left = 14
+          Height = 19
+          Top = 38
+          Width = 122
+          Caption = 'Cliente mensalista'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+        end
+        object edtbase: TEdit
+          Left = 182
+          Height = 21
+          Top = 32
+          Width = 73
+          Color = clScrollBar
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 1
+          Text = '0'
+        end
+      end
+      object Panel23: TPanel
+        Left = 279
+        Height = 80
+        Top = 95
+        Width = 450
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 80
+        ClientWidth = 450
+        Enabled = False
+        TabOrder = 2
+        object Label7: TLabel
+          Left = 278
+          Height = 13
+          Top = 16
+          Width = 100
+          Caption = 'Tabela de preços'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object ckbloqueado: TCheckBox
+          Left = 14
+          Height = 19
+          Top = 38
+          Width = 122
+          Caption = 'Cliente bloqueado'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+        end
+        object cbtabela: TComboBox
+          Left = 278
+          Height = 21
+          Top = 32
+          Width = 145
+          Color = clScrollBar
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ItemHeight = 13
+          ParentFont = False
+          TabOrder = 1
+        end
+      end
+      object Panel24: TPanel
+        Left = 8
+        Height = 76
+        Top = 173
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 76
+        ClientWidth = 721
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+        object Label8: TLabel
+          Left = 14
+          Height = 13
+          Top = 6
+          Width = 146
+          Caption = 'Autorização de Marketing'
+          ParentColor = False
+        end
+        object Panel27: TPanel
+          Left = 14
+          Height = 33
+          Top = 23
+          Width = 681
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 33
+          ClientWidth = 681
+          Enabled = False
+          TabOrder = 0
+          object ckmail: TCheckBox
+            Left = 38
+            Height = 19
+            Top = 6
+            Width = 109
+            Caption = 'Autoriza e-mails'
+            TabOrder = 0
+          end
+          object cksms: TCheckBox
+            Left = 198
+            Height = 19
+            Top = 6
+            Width = 96
+            Caption = 'Autoriza SMS'
+            TabOrder = 1
+          end
+          object cktel: TCheckBox
+            Left = 350
+            Height = 19
+            Top = 6
+            Width = 138
+            Caption = 'Autoriza telefonemas'
+            TabOrder = 2
+          end
+          object ckcartas: TCheckBox
+            Left = 526
+            Height = 19
+            Top = 6
+            Width = 105
+            Caption = 'Autoriza cartas'
+            TabOrder = 3
+          end
+        end
+      end
+      object Panel25: TPanel
+        Left = 8
+        Height = 113
+        Top = 240
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 113
+        ClientWidth = 721
+        Enabled = False
+        TabOrder = 4
+        object Label9: TLabel
+          Left = 14
+          Height = 13
+          Top = 6
+          Width = 120
+          Caption = 'Obeservações gerais'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object MemoObsGeral: TMemo
+          Left = 14
+          Height = 81
+          Top = 22
+          Width = 689
+          Color = clScrollBar
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 0
+        end
+      end
+      object Panel26: TPanel
+        Left = 8
+        Height = 54
+        Top = 351
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 54
+        ClientWidth = 721
+        Enabled = False
+        TabOrder = 5
+        object Label36: TLabel
+          Left = 174
+          Height = 13
+          Top = 6
+          Width = 129
+          Caption = 'Descrição da restrição'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object ckcredito: TCheckBox
+          Left = 14
+          Height = 19
+          Top = 25
+          Width = 135
+          Caption = 'Restrição de crédito'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+        end
+        object edtdesrestricao: TEdit
+          Left = 174
+          Height = 21
+          Top = 20
+          Width = 529
+          Color = clScrollBar
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 1
+        end
+      end
+    end
+    object TabSheet4: TTabSheet[3]
+      Caption = 'Anotações'
+      ClientHeight = 413
+      ClientWidth = 736
+      ImageIndex = 3
+      object Panel6: TPanel
+        Left = 8
+        Height = 393
+        Top = 8
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 393
+        ClientWidth = 721
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        ParentFont = False
+        TabOrder = 0
+        object Panel9: TPanel
+          Left = 14
+          Height = 321
+          Top = 62
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 321
+          ClientWidth = 689
+          TabOrder = 2
+          object bbAnincluir: TBitBtn
+            Left = 358
+            Height = 25
+            Top = 278
+            Width = 72
+            Caption = 'Incluir'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            OnClick = bbAnincluirClick
+            ParentFont = False
+            TabOrder = 0
+          end
+          object bbAnAlterar: TBitBtn
+            Left = 438
+            Height = 25
+            Top = 278
+            Width = 73
+            Caption = 'Alterar'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            OnClick = bbAnAlterarClick
+            ParentFont = False
+            TabOrder = 1
+          end
+          object bbAnExcluir: TBitBtn
+            Left = 526
+            Height = 25
+            Top = 278
+            Width = 72
+            Caption = 'Excluir'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+          end
+          object bbAnImprimir: TBitBtn
+            Left = 606
+            Height = 25
+            Top = 278
+            Width = 68
+            Caption = 'Imprimir'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 3
+          end
+        end
+        object Panel7: TPanel
+          Left = 14
+          Height = 49
+          Top = 6
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          Caption = 'Panel7'
+          ClientHeight = 49
+          ClientWidth = 689
+          Enabled = False
+          TabOrder = 1
+          object Label23: TLabel
+            Left = 14
+            Height = 16
+            Top = 18
+            Width = 49
+            Caption = 'Cliente'
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object edtclienteanotacao: TEdit
+            Left = 73
+            Height = 21
+            Top = 14
+            Width = 593
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object dbganotacao: TDBGrid
+          Left = 29
+          Height = 249
+          Top = 78
+          Width = 314
+          Color = clWindow
+          Columns = <>
+          TabOrder = 0
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+        end
+        object MemoAnotacao: TMemo
+          Left = 374
+          Height = 249
+          Top = 78
+          Width = 313
+          ScrollBars = ssVertical
+          TabOrder = 3
+        end
+      end
+    end
+    object TabSheet5: TTabSheet[4]
+      Caption = 'Animais'
+      ClientHeight = 413
+      ClientWidth = 736
+      ImageIndex = 4
+      object Panel8: TPanel
+        Left = 8
+        Height = 393
+        Top = 8
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 393
+        ClientWidth = 721
+        TabOrder = 0
+        object Panel10: TPanel
+          Left = 14
+          Height = 49
+          Top = 6
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 49
+          ClientWidth = 689
+          Enabled = False
+          TabOrder = 0
+          object Label24: TLabel
+            Left = 14
+            Height = 16
+            Top = 18
+            Width = 49
+            Caption = 'Cliente'
+            ParentColor = False
+          end
+          object edtclienteanimal: TEdit
+            Left = 73
+            Height = 21
+            Top = 14
+            Width = 593
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+        object Panel11: TPanel
+          Left = 14
+          Height = 289
+          Top = 62
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 289
+          ClientWidth = 689
+          TabOrder = 1
+          object dbgclienteanimal: TDBGrid
+            Left = 14
+            Height = 265
+            Top = 9
+            Width = 657
+            Color = clWindow
+            Columns = <            
+              item
+                Title.Caption = 'Código'
+                FieldName = 'CD_ANIMAL'
+              end            
+              item
+                Title.Caption = 'Nome'
+                Width = 300
+                FieldName = 'ANIMAL'
+              end            
+              item
+                Title.Caption = 'Especie'
+                Width = 285
+                FieldName = 'ESPECIE'
+              end>
+            TabOrder = 0
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -13
+            TitleFont.Name = 'MS Sans Serif'
+            TitleFont.Style = [fsBold]
+          end
+        end
+        object bbanimal: TBitBtn
+          Left = 628
+          Height = 25
+          Top = 358
+          Width = 75
+          Caption = 'Animais'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbanimalClick
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+    end
+    object TabSheet6: TTabSheet[5]
+      Caption = 'Informações'
+      ClientHeight = 413
+      ClientWidth = 736
+      ImageIndex = 5
+      object Panel12: TPanel
+        Left = 8
+        Height = 393
+        Top = 8
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 393
+        ClientWidth = 721
+        TabOrder = 0
+        object Panel15: TPanel
+          Left = 14
+          Height = 105
+          Top = 174
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 105
+          ClientWidth = 689
+          Enabled = False
+          TabOrder = 0
+          object Label28: TLabel
+            Left = 14
+            Height = 13
+            Top = 18
+            Width = 143
+            Caption = 'Data da primeira compra:'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label29: TLabel
+            Left = 14
+            Height = 13
+            Top = 51
+            Width = 132
+            Caption = 'Data da última compra:'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label30: TLabel
+            Left = 14
+            Height = 13
+            Top = 84
+            Width = 131
+            Caption = 'Valor da maior compra:'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object edtInfVC: TEdit
+            Left = 246
+            Height = 21
+            Top = 75
+            Width = 121
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+          end
+        end
+        object Panel16: TPanel
+          Left = 14
+          Height = 97
+          Top = 286
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 97
+          ClientWidth = 689
+          Enabled = False
+          TabOrder = 1
+          object Label31: TLabel
+            Left = 14
+            Height = 13
+            Top = 14
+            Width = 144
+            Caption = 'Compras desde cadastro:'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label32: TLabel
+            Left = 14
+            Height = 13
+            Top = 54
+            Width = 224
+            Caption = 'Valor total de compra desde ocadastro:'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object edtInfCC: TEdit
+            Left = 246
+            Height = 21
+            Top = 14
+            Width = 121
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 0
+            Text = '0'
+          end
+          object edtInfVTC: TEdit
+            Left = 246
+            Height = 21
+            Top = 46
+            Width = 121
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ReadOnly = True
+            TabOrder = 1
+            Text = '0'
+          end
+        end
+        object Panel14: TPanel
+          Left = 14
+          Height = 105
+          Top = 62
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 105
+          ClientWidth = 689
+          Enabled = False
+          TabOrder = 2
+          object Label26: TLabel
+            Left = 14
+            Height = 13
+            Top = 14
+            Width = 103
+            Caption = 'Data do cadastro:'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+          object Label27: TLabel
+            Left = 14
+            Height = 13
+            Top = 54
+            Width = 190
+            Caption = 'Data de atualização do cadastro:'
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentColor = False
+            ParentFont = False
+          end
+        end
+        object Panel13: TPanel
+          Left = 14
+          Height = 49
+          Top = 6
+          Width = 689
+          BevelInner = bvRaised
+          BevelOuter = bvLowered
+          ClientHeight = 49
+          ClientWidth = 689
+          Enabled = False
+          TabOrder = 3
+          object Label25: TLabel
+            Left = 14
+            Height = 16
+            Top = 18
+            Width = 49
+            Caption = 'Cliente'
+            ParentColor = False
+          end
+          object edtinfocliente: TEdit
+            Left = 78
+            Height = 21
+            Top = 14
+            Width = 593
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+      end
+      object Panel28: TPanel
+        Left = 482
+        Height = 33
+        Top = 79
+        Width = 117
+        BevelOuter = bvNone
+        ClientHeight = 33
+        ClientWidth = 117
+        TabOrder = 1
+        object bbcontreceber: TBitBtn
+          Left = 1
+          Height = 25
+          Top = 2
+          Width = 113
+          Caption = 'Contas à receber'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbcontreceberClick
+          ParentFont = False
+          TabOrder = 0
+        end
+      end
+    end
+    object TabSheet7: TTabSheet[6]
+      Caption = 'Retornos'
+      ClientHeight = 413
+      ClientWidth = 736
+      ImageIndex = 6
+      object Panel17: TPanel
+        Left = 8
+        Height = 393
+        Top = 8
+        Width = 721
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        TabOrder = 2
+      end
+      object Panel18: TPanel
+        Left = 24
+        Height = 49
+        Top = 16
+        Width = 689
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 49
+        ClientWidth = 689
+        Enabled = False
+        TabOrder = 0
+        object Label33: TLabel
+          Left = 14
+          Height = 16
+          Top = 18
+          Width = 49
+          Caption = 'Cliente'
+          ParentColor = False
+        end
+        object edtclienteagenda: TEdit
+          Left = 78
+          Height = 21
+          Top = 14
+          Width = 593
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 0
+        end
+      end
+      object Panel19: TPanel
+        Left = 24
+        Height = 321
+        Top = 72
+        Width = 689
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        ClientHeight = 321
+        ClientWidth = 689
+        Enabled = False
+        TabOrder = 1
+        object Label34: TLabel
+          Left = 14
+          Height = 13
+          Top = 150
+          Width = 52
+          Caption = 'Decrição'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object Label35: TLabel
+          Left = 14
+          Height = 13
+          Top = 294
+          Width = 105
+          Caption = 'Visualizar retornos'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentColor = False
+          ParentFont = False
+        end
+        object dbgagenda: TDBGrid
+          Left = 14
+          Height = 121
+          Top = 6
+          Width = 657
+          Color = clWindow
+          Columns = <>
+          TabOrder = 0
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -13
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = [fsBold]
+        end
+        object RadioButton1: TRadioButton
+          Tag = 1
+          Left = 142
+          Height = 20
+          Top = 294
+          Width = 65
+          Caption = 'Todos'
+          Checked = True
+          TabOrder = 1
+          TabStop = True
+        end
+        object RadioButton2: TRadioButton
+          Left = 230
+          Height = 20
+          Top = 294
+          Width = 94
+          Caption = 'Pendentes'
+          TabOrder = 2
+        end
+        object bbAgIncluir: TBitBtn
+          Left = 402
+          Height = 25
+          Top = 132
+          Width = 75
+          Caption = 'Incluir'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbAgIncluirClick
+          ParentFont = False
+          TabOrder = 3
+        end
+        object bbAgEditar: TBitBtn
+          Left = 500
+          Height = 25
+          Top = 132
+          Width = 75
+          Caption = 'Editar'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          OnClick = bbAgEditarClick
+          ParentFont = False
+          TabOrder = 4
+        end
+        object bbAgExcluir: TBitBtn
+          Left = 598
+          Height = 25
+          Top = 132
+          Width = 75
+          Caption = 'Excluir'
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 5
+        end
+        object Memo2: TMemo
+          Left = 14
+          Height = 113
+          Top = 166
+          Width = 657
+          Font.CharSet = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          ParentFont = False
+          TabOrder = 6
+        end
+      end
+    end
+  end
+end

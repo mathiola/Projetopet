@@ -1,0 +1,278 @@
+object Frmmodelo: TFrmmodelo
+  Left = 204
+  Top = 153
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Modelo'
+  ClientHeight = 496
+  ClientWidth = 744
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  object Panel1: TPanel
+    Left = 0
+    Top = 442
+    Width = 744
+    Height = 54
+    Align = alBottom
+    TabOrder = 0
+    object Image: TImage
+      Left = 0
+      Top = 0
+      Width = 745
+      Height = 57
+      Picture.Data = {
+        0A544A504547496D6167650E050000FFD8FFE000104A46494600010101006000
+        600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C191213
+        0F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F2739
+        3D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232
+        3232323232323232323232323232323232323232323232323232323232323232
+        32323232323232323232323232FFC00011080034014003012200021101031101
+        FFC4001F0000010501010101010100000000000000000102030405060708090A
+        0BFFC400B5100002010303020403050504040000017D01020300041105122131
+        410613516107227114328191A1082342B1C11552D1F02433627282090A161718
+        191A25262728292A3435363738393A434445464748494A535455565758595A63
+        6465666768696A737475767778797A838485868788898A92939495969798999A
+        A2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6
+        D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F01000301
+        01010101010101010000000000000102030405060708090A0BFFC400B5110002
+        0102040403040705040400010277000102031104052131061241510761711322
+        328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728
+        292A35363738393A434445464748494A535455565758595A636465666768696A
+        737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7
+        A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3
+        E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00E2E9
+        F1D329F1F5AFAF3C52CC75617A5578EA75E9412C7514628C532428A31462800A
+        28C518A0028A31462800A28C518A0028A31462800A28C518A0028A31462800A2
+        8C518A0028A31462800A28A3FCF5A0028A3FCF5A3FCF5A0028A3FCF5A3FCF5A0
+        028A3FCF5A3FCF5A0028A3FCF5A3FCF5A0028A3FCF5A3FCF5A006B8E2A092A76
+        E9DEA0929148AD25329F253284520A7C74DC500E3A51602DC75617A77ACF12B8
+        E87F4A70B8947F17E82826C5FA2A87DA65FEFF00E828FB4CBFDFFD0530E565FA
+        2A87DA65FEFF00E828FB4CBFDFFD0501CACBF4550FB4CBFDFF00D051F6997FBF
+        FA0A039597E8AA1F6997FBFF00A0A3ED32FF007FF414072B2FD1543ED32FF7FF
+        004147DA65FEFF00E8280E565FA2A87DA65FEFFE828FB4CBFDFF00D0501CACBF
+        4550FB4CBFDFFD051F6997FBFF00A0A039597E8AA1F6997FBFFA0A3ED32FF7FF
+        00414072B2FD1543ED32FF007FF4147DA65FEFFE8280E565FA2A87DA65FEFF00
+        E828FB4CBFDFFD0501CACBF4550FB4CBFDFF00D051F6997FBFFA0A039597E8AA
+        1F6997FBFF00A0A3ED32FF007FF414072B2FD1543ED32FF7FF004147DA65FEFF
+        00E8280E565FA2A87DA65FEFFE828FB4CBFDFF00D0501CACBF4550FB4CBFDFFD
+        051F6997FBFF00A0A039597E8AA1F6997FBFFA0A3ED32FF7FF00414072B2F374
+        AAF25426E253FC7FA0A6995CF53FA520B092532949CF5A28B14145145300A28A
+        2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A
+        2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A
+        2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A
+        2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A
+        2800A28A2800A28A2800A28A2800A28A2800A28A2800A3B5145007FFD9}
+      Stretch = True
+    end
+    object bbcancelar: TBitBtn
+      Left = 478
+      Top = 14
+      Width = 75
+      Height = 25
+      Caption = 'Cancelar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 3
+      Visible = False
+      OnClick = bbcancelarClick
+    end
+    object bbgravar: TBitBtn
+      Left = 390
+      Top = 14
+      Width = 75
+      Height = 25
+      Caption = 'Gravar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      Visible = False
+      OnClick = bbgravarClick
+    end
+    object bbnovo: TBitBtn
+      Left = 390
+      Top = 14
+      Width = 75
+      Height = 25
+      Caption = 'Novo'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = bbnovoClick
+    end
+    object bbeditar: TBitBtn
+      Left = 478
+      Top = 14
+      Width = 75
+      Height = 25
+      Caption = 'Editar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      OnClick = bbeditarClick
+    end
+    object bbexcluir: TBitBtn
+      Left = 566
+      Top = 14
+      Width = 75
+      Height = 25
+      Caption = 'Excluir'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 4
+    end
+    object bbsair: TBitBtn
+      Left = 654
+      Top = 14
+      Width = 75
+      Height = 25
+      Caption = 'Sair'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 5
+      OnClick = bbsairClick
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 744
+    Height = 442
+    ActivePage = TabSheet1
+    Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      object Panel3: TPanel
+        Left = 8
+        Top = 8
+        Width = 721
+        Height = 81
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        TabOrder = 2
+        object Label3: TLabel
+          Left = 374
+          Top = 14
+          Width = 130
+          Height = 13
+          Caption = 'Parâmetro de pesquisa'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object edtpesquisa: TEdit
+          Left = 374
+          Top = 36
+          Width = 225
+          Height = 21
+          TabOrder = 0
+        end
+        object bbpesquisa: TBitBtn
+          Left = 626
+          Top = 36
+          Width = 75
+          Height = 26
+          Caption = 'Pesquisar'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 1
+        end
+      end
+      object Panel20: TPanel
+        Left = 8
+        Top = 96
+        Width = 721
+        Height = 305
+        BevelInner = bvRaised
+        BevelOuter = bvLowered
+        TabOrder = 1
+        object Dbgpesquisa: TDBGrid
+          Left = 14
+          Top = 6
+          Width = 689
+          Height = 289
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = []
+        end
+      end
+      object rgpesquisa: TRadioGroup
+        Left = 24
+        Top = 24
+        Width = 185
+        Height = 51
+        Caption = 'Pesquisa por :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TabSheet2'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsItalic]
+      ImageIndex = 1
+      ParentFont = False
+    end
+  end
+end

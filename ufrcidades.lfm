@@ -1,0 +1,161 @@
+inherited Frmcidades: TFrmcidades
+  Left = 414
+  Top = 196
+  Caption = 'Cadastro de cidades'
+  OnCreate = FormCreate
+  inherited Panel1: TPanel
+    inherited bbexcluir: TBitBtn
+      OnClick = bbexcluirClick
+    end
+  end
+  inherited Panel2: TPanel
+    inherited Panel3: TPanel
+      Height = 265
+      Top = 160
+      ClientHeight = 265
+      inherited Label1: TLabel
+        Left = 275
+        Top = 13
+      end
+      inherited rgpesquisa: TRadioGroup
+        Left = 8
+        Width = 217
+        ChildSizing.ControlsPerLine = 3
+        ClientHeight = 31
+        ClientWidth = 213
+        Columns = 3
+        ItemIndex = 0
+        Items.Strings = (
+          'Todos'
+          'Código'
+          'Cidade'
+        )
+        OnClick = rgpesquisaClick
+      end
+      inherited Dbgpesquisa: TDBGrid
+        Height = 185
+        Top = 72
+        AutoEdit = False
+        DataSource = DataModule1.DataSource1
+      end
+      inherited bbpesquisa: TBitBtn
+        Top = 9
+        OnClick = bbpesquisaClick
+      end
+      inherited Edtpesquisa: TEdit
+        Top = 34
+      end
+      object BitBtn1: TBitBtn[5]
+        Left = 453
+        Height = 25
+        Top = 40
+        Width = 75
+        Caption = 'Imprimir'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        OnClick = BitBtn1Click
+        ParentFont = False
+        TabOrder = 4
+      end
+    end
+    inherited Panel4: TPanel
+      Height = 137
+      ClientHeight = 137
+      object Label2: TLabel[0]
+        Left = 16
+        Height = 13
+        Top = 24
+        Width = 40
+        Caption = 'Código'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label3: TLabel[1]
+        Left = 16
+        Height = 13
+        Top = 80
+        Width = 40
+        Caption = 'Cidade'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label4: TLabel[2]
+        Left = 368
+        Height = 13
+        Top = 72
+        Width = 17
+        Caption = 'UF'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object edtcodigo: TEdit[3]
+        Left = 16
+        Height = 21
+        Top = 40
+        Width = 85
+        TabOrder = 0
+      end
+      object edtcidade: TEdit[4]
+        Left = 16
+        Height = 21
+        Top = 96
+        Width = 313
+        CharCase = ecUppercase
+        TabOrder = 1
+      end
+      object cbUF: TComboBox[5]
+        Left = 368
+        Height = 21
+        Top = 96
+        Width = 145
+        CharCase = ecUppercase
+        ItemHeight = 13
+        OnChange = cbUFChange
+        TabOrder = 2
+      end
+      object DBNavigator1: TDBNavigator[6]
+        Left = 181
+        Height = 25
+        Top = 14
+        Width = 241
+        BevelOuter = bvNone
+        ChildSizing.EnlargeHorizontal = crsScaleChilds
+        ChildSizing.EnlargeVertical = crsScaleChilds
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 100
+        ClientHeight = 25
+        ClientWidth = 241
+        DataSource = DataModule1.DataSource1
+        Options = []
+        TabOrder = 3
+      end
+      object DBEdit1: TDBEdit[7]
+        Left = 155
+        Height = 21
+        Top = 52
+        Width = 165
+        DataField = 'nomemptela'
+        DataSource = DataModule1.DataSource1
+        CharCase = ecNormal
+        MaxLength = 400
+        TabOrder = 4
+      end
+    end
+  end
+end

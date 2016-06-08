@@ -14,19 +14,19 @@ type
   { TFrmcidades }
 
   TFrmcidades = class(TFrmModeloBasico)
-    DBEdit1: TDBEdit;
-    DBNavigator1: TDBNavigator;
+    bbimprimir: TBitBtn;
     edtcodigo: TEdit;
     Label2: TLabel;
     edtcidade: TEdit;
     Label3: TLabel;
     cbUF: TComboBox;
     Label4: TLabel;
-    BitBtn1: TBitBtn;
     procedure bbpesquisaClick(Sender: TObject);
     procedure bbgravarClick(Sender: TObject);
     procedure cbUFChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Label4Click(Sender: TObject);
+    procedure Panel2Click(Sender: TObject);
     procedure rgpesquisaClick(Sender: TObject);
     procedure bbnovoClick(Sender: TObject);
     procedure bbeditarClick(Sender: TObject);
@@ -198,6 +198,16 @@ begin
   // FrmRelatorioCidades.QryRelatorio.Open;
 
  
+end;
+
+procedure TFrmcidades.Label4Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFrmcidades.Panel2Click(Sender: TObject);
+begin
+
 end;
 
 procedure TFrmcidades.rgpesquisaClick(Sender: TObject);

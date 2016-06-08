@@ -10,6 +10,9 @@ uses
   ExtCtrls, grids, StdCtrls, Buttons;
 
 type
+
+  { TFrmprincipal }
+
   TFrmprincipal = class(TForm)
     MainMenu1: TMainMenu;
     Agendas1: TMenuItem;
@@ -50,6 +53,7 @@ type
     Image1: TImage;
     Timer3: TTimer;
     procedure Clientes1Click(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure Animais1Click(Sender: TObject);
@@ -132,6 +136,11 @@ begin
       Frmcliente.ShowModal;
       Frmcliente.Free;
      
+end;
+
+procedure TFrmprincipal.Image1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TFrmprincipal.Timer1Timer(Sender: TObject);

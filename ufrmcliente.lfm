@@ -13,12 +13,12 @@ inherited Frmcliente: TFrmcliente
       Width = 749
     end
     inherited bbcancelar: TBitBtn
-      Left = 475
+      Left = 456
       Top = 13
       Width = 62
     end
     inherited bbgravar: TBitBtn
-      Left = 597
+      Left = 584
       Top = 13
       Width = 62
     end
@@ -66,7 +66,7 @@ inherited Frmcliente: TFrmcliente
       OnClick = bbnovoClick
     end
     inherited bbeditar: TBitBtn
-      Left = 536
+      Left = 520
       Top = 13
       Width = 62
       Caption = '&Editar'
@@ -108,7 +108,7 @@ inherited Frmcliente: TFrmcliente
       }
     end
     inherited bbexcluir: TBitBtn
-      Left = 414
+      Left = 384
       Top = 13
       Width = 62
       Caption = 'E&xcluir'
@@ -150,7 +150,7 @@ inherited Frmcliente: TFrmcliente
       }
     end
     inherited bbsair: TBitBtn
-      Left = 354
+      Left = 304
       Top = 13
       Width = 62
       Caption = '&Sair'
@@ -334,7 +334,7 @@ inherited Frmcliente: TFrmcliente
     end
     inherited TabSheet2: TTabSheet
       Caption = 'Cadastro'
-      ClientHeight = 413
+      ClientHeight = 407
       ClientWidth = 736
       Font.CharSet = ANSI_CHARSET
       Font.Height = -13
@@ -1009,7 +1009,7 @@ inherited Frmcliente: TFrmcliente
     end
     object TabSheet3: TTabSheet[2]
       Caption = 'Complemento'
-      ClientHeight = 413
+      ClientHeight = 407
       ClientWidth = 736
       ImageIndex = 2
       object Panel21: TPanel
@@ -1209,7 +1209,7 @@ inherited Frmcliente: TFrmcliente
         end
         object ckmensalista: TCheckBox
           Left = 14
-          Height = 19
+          Height = 17
           Top = 38
           Width = 122
           Caption = 'Cliente mensalista'
@@ -1260,7 +1260,7 @@ inherited Frmcliente: TFrmcliente
         end
         object ckbloqueado: TCheckBox
           Left = 14
-          Height = 19
+          Height = 17
           Top = 38
           Width = 122
           Caption = 'Cliente bloqueado'
@@ -1322,7 +1322,7 @@ inherited Frmcliente: TFrmcliente
           TabOrder = 0
           object ckmail: TCheckBox
             Left = 38
-            Height = 19
+            Height = 17
             Top = 6
             Width = 109
             Caption = 'Autoriza e-mails'
@@ -1330,7 +1330,7 @@ inherited Frmcliente: TFrmcliente
           end
           object cksms: TCheckBox
             Left = 198
-            Height = 19
+            Height = 17
             Top = 6
             Width = 96
             Caption = 'Autoriza SMS'
@@ -1338,7 +1338,7 @@ inherited Frmcliente: TFrmcliente
           end
           object cktel: TCheckBox
             Left = 350
-            Height = 19
+            Height = 17
             Top = 6
             Width = 138
             Caption = 'Autoriza telefonemas'
@@ -1346,7 +1346,7 @@ inherited Frmcliente: TFrmcliente
           end
           object ckcartas: TCheckBox
             Left = 526
-            Height = 19
+            Height = 17
             Top = 6
             Width = 105
             Caption = 'Autoriza cartas'
@@ -1417,7 +1417,7 @@ inherited Frmcliente: TFrmcliente
         end
         object ckcredito: TCheckBox
           Left = 14
-          Height = 19
+          Height = 17
           Top = 25
           Width = 135
           Caption = 'Restrição de crédito'
@@ -1444,7 +1444,7 @@ inherited Frmcliente: TFrmcliente
     end
     object TabSheet4: TTabSheet[3]
       Caption = 'Anotações'
-      ClientHeight = 413
+      ClientHeight = 407
       ClientWidth = 736
       ImageIndex = 3
       object Panel6: TPanel
@@ -1587,7 +1587,7 @@ inherited Frmcliente: TFrmcliente
     end
     object TabSheet5: TTabSheet[4]
       Caption = 'Animais'
-      ClientHeight = 413
+      ClientHeight = 407
       ClientWidth = 736
       ImageIndex = 4
       object Panel8: TPanel
@@ -1687,7 +1687,7 @@ inherited Frmcliente: TFrmcliente
     end
     object TabSheet6: TTabSheet[5]
       Caption = 'Informações'
-      ClientHeight = 413
+      ClientHeight = 407
       ClientWidth = 736
       ImageIndex = 5
       object Panel12: TPanel
@@ -1926,7 +1926,7 @@ inherited Frmcliente: TFrmcliente
     end
     object TabSheet7: TTabSheet[6]
       Caption = 'Retornos'
-      ClientHeight = 413
+      ClientHeight = 407
       ClientWidth = 736
       ImageIndex = 6
       object Panel17: TPanel

@@ -6,6 +6,7 @@ object DataModule1: TDataModule1
   Width = 441
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF8
+    UTF8StringsAsWideField = False
     AutoEncodeStrings = False
     ClientCodepage = 'UTF8'
     Catalog = 'public'
@@ -14,7 +15,6 @@ object DataModule1: TDataModule1
       'codepage=UTF8'
     )
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     HostName = 'localhost'
     Port = 0
     Database = 'sispet'
@@ -22,8 +22,8 @@ object DataModule1: TDataModule1
     Password = 'postgres'
     Protocol = 'postgresql-9'
     LibraryLocation = 'e:\neo\pgsql\bin\libpq.dll'
-    left = 72
-    top = 104
+    left = 64
+    top = 80
   end
   object DataSource1: TDataSource
     DataSet = ZQuery1
@@ -42,7 +42,6 @@ object DataModule1: TDataModule1
   object QueryClientes: TZQuery
     Connection = ZConnection1
     UpdateObject = UpCliente
-    Active = True
     SQL.Strings = (
       'select * from cliente'
     )

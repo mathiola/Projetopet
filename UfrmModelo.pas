@@ -10,7 +10,11 @@ uses
   ComCtrls, Grids, DBGrids;
 
 type
+
+  { TFrmmodelo }
+
   TFrmmodelo = class(TForm)
+    bbimprimir: TBitBtn;
     Panel1: TPanel;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
@@ -61,11 +65,12 @@ begin
    bbeditar.enabled:= aux;
    bbexcluir.enabled:= aux;
    bbsair.enabled:= aux;
+   bbimprimir.Enabled:= aux;
 
-   bbnovo.Visible:= aux;
+{  bbnovo.Visible:= aux;
    bbgravar.Visible:= not(aux);
    bbcancelar.visible:= not(aux);
-   bbeditar.visible:= aux;
+   bbeditar.visible:= aux;  }
 
 
 end;

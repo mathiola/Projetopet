@@ -16,7 +16,7 @@ type
   TFrmprincipal = class(TForm)
     MainMenu1: TMainMenu;
     Agendas1: TMenuItem;
-    Suporte: TMenuItem;
+    chamarsuporte: TMenuItem;
     Movimentao1: TMenuItem;
     Cadastros1: TMenuItem;
     Acessos1: TMenuItem;
@@ -53,10 +53,9 @@ type
     Estado1: TMenuItem;
     Image1: TImage;
     Timer3: TTimer;
+    procedure chamarsuporteClick(Sender: TObject);
     procedure Clientes1Click(Sender: TObject);
-    procedure Image1Click(Sender: TObject);
     procedure Sairdosistema1Click(Sender: TObject);
-    procedure SuporteClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure Animais1Click(Sender: TObject);
@@ -141,20 +140,20 @@ begin
      
 end;
 
-procedure TFrmprincipal.Image1Click(Sender: TObject);
-begin
-
-end;
-
-procedure TFrmprincipal.Sairdosistema1Click(Sender: TObject);
-begin
-  close;
-end;
-
-procedure TFrmprincipal.SuporteClick(Sender: TObject);
+procedure TFrmprincipal.chamarsuporteClick(Sender: TObject);
 begin
   HlinkNavigateString(nil,'http://www.freelive.com.br/suporte');
 end;
+
+
+
+procedure TFrmprincipal.Sairdosistema1Click(Sender: TObject);
+begin
+  Frmprincipal.Free;
+  Frmprincipal.close;
+end;
+
+
 
 procedure TFrmprincipal.Timer1Timer(Sender: TObject);
 begin
@@ -164,9 +163,9 @@ end;
 
 procedure TFrmprincipal.Timer2Timer(Sender: TObject);
 begin
-    if Timer2.Interval = 5000  then
+    if Timer2.Interval = 15000  then
      begin
-      StatusBar1.Panels[0].Text := ''
+      StatusBar1.Panels[0].Text := 'Em caso de dúvidas, ligue: (048)3621-3913'
      end;
 end;
 
@@ -332,7 +331,7 @@ end;
 procedure TFrmprincipal.FormCreate(Sender: TObject);
 begin
   DoubleBuffered:=True;
-  Frmprincipal.Caption := '  Freelive Pet - Modulo Consultorio  '+datetostr(date);
+  Frmprincipal.Caption := '  Freelive Pet - Módulo Consultório  '+datetostr(date);
 
   Try
     FrmSenhaAcesso:= Tfrmsenhaacesso.create(nil);

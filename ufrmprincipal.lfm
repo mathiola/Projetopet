@@ -1,7 +1,7 @@
 object Frmprincipal: TFrmprincipal
-  Left = 348
+  Left = 339
   Height = 555
-  Top = 161
+  Top = 101
   Width = 835
   Caption = '   Freelive Pet'
   ClientHeight = 536
@@ -22,7 +22,6 @@ object Frmprincipal: TFrmprincipal
     Align = alClient
     Constraints.MinHeight = 600
     Constraints.MinWidth = 800
-    OnClick = Image1Click
     Picture.Data = {
       1754506F727461626C654E6574776F726B47726170686963B756000089504E47
       0D0A1A0A0000000D49484452000005000000032008060000007C98CFFB000000
@@ -728,7 +727,7 @@ object Frmprincipal: TFrmprincipal
     Width = 835
     Panels = <    
       item
-        Text = 'Bem vindo ao sistema'
+        Text = 'Bem-vindo ao sistema!'
         Width = 950
       end    
       item
@@ -737,7 +736,7 @@ object Frmprincipal: TFrmprincipal
     SimplePanel = False
   end
   object MainMenu1: TMainMenu
-    left = 272
+    left = 232
     top = 96
     object Cadastros1: TMenuItem
       Caption = 'Cadastros'
@@ -849,9 +848,9 @@ object Frmprincipal: TFrmprincipal
         Caption = 'Sobre o sistema'
         OnClick = Sobreosistema1Click
       end
-      object Suporte: TMenuItem
-        Caption = 'Solicitar Suporte'
-        OnClick = SuporteClick
+      object chamarsuporte: TMenuItem
+        Caption = 'Suporte Técnico'
+        OnClick = chamarsuporteClick
       end
     end
   end
@@ -861,9 +860,9 @@ object Frmprincipal: TFrmprincipal
     top = 128
   end
   object Timer2: TTimer
-    Interval = 5000
+    Interval = 15000
     OnTimer = Timer2Timer
-    left = 320
+    left = 288
     top = 128
   end
   object Timer3: TTimer

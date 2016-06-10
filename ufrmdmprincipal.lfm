@@ -2,8 +2,8 @@ object DataModule1: TDataModule1
   OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 316
-  HorizontalOffset = 497
-  VerticalOffset = 224
+  HorizontalOffset = 586
+  VerticalOffset = 211
   Width = 441
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF8
@@ -15,21 +15,19 @@ object DataModule1: TDataModule1
       'codepage=UTF8'
     )
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     HostName = 'localhost'
     Port = 0
-    Database = 'sispet'
+    Database = 'freelivepet'
     User = 'postgres'
     Password = 'postgres'
     Protocol = 'postgresql-9'
-    LibraryLocation = 'e:\neo\pgsql\bin\libpq.dll'
+    LibraryLocation = 'D:\postgre\bin\libpq.dll'
     left = 72
     top = 104
   end
   object QueryCidades: TZQuery
     Connection = ZConnection1
     UpdateObject = UpCidade
-    Active = True
     SQL.Strings = (
       'select  *  from cidade'
     )
@@ -71,7 +69,6 @@ object DataModule1: TDataModule1
     Connection = ZConnection1
     UpdateObject = UpCliente
     AfterPost = QueryClientesAfterPost
-    Active = True
     SQL.Strings = (
       'select * from cliente'
     )
@@ -833,7 +830,6 @@ object DataModule1: TDataModule1
   end
   object QueryGrupoCli: TZQuery
     Connection = ZConnection1
-    Active = True
     SQL.Strings = (
       'select * from grupo_cliente'
     )
@@ -868,7 +864,6 @@ object DataModule1: TDataModule1
   end
   object QueryEstados: TZQuery
     Connection = ZConnection1
-    Active = True
     SQL.Strings = (
       'select * from estado'
     )

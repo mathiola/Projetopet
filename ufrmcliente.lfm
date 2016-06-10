@@ -13,20 +13,23 @@ inherited Frmcliente: TFrmcliente
       Width = 749
     end
     inherited bbcancelar: TBitBtn
-      Left = 407
-      Top = 13
-      Width = 62
+      Left = 397
+      Height = 47
+      Top = 1
+      Width = 75
     end
     inherited bbgravar: TBitBtn
-      Left = 605
-      Top = 13
-      Width = 62
+      Left = 611
+      Height = 47
+      Top = 1
+      Width = 69
       OnClick = bbgravarClick
     end
     inherited bbnovo: TBitBtn
-      Left = 670
-      Top = 13
-      Width = 62
+      Left = 679
+      Height = 47
+      Top = 1
+      Width = 63
       Caption = '&Novo'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -67,9 +70,10 @@ inherited Frmcliente: TFrmcliente
       OnClick = bbnovoClick
     end
     inherited bbeditar: TBitBtn
-      Left = 468
-      Top = 13
-      Width = 62
+      Left = 471
+      Height = 47
+      Top = 1
+      Width = 63
       Caption = '&Editar'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -109,9 +113,10 @@ inherited Frmcliente: TFrmcliente
       }
     end
     inherited bbexcluir: TBitBtn
-      Left = 345
-      Top = 13
-      Width = 62
+      Left = 332
+      Height = 47
+      Top = 1
+      Width = 67
       Caption = 'E&xcluir'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -151,9 +156,10 @@ inherited Frmcliente: TFrmcliente
       }
     end
     inherited bbsair: TBitBtn
-      Left = 284
-      Top = 13
-      Width = 62
+      Left = 272
+      Height = 47
+      Top = 1
+      Width = 63
       Caption = '&Sair'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -193,14 +199,17 @@ inherited Frmcliente: TFrmcliente
       }
     end
     inherited bbimprimir: TBitBtn
-      Left = 529
+      Left = 533
+      Height = 47
+      Top = 1
+      Width = 79
     end
   end
   inherited PageControl1: TPageControl
     Height = 436
-    ActivePage = TabSheet7
+    ActivePage = TabSheet2
     MultiLine = True
-    TabIndex = 6
+    TabIndex = 1
     OnChange = PageControl1Change
     Options = [nboMultiLine]
     inherited TabSheet1: TTabSheet
@@ -281,22 +290,12 @@ inherited Frmcliente: TFrmcliente
               Title.Font.Style = [fsBold]
               Title.Caption = 'Telefone'
               Width = 106
-              FieldName = 'FONE_PRI'
+              FieldName = 'fone1'
             end          
             item
-              Font.CharSet = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -11
-              Font.Name = 'MS Sans Serif'
               PickList.Strings = (              )
-              Title.Font.CharSet = ANSI_CHARSET
-              Title.Font.Color = clWindowText
-              Title.Font.Height = -13
-              Title.Font.Name = 'Arial'
-              Title.Font.Style = [fsBold]
-              Title.Caption = 'CIDADE'
-              Width = 239
-              FieldName = 'CIDADE'
+              Title.Caption = 'cpf_cnpj'
+              FieldName = 'cpf_cnpj'
             end>
           DataSource = DSClientes
           Font.CharSet = ANSI_CHARSET

@@ -207,15 +207,12 @@ inherited Frmcliente: TFrmcliente
   end
   inherited PageControl1: TPageControl
     Height = 436
-    ActivePage = TabSheet2
     MultiLine = True
-    TabIndex = 1
     OnChange = PageControl1Change
     Options = [nboMultiLine]
     inherited TabSheet1: TTabSheet
       Caption = 'Pesquisa'
       ClientHeight = 407
-      ClientWidth = 736
       Font.CharSet = ANSI_CHARSET
       Font.Height = -13
       Font.Name = 'Arial'

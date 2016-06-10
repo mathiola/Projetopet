@@ -325,7 +325,7 @@ end;
 procedure TFrmprincipal.FormCreate(Sender: TObject);
 begin
   DoubleBuffered:=True;
-  Frmprincipal.Caption := '  PETSOFT   '+datetostr(date);
+  Frmprincipal.Caption := '  Freelive Pet - Modulo Consultorio  '+datetostr(date);
 
   Try
     FrmSenhaAcesso:= Tfrmsenhaacesso.create(nil);

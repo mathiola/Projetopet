@@ -1,12 +1,12 @@
 object Frmsobre: TFrmsobre
-  Left = 387
+  Left = 416
   Height = 213
-  Top = 279
+  Top = 221
   Width = 298
   BorderStyle = bsDialog
   Caption = 'About'
-  ClientHeight = 213
-  ClientWidth = 298
+  ClientHeight = 0
+  ClientWidth = 0
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11

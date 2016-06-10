@@ -13,6 +13,7 @@ uses
 {$R *.res}
 
 begin
+  Application.Title:='FreelivePet';
   RequireDerivedFormResource:=True;
   Application.Initialize;
   Application.CreateForm(TFrmprincipal, Frmprincipal);

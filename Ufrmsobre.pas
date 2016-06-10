@@ -13,8 +13,6 @@ type
 
   TFrmsobre = class(TForm)
     DBGrid1: TDBGrid;
-    Label3: TLabel;
-    Label4: TLabel;
     Panel1: TPanel;
     ProgramIcon: TImage;
     ProductName: TLabel;

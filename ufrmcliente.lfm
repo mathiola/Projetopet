@@ -13,17 +13,18 @@ inherited Frmcliente: TFrmcliente
       Width = 749
     end
     inherited bbcancelar: TBitBtn
-      Left = 456
+      Left = 407
       Top = 13
       Width = 62
     end
     inherited bbgravar: TBitBtn
-      Left = 584
+      Left = 605
       Top = 13
       Width = 62
+      OnClick = bbgravarClick
     end
     inherited bbnovo: TBitBtn
-      Left = 658
+      Left = 670
       Top = 13
       Width = 62
       Caption = '&Novo'
@@ -66,7 +67,7 @@ inherited Frmcliente: TFrmcliente
       OnClick = bbnovoClick
     end
     inherited bbeditar: TBitBtn
-      Left = 520
+      Left = 468
       Top = 13
       Width = 62
       Caption = '&Editar'
@@ -108,7 +109,7 @@ inherited Frmcliente: TFrmcliente
       }
     end
     inherited bbexcluir: TBitBtn
-      Left = 384
+      Left = 345
       Top = 13
       Width = 62
       Caption = 'E&xcluir'
@@ -150,7 +151,7 @@ inherited Frmcliente: TFrmcliente
       }
     end
     inherited bbsair: TBitBtn
-      Left = 304
+      Left = 284
       Top = 13
       Width = 62
       Caption = '&Sair'
@@ -191,10 +192,15 @@ inherited Frmcliente: TFrmcliente
         004E0000004E0000004E0000004E0000004E0000004E0000000E
       }
     end
+    inherited bbimprimir: TBitBtn
+      Left = 529
+    end
   end
   inherited PageControl1: TPageControl
     Height = 436
+    ActivePage = TabSheet7
     MultiLine = True
+    TabIndex = 6
     OnChange = PageControl1Change
     Options = [nboMultiLine]
     inherited TabSheet1: TTabSheet
@@ -355,6 +361,7 @@ inherited Frmcliente: TFrmcliente
         Font.Name = 'MS Sans Serif'
         ParentFont = False
         TabOrder = 1
+        OnClick = Panel5Click
         object Label11: TLabel
           Left = 14
           Height = 13
@@ -459,21 +466,8 @@ inherited Frmcliente: TFrmcliente
           ParentColor = False
           ParentFont = False
         end
-        object Label20: TLabel
-          Left = 308
-          Height = 13
-          Top = 151
-          Width = 17
-          Caption = 'UF'
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          Font.Style = [fsBold]
-          ParentColor = False
-          ParentFont = False
-        end
         object Label19: TLabel
-          Left = 375
+          Left = 290
           Height = 13
           Top = 151
           Width = 40
@@ -498,164 +492,119 @@ inherited Frmcliente: TFrmcliente
           ParentColor = False
           ParentFont = False
         end
-        object edttel1: TEdit
-          Left = 14
+        object cbcidade: TDBLookupComboBox
+          Left = 280
           Height = 21
-          Top = 42
-          Width = 137
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 176
+          Width = 232
+          DataField = 'cd_cidade'
+          DataSource = DSClientes
+          KeyField = 'cd_cidade'
+          ListField = 'cidade'
+          ListFieldIndex = 0
+          ListSource = DSCidades
+          LookupCache = False
           TabOrder = 0
         end
-        object edttel2: TEdit
-          Left = 166
+        object edfone1: TDBEdit
+          Left = 14
           Height = 21
-          Top = 42
-          Width = 129
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 44
+          Width = 102
+          DataField = 'fone1'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 80
           TabOrder = 1
         end
-        object edtcel: TEdit
-          Left = 310
+        object edfone2: TDBEdit
+          Left = 141
           Height = 21
-          Top = 42
-          Width = 121
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 44
+          Width = 104
+          DataField = 'fone2'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 80
           TabOrder = 2
         end
-        object edtemail: TEdit
-          Left = 446
+        object edcelular: TDBEdit
+          Left = 276
           Height = 21
-          Top = 42
-          Width = 257
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 44
+          Width = 109
+          DataField = 'fone3'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 80
           TabOrder = 3
         end
-        object edtendereco: TEdit
-          Left = 14
+        object edemail: TDBEdit
+          Left = 420
           Height = 21
-          Top = 106
-          Width = 281
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 44
+          Width = 215
+          DataField = 'email'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 400
           TabOrder = 4
+          OnChange = edemailChange
         end
-        object edtnumero: TEdit
-          Left = 310
+        object edendereco: TDBEdit
+          Left = 17
           Height = 21
-          Top = 106
-          Width = 121
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 112
+          Width = 246
+          DataField = 'endereco'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 1200
           TabOrder = 5
         end
-        object edtcomplemento: TEdit
-          Left = 446
+        object edbairro: TDBEdit
+          Left = 17
           Height = 21
-          Top = 106
-          Width = 257
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 176
+          Width = 246
+          DataField = 'bairro'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 400
           TabOrder = 6
         end
-        object edtbairro: TEdit
-          Left = 14
+        object ednumero: TDBEdit
+          Left = 279
           Height = 21
-          Top = 170
-          Width = 281
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
+          Top = 112
+          Width = 80
+          DataField = 'numero'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 0
           TabOrder = 7
         end
-        object cbuf: TComboBox
-          Left = 308
+        object edcomplemento: TDBEdit
+          Left = 421
           Height = 21
-          Top = 169
-          Width = 55
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ItemHeight = 13
-          OnChange = cbufChange
-          OnDropDown = cbufDropDown
-          ParentFont = False
+          Top = 112
+          Width = 217
+          DataField = 'complemento'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 1200
           TabOrder = 8
         end
-        object cbcidade: TComboBox
-          Left = 376
+        object DBEdit16: TDBEdit
+          Left = 544
           Height = 21
-          Top = 170
-          Width = 185
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ItemHeight = 13
-          OnChange = cbcidadeChange
-          ParentFont = False
+          Top = 176
+          Width = 120
+          DataField = 'cep'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 120
           TabOrder = 9
-        end
-        object edtcep: TEdit
-          Left = 574
-          Height = 21
-          Top = 170
-          Width = 130
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ParentFont = False
-          TabOrder = 10
         end
       end
       object Panel4: TPanel[1]
@@ -727,9 +676,9 @@ inherited Frmcliente: TFrmcliente
           ParentFont = False
         end
         object lbempresa: TLabel
-          Left = 194
+          Left = 190
           Height = 13
-          Top = 102
+          Top = 104
           Width = 49
           Caption = 'Empresa'
           Font.Color = clWindowText
@@ -818,89 +767,6 @@ inherited Frmcliente: TFrmcliente
           ParentColor = False
           ParentFont = False
         end
-        object edtcodigo: TEdit
-          Left = 14
-          Height = 21
-          Top = 22
-          Width = 101
-          CharCase = ecUppercase
-          Color = clScrollBar
-          TabOrder = 0
-        end
-        object cbpessoa: TComboBox
-          Left = 151
-          Height = 21
-          Top = 22
-          Width = 120
-          CharCase = ecUppercase
-          Color = clScrollBar
-          ItemHeight = 13
-          Items.Strings = (
-            'FÍSICA'
-            'JURÍDICA'
-          )
-          OnChange = cbpessoaChange
-          TabOrder = 1
-        end
-        object cbsituacao: TComboBox
-          Left = 307
-          Height = 21
-          Top = 22
-          Width = 120
-          CharCase = ecUppercase
-          Color = clScrollBar
-          ItemHeight = 13
-          Items.Strings = (
-            'ATIVO'
-            'INATIVO'
-          )
-          TabOrder = 2
-        end
-        object edtnome: TEdit
-          Left = 14
-          Height = 21
-          Top = 70
-          Width = 417
-          CharCase = ecUppercase
-          Color = clScrollBar
-          OnChange = edtnomeChange
-          TabOrder = 4
-        end
-        object edtrazao: TEdit
-          Left = 446
-          Height = 21
-          Top = 70
-          Width = 257
-          Color = clScrollBar
-          TabOrder = 5
-          Visible = False
-        end
-        object edtcargo: TEdit
-          Left = 494
-          Height = 21
-          Top = 118
-          Width = 209
-          CharCase = ecUppercase
-          Color = clScrollBar
-          TabOrder = 7
-        end
-        object cbgrupo: TComboBox
-          Left = 444
-          Height = 21
-          Top = 22
-          Width = 219
-          CharCase = ecUppercase
-          Color = clScrollBar
-          Font.CharSet = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'MS Sans Serif'
-          ItemHeight = 13
-          OnChange = cbgrupoChange
-          OnDropDown = cbgrupoDropDown
-          ParentFont = False
-          TabOrder = 3
-        end
         object btngrupo: TButton
           Left = 668
           Height = 20
@@ -914,24 +780,8 @@ inherited Frmcliente: TFrmcliente
           Font.Style = [fsBold]
           OnClick = btngrupoClick
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 0
           TabStop = False
-        end
-        object cbsexo: TComboBox
-          Left = 14
-          Height = 21
-          Top = 119
-          Width = 89
-          CharCase = ecUppercase
-          Color = clScrollBar
-          ItemHeight = 13
-          ItemIndex = 0
-          Items.Strings = (
-            'MASCULINO'
-            'FEMININO'
-          )
-          TabOrder = 6
-          Text = 'MASCULINO'
         end
         object bbempresa: TBitBtn
           Left = 435
@@ -947,7 +797,7 @@ inherited Frmcliente: TFrmcliente
           Font.Style = [fsBold]
           OnClick = bbempresaClick
           ParentFont = False
-          TabOrder = 9
+          TabOrder = 1
         end
         object Panel29: TPanel
           Left = 190
@@ -956,27 +806,8 @@ inherited Frmcliente: TFrmcliente
           Width = 241
           BevelOuter = bvNone
           Caption = 'Panel29'
-          ClientHeight = 27
-          ClientWidth = 241
           Enabled = False
-          TabOrder = 10
-          object edtempresa: TEdit
-            Left = 3
-            Height = 21
-            Top = 0
-            Width = 232
-            Color = clScrollBar
-            TabOrder = 0
-          end
-        end
-        object edtinscestadual: TEdit
-          Left = 195
-          Height = 21
-          Top = 119
-          Width = 236
-          Color = clScrollBar
-          TabOrder = 11
-          Visible = False
+          TabOrder = 2
         end
         object bbempresadel: TBitBtn
           Left = 459
@@ -992,18 +823,124 @@ inherited Frmcliente: TFrmcliente
           Font.Style = [fsBold]
           OnClick = bbempresadelClick
           ParentFont = False
-          TabOrder = 12
+          TabOrder = 3
         end
-        object DBEdit1: TDBEdit
-          Left = 71
+        object edcodigo: TDBEdit
+          Left = 14
           Height = 21
-          Top = 50
+          Top = 21
           Width = 80
           DataField = 'cd_cliente'
           DataSource = DSClientes
           CharCase = ecNormal
           MaxLength = 0
-          TabOrder = 13
+          TabOrder = 4
+        end
+        object ednome: TDBEdit
+          Left = 14
+          Height = 21
+          Top = 73
+          Width = 369
+          DataField = 'cliente'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 400
+          TabOrder = 5
+        end
+        object cbpessoa: TDBComboBox
+          Left = 149
+          Height = 21
+          Top = 24
+          Width = 100
+          DataField = 'tipo_pessoa'
+          DataSource = DSClientes
+          ItemHeight = 13
+          Items.Strings = (
+            'FÍSICA'
+            'JURÍDICA'
+          )
+          MaxLength = 0
+          OnChange = cbpessoaChange
+          TabOrder = 6
+        end
+        object edsituacao: TDBComboBox
+          Left = 283
+          Height = 21
+          Top = 24
+          Width = 100
+          DataField = 'situacao'
+          DataSource = DSClientes
+          ItemHeight = 13
+          Items.Strings = (
+            'ATIVO'
+            'INATIVO'
+            'BLOQUEADO'
+          )
+          MaxLength = 0
+          TabOrder = 7
+        end
+        object edsexo: TDBComboBox
+          Left = 14
+          Height = 21
+          Top = 118
+          Width = 78
+          DataField = 'sexo'
+          DataSource = DSClientes
+          ItemHeight = 13
+          Items.Strings = (
+            'MASCULINO'
+            'FEMININO'
+          )
+          MaxLength = 0
+          TabOrder = 8
+        end
+        object edgrupocli: TDBLookupComboBox
+          Left = 432
+          Height = 21
+          Top = 26
+          Width = 196
+          DataField = 'cd_grupo'
+          DataSource = DSClientes
+          KeyField = 'cd_grupo'
+          ListField = 'grupo'
+          ListFieldIndex = 0
+          ListSource = DSGrupoCli
+          LookupCache = False
+          OnChange = edgrupocliChange
+          TabOrder = 9
+        end
+        object eddtnasc: TDBEdit
+          Left = 112
+          Height = 21
+          Top = 118
+          Width = 80
+          DataField = 'data_nascimento'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 0
+          TabOrder = 10
+        end
+        object edcpf: TDBEdit
+          Left = 408
+          Height = 21
+          Top = 73
+          Width = 120
+          DataField = 'cpf_cnpj'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 120
+          TabOrder = 11
+        end
+        object edrg: TDBEdit
+          Left = 552
+          Height = 21
+          Top = 73
+          Width = 103
+          DataField = 'rg_inscrestadual'
+          DataSource = DSClientes
+          CharCase = ecNormal
+          MaxLength = 120
+          TabOrder = 12
         end
       end
     end
@@ -1209,7 +1146,7 @@ inherited Frmcliente: TFrmcliente
         end
         object ckmensalista: TCheckBox
           Left = 14
-          Height = 17
+          Height = 19
           Top = 38
           Width = 122
           Caption = 'Cliente mensalista'
@@ -1260,7 +1197,7 @@ inherited Frmcliente: TFrmcliente
         end
         object ckbloqueado: TCheckBox
           Left = 14
-          Height = 17
+          Height = 19
           Top = 38
           Width = 122
           Caption = 'Cliente bloqueado'
@@ -1322,7 +1259,7 @@ inherited Frmcliente: TFrmcliente
           TabOrder = 0
           object ckmail: TCheckBox
             Left = 38
-            Height = 17
+            Height = 19
             Top = 6
             Width = 109
             Caption = 'Autoriza e-mails'
@@ -1330,7 +1267,7 @@ inherited Frmcliente: TFrmcliente
           end
           object cksms: TCheckBox
             Left = 198
-            Height = 17
+            Height = 19
             Top = 6
             Width = 96
             Caption = 'Autoriza SMS'
@@ -1338,7 +1275,7 @@ inherited Frmcliente: TFrmcliente
           end
           object cktel: TCheckBox
             Left = 350
-            Height = 17
+            Height = 19
             Top = 6
             Width = 138
             Caption = 'Autoriza telefonemas'
@@ -1346,7 +1283,7 @@ inherited Frmcliente: TFrmcliente
           end
           object ckcartas: TCheckBox
             Left = 526
-            Height = 17
+            Height = 19
             Top = 6
             Width = 105
             Caption = 'Autoriza cartas'
@@ -1417,7 +1354,7 @@ inherited Frmcliente: TFrmcliente
         end
         object ckcredito: TCheckBox
           Left = 14
-          Height = 17
+          Height = 19
           Top = 25
           Width = 135
           Caption = 'Restrição de crédito'
@@ -1978,7 +1915,6 @@ inherited Frmcliente: TFrmcliente
         BevelOuter = bvLowered
         ClientHeight = 321
         ClientWidth = 689
-        Enabled = False
         TabOrder = 1
         object Label34: TLabel
           Left = 14
@@ -2099,5 +2035,17 @@ inherited Frmcliente: TFrmcliente
     OnDataChange = DSClientesDataChange
     left = 600
     top = 32
+  end
+  object DSCidades: TDataSource[3]
+    DataSet = DataModule1.QueryCidades
+    OnDataChange = DSClientesDataChange
+    left = 628
+    top = 60
+  end
+  object DSGrupoCli: TDataSource[4]
+    DataSet = DataModule1.QueryGrupoCli
+    OnDataChange = DSClientesDataChange
+    left = 656
+    top = 88
   end
 end

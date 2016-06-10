@@ -14,8 +14,28 @@ type
   { TFrmcliente }
 
   TFrmcliente = class(TFrmmodelo)
-    DBEdit1: TDBEdit;
+    cbcidade: TDBLookupComboBox;
+    DBEdit16: TDBEdit;
+    DSGrupoCli: TDataSource;
     DSClientes: TDataSource;
+    DSCidades: TDataSource;
+    cbpessoa: TDBComboBox;
+    edbairro: TDBEdit;
+    edcelular: TDBEdit;
+    edcomplemento: TDBEdit;
+    edcpf: TDBEdit;
+    eddtnasc: TDBEdit;
+    edemail: TDBEdit;
+    edendereco: TDBEdit;
+    edfone1: TDBEdit;
+    edfone2: TDBEdit;
+    ednumero: TDBEdit;
+    edrg: TDBEdit;
+    edsituacao: TDBComboBox;
+    edsexo: TDBComboBox;
+    edcodigo: TDBEdit;
+    ednome: TDBEdit;
+    edgrupocli: TDBLookupComboBox;
     Panel2: TPanel;
     Label11: TLabel;
     Label12: TLabel;
@@ -26,7 +46,6 @@ type
     Label17: TLabel;
     Label18: TLabel;
     Label19: TLabel;
-    Label20: TLabel;
     Label21: TLabel;
     Panel5: TPanel;
     TabSheet3: TTabSheet;
@@ -125,34 +144,13 @@ type
     lbrazao: TLabel;
     Label40: TLabel;
     Label37: TLabel;
-    edtcodigo: TEdit;
-    cbpessoa: TComboBox;
-    cbsituacao: TComboBox;
-    edtnome: TEdit;
-    edtrazao: TEdit;
-    edtcargo: TEdit;
-    edttel1: TEdit;
-    edttel2: TEdit;
-    edtcel: TEdit;
-    edtemail: TEdit;
-    edtendereco: TEdit;
-    edtnumero: TEdit;
-    edtcomplemento: TEdit;
-    edtbairro: TEdit;
-    cbuf: TComboBox;
-    cbcidade: TComboBox;
-    edtcep: TEdit;
-    cbgrupo: TComboBox;
     btngrupo: TButton;
     ckcartas: TCheckBox;
-    cbsexo: TComboBox;
 
     Label22: TLabel;
     Panel28: TPanel;
-    edtempresa: TEdit;
     bbempresa: TBitBtn;
     Panel29: TPanel;
-    edtinscestadual: TEdit;
     bbempresadel: TBitBtn;
     bbsubopesdel: TButton;
     bbatenpes: TButton;
@@ -162,9 +160,12 @@ type
     Panel31: TPanel;
     procedure bbsairClick(Sender: TObject);
     procedure cbpessoaChange(Sender: TObject);
+    procedure edemailChange(Sender: TObject);
+    procedure edgrupocliChange(Sender: TObject);
     procedure DSClientesDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
+    procedure Panel5Click(Sender: TObject);
     procedure rgpesquisaClick(Sender: TObject);
     procedure bbpesquisaClick(Sender: TObject);
     procedure bbnovoClick(Sender: TObject);
@@ -213,7 +214,7 @@ var
 
 implementation
 
-uses UfrmPrincipal;
+uses UfrmPrincipal,ufrmDmPrincipal,UfrmRetornoCliente;
 
 {$R *.lfm}
 
@@ -235,11 +236,11 @@ begin
     Label10.Caption := 'Cargo';
   //  mskcpf.Visible := true;
   //  mskrg.Visible := true;
-    cbsexo.Visible := true;
+    //cbsexo.Visible := true;
   //  mskidade.Visible := true;
     Panel29.Visible := true;
-    edtrazao.Visible := false;
-    edtinscestadual.Visible := false;
+    //edtrazao.Visible := false;
+    //edtinscestadual.Visible := false;
     //mskcnpj.Visible:= false;
     lbnascimento.Visible := true;
     lbrg.Visible := true;
@@ -257,10 +258,10 @@ begin
     Label10.Caption := 'Contato';
     //mskcpf.Visible := false;
     //mskrg.Visible := false;
-    cbsexo.Visible := false;
+    //cbsexo.Visible := false;
    // mskidade.Visible := false;
-    edtinscestadual.Visible:= true;
-    edtrazao.Visible := true;
+    //edtinscestadual.Visible:= true;
+    //edtrazao.Visible := true;
    // mskcnpj.Visible:= true;
     lbnascimento.Visible := false;
     lbrg.Visible := false;
@@ -274,18 +275,29 @@ begin
 
 end;
 
+procedure TFrmcliente.edemailChange(Sender: TObject);
+begin
+
+end;
+
+procedure TFrmcliente.edgrupocliChange(Sender: TObject);
+begin
+
+end;
+
 procedure TFrmcliente.DSClientesDataChange(Sender: TObject; Field: TField);
 begin
 
 end;
 
+
 procedure TFrmcliente.FormCreate(Sender: TObject);
 begin
 
   inherited;
-   Frmprincipal.pesquisafun := 2;
-   AbaAnterior:= 1;
-
+   //Frmprincipal.pesquisafun := 2;
+   //AbaAnterior:= 1;
+   DataModule1.QueryClientes.Active:=true;
 
 
 
@@ -347,6 +359,12 @@ begin
 
 
   end;
+
+procedure TFrmcliente.Panel5Click(Sender: TObject);
+begin
+
+end;
+
 procedure TFrmcliente.rgpesquisaClick(Sender: TObject);
 begin
    case rgpesquisa.ItemIndex of
@@ -457,408 +475,40 @@ end;
 procedure TFrmcliente.bbnovoClick(Sender: TObject);
 begin
   PageControl1.TabIndex := 1;
-  Panel4.Enabled  := true;
-  Panel5.Enabled  := true;
-  Panel21.Enabled := true;
-  Panel22.Enabled := true;
-  Panel23.Enabled := true;
-  Panel24.Enabled := true;
-  Panel25.Enabled := true;
-  Panel26.Enabled := true;
-  Panel27.Enabled := true;
-  bbsubopes.Enabled := true;
-  bbsubopesdel.Enabled:=true;
-  bbatenpes.Enabled := true;
-  bbatenpesdel.Enabled := true;
-  //mskcnpj.Color := clWhite;
-  cbpessoa.Color := clWhite;
-  cbsituacao.Color := clWhite;
-  cbgrupo.Color := clWhite;
-  edtnome.Color := clWhite;
-  edtrazao.Color := clWhite;
-  edtempresa.Color := clWhite;
-  //mskcpf.Color := clWhite;
-  //mskrg.Color := clWhite;
-  cbsexo.Color := clWhite;
-  //mskidade.Color := clWhite;
-  //mskcpf.Color := clWhite;
-  edtcargo.Color := clWhite;
-  edttel1.Color := clWhite;
-  edttel2.Color := clWhite;
-  edtcel.Color := clWhite;
-  edtemail.Color := clWhite;
-  edtendereco.Color := clWhite;
-  edtnumero.Color := clWhite;
-  edtcomplemento.Color := clWhite;
-  edtbairro.Color := clWhite;
-  cbuf.Color := clWhite;
-  cbcidade.Color := clWhite;
-  edtcep.Color := clWhite;
-  edtrenda.Color := clWhite;
-  edtsubordinado.Color := clWhite;
-  edtfuncionario.Color := clWhite;
-  edtbase.Color := clWhite;
-  cbtabela.Color := clWhite;
-  MemoObsGeral.Color := clWhite;
-  edtdesrestricao.Color := clWhite;
-  edtinscestadual.Color:= clWhite;
-
-  edtinscestadual.Clear;
-  cbgrupo.Clear;
-  edtnome.Clear;
-  edtrazao.Clear;
-//  mskcpf.Clear;
-  //mskrg.Clear;
-  cbsexo.Clear;
-  //mskidade.Clear;
-  //mskcpf.Clear;
-  edtcargo.Clear;
-  edttel1.Clear;
-  edttel2.Clear;
-  edtcel.Clear;
-  edtemail.Clear;
-  edtendereco.Clear;
-  edtnumero.Clear;
-  edtcomplemento.Clear;
-  edtbairro.Clear;
-  cbuf.Clear;
-  cbcidade.Clear;
-  edtempresa.Clear;
-  edtcep.Clear;
-  edtrenda.Clear;
-  edtsubordinado.Clear;
-  edtfuncionario.Clear;
-  edtbase.Clear;
-  cbtabela.Clear;
-  MemoObsGeral.Clear;
-  edtdesrestricao.Clear;
-  ckmensalista.Checked := false;
-  ckbloqueado.Checked := false;
-  ckmail.Checked := false;
-  cksms.Checked := false;
-  cktel.Checked := false;
-  ckcredito.Checked := false;
-  ckcartas.Checked := false;
-  bbempresa.Enabled := true;
-  bbempresadel.Enabled := true;
+  Panel4.Enabled:=true;
+  Panel5.Enabled:=true;
+  DataModule1.QueryClientes.Insert;
   inherited;
 
 end;
 
 procedure TFrmcliente.bbgravarClick(Sender: TObject);
 begin
-  {
-  if EdtNome.Text = '' then
+
+  if  ednome.Text = '' then
     begin
        Application.MessageBox('falta informar o nome do cliente','aviso',MB_ICONWARNING);
        Exit;
     end;
-   if CbCidade.Text = '' then
+   if cbcidade.Text = '' then
     begin
        Application.MessageBox('Falta informar a cidade do cliente','aviso',MB_ICONWARNING);
        Exit;
     end;
    if operacao = 'inserindo' then
-    begin
-
-       Frmprincipal.Qryaux.SQL.Clear;
-       Frmprincipal.qryAux.SQL.Add('select max(cd_cliente)as maior from cliente');
-       Frmprincipal.qryAux.Open;
-       Qrycadastro.SQL.Clear;
-       Qrycadastro.SQL.Add('insert into cliente(cd_cliente,cd_cidade,cd_grupo,cd_empresa,');
-       Qrycadastro.SQL.Add('cliente,razao_social,data_cadastro,tipo_pessoa,situacao,');
-       Qrycadastro.SQL.Add('sexo,cargo,endereco,bairro,numero,complemento,cpf_cnpj,rg_inscrestadual,cep,email,');
-       Qrycadastro.SQL.Add('atualizacao_cadastro,data_nascimento,data_pesquisa,fone1,fone2,fone3,');
-       Qrycadastro.SQL.Add('renda_anual,tabela_preco,dia_base,descricao,restricao_descricao,');
-       Qrycadastro.SQL.Add('mensalista,bloqueado,auto_email,auto_sms,auto_tel,auto_carta,restricao_cred)');
-       Qrycadastro.SQL.Add('values (:cod,:codcid,:codgrupo,:codemp,:nm,:ra_so,:cad_data,:tip_pes,:situ,');
-       Qrycadastro.SQL.Add (':sexo,:cargo,:end,:bairro,:num,:compl,:cpf_cnpj,:rg_inscest,');
-       Qrycadastro.SQL.Add(':cep,:email,:atuali_data,:nasc_data,:pes_data,:fone1,:fone2,:fone3,');
-       Qrycadastro.SQL.Add(':renda,:tab,:base,:descr,:descr_res,:mensa,:bloq,:aut_mail,:aut_sms,:aut_tel,:aut_carta,:cred)');
-       Qrycadastro.ParamByName('cod').AsInteger := Frmprincipal.Qryaux.fieldbyname('maior').asinteger + 1;
-       Qrycadastro.ParamByName('codcid').AsInteger := codigocidade;
-       Qrycadastro.ParamByName('codgrupo').AsInteger := codigogrupo;
-       Qrycadastro.ParamByName('codemp').AsInteger := codigoempresa;
-       Qrycadastro.ParamByName('nm').AsString := EdtNome.Text;
-       Qrycadastro.ParamByName('ra_so').AsString:= edtrazao.Text;
-       Qrycadastro.ParamByName('cad_data').AsDate := date;
-       Qrycadastro.ParamByName('tip_pes').AsInteger:= cbpessoa.ItemIndex;
-       Qrycadastro.ParamByName('situ').AsString := cbsituacao.Text;
-       Qrycadastro.ParamByName('sexo').AsString := cbsexo.Text;
-       Qrycadastro.ParamByName('cargo').AsString := edtcargo.Text;
-       Qrycadastro.ParamByName('end').AsString:= edtendereco.Text;
-       Qrycadastro.ParamByName('bairro').AsString:= edtbairro.Text;
-       Qrycadastro.ParamByName('num').AsInteger := (StrToInt(edtnumero.Text));
-       Qrycadastro.ParamByName('compl').AsString  := edtcomplemento.text;
-       Qrycadastro.ParamByName('cep').AsString := edtcep.Text;
-       Qrycadastro.ParamByName('email').AsString := edtemail.Text;
-       Qrycadastro.ParamByName('atuali_data').AsDate := date;
-       Qrycadastro.ParamByName('fone1').AsString := edttel1.Text;
-       Qrycadastro.ParamByName('fone2').AsString := edttel2.Text;
-       Qrycadastro.ParamByName('fone3').AsString := edtcel.Text;
-       case cbpessoa.ItemIndex of
-       0:begin
-       Qrycadastro.ParamByName('cpf_cnpj').AsString:= mskcpf.Text;
-       Qrycadastro.ParamByName('rg_inscest').AsString:=  mskrg.Text;
-       Qrycadastro.ParamByName('nasc_data').AsDate := strtodate(mskidade.Text);
-       Qrycadastro.ParamByName('pes_data').AsDate := strtodate(mskdatapesquisa.Text +'0001');
-       end;
-       1:begin
-       Qrycadastro.ParamByName('cpf_cnpj').AsString:= mskcnpj.Text;
-       Qrycadastro.ParamByName('rg_inscest').AsString := edtinscestadual.Text;
-       end;end;
-
-        Qrycadastro.ParamByName('renda').AsInteger := strtoint(edtrenda.Text);
-       Qrycadastro.ParamByName('tab').AsInteger := strtoint(cbtabela.Text);
-       Qrycadastro.ParamByName('base').AsInteger := strtoint(edtbase.Text);
-       Qrycadastro.ParamByName('descr').AsString := MemoObsGeral.Lines.Text;
-       Qrycadastro.ParamByName('descr_res').AsString := edtdesrestricao.Text;
-
-
-        if ckmensalista.Checked = true then
         begin
-           Qrycadastro.ParamByName('mensa').AsString := 'SIM';
-        end
-        else
-        begin
-           Qrycadastro.ParamByName('mensa').AsString := 'NAO';
-        end;
-       if ckbloqueado.Checked = true then
-        begin
-           Qrycadastro.ParamByName('bloq').AsString := 'SIM';
+        DataModule1.QueryClientes.Post;
         end
         else
          begin
-           Qrycadastro.ParamByName('bloq').AsString := 'NAO';
-         end;
-        if ckmail.Checked = true then
-         begin
-            Qrycadastro.ParamByName('aut_email').AsString := 'SIM';
-         end
-         else
-         begin
-            Qrycadastro.ParamByName('aut_mail').AsString := 'NAO';
-         end;
-        if cksms.Checked = true then
-         begin
-            Qrycadastro.ParamByName('aut_sms').AsString := 'SIM';
-         end
-         else
-         begin
-            Qrycadastro.ParamByName('aut_sms').AsString := 'NAO';
-         end;
-        if cktel.Checked = true then
-         begin
-            Qrycadastro.ParamByName('aut_tel').AsString := 'SIM';
-         end
-         else
-         begin
-            Qrycadastro.ParamByName('aut_tel').AsString := 'NAO';
+               DataModule1.QueryClientes.Post;
          end;
 
-          if ckcartas.Checked = true then
-         begin
-            Qrycadastro.ParamByName('aut_carta').AsString := 'SIM';
-         end
-         else
-         begin
-            Qrycadastro.ParamByName('aut_carta').AsString := 'NAO';
-         end;
-         if ckcredito.Checked = true then
-         begin
-            Qrycadastro.ParamByName('cred').AsString := 'SIM';
-         end
-         else
-         begin
-            Qrycadastro.ParamByName('cred').AsString := 'NAO';
-         end; 
-         Qrycadastro.ExecSQL;
-     end
-       else
-         begin
-            qrycadastro.SQL.Clear;
-            Qrycadastro.SQL.Add('update  cliente set cd_cidade = :codcid,cd_funcionario = :codfun,cd_grupo = :codgrupo,cliente = :nm,');
-            Qrycadastro.SQL.Add('razao_social = :ra_so,tipo_pessoa = :tip_pes,situacao = :situ,');
-            Qrycadastro.SQL.Add('sexo = :sexo,empresa = :empr,cargo = :cargo,endereco = :end,bairro = : bairro,numero = :num,');
-            Qrycadastro.SQL.Add('complemento =:compl,cpf_cnpj =:cpf_cnpj,rg_inscrestadual = :rg_inscest,cep = :cep,email = :email,');
-            Qrycadastro.SQL.Add('renda_anual = :renda,subordinado =:sub,tabela_preco = :tub,dia_base = :base,descricao =:descr,restricao_descricao = : descr_res,');
-            Qrycadastro.SQL.Add('mensalista =:mensa,bloqueado =:bloq,auto_tel = :aut_tel,auto_sms =:aut_sms,auto_carta = :aut_carta,');
-            Qrycadastro.SQL.Add('auto_email =:aut_email,restricao_cad =:cred,atualizacao_cadastro =:atuali_data,data_nascimento =:nasc_data,');
-            Qrycadastro.SQL.Add('data_pesquisa =:pes_data,fone1 =:fone1,fone2 =:fone2,fone3 =:fone3 where cd_cliente = :cod');
-            Qrycadastro.ParamByName('cod').AsInteger := QrypesquisaCD_CLIENTE.AsInteger;
-            Qrycadastro.ParamByName('codcid').AsInteger := codigocidade;
-            Qrycadastro.ParamByName('codfun').AsInteger := codigofuncionario;
-            Qrycadastro.ParamByName('codgrupo').AsInteger := codigogrupo;
-            Qrycadastro.ParamByName('nm').AsString := EdtNome.Text;
-            Qrycadastro.ParamByName('ra_so').AsString:= edtrazao.Text;
-            Qrycadastro.ParamByName('tip_pes').AsInteger:= cbpessoa.ItemIndex;
-            Qrycadastro.ParamByName('situ').AsString := cbsituacao.Text;
-            Qrycadastro.ParamByName('sexo').AsString := cbsexo.Text;
-            Qrycadastro.ParamByName('empr').AsString := edtinscestadual.Text;
-            Qrycadastro.ParamByName('cargo').AsString := edtcargo.Text;
-            Qrycadastro.ParamByName('end').AsString:= edtendereco.Text;
-            Qrycadastro.ParamByName('bairro').AsString:= edtbairro.Text;
-            Qrycadastro.ParamByName('num').AsInteger := (StrToInt(edtnumero.Text));
-            Qrycadastro.ParamByName('compl').AsString  := edtcomplemento.text;
-            case cbpessoa.ItemIndex of
-            0:begin
-            Qrycadastro.ParamByName('cpf_cnpj').AsString:= mskcpf.Text;
-            Qrycadastro.ParamByName('rg_inscest').AsString:=  mskrg.Text;
-            end;
-            1:begin
-            Qrycadastro.ParamByName('cnpj').AsString:= mskcnpj.Text;
-            Qrycadastro.ParamByName('rg_inscest').AsString := edtinscestadual.Text;
-            end;end;
-            Qrycadastro.ParamByName('cep').AsString := edtcep.Text;
-            Qrycadastro.ParamByName('email').AsString := edtemail.Text;
-            Qrycadastro.ParamByName('renda').AsFloat := strtofloat(edtrenda.Text);
-            Qrycadastro.ParamByName('sub').AsString := edtsubordinado.Text;
-            Qrycadastro.ParamByName('tab').AsString := cbtabela.Text;
-            Qrycadastro.ParamByName('base').AsInteger := strtoint(edtbase.Text);
-            Qrycadastro.ParamByName('descr').AsString := MemoObsGeral.Lines.Text;
-            Qrycadastro.ParamByName('descr_res').AsString := edtdesrestricao.Text;
-            Qrycadastro.ParamByName('atuali_data').AsDate := date;
-            Qrycadastro.ParamByName('nasc_data').AsDate := strtodate(mskidade.Text);
-            Qrycadastro.ParamByName('pes_data').AsDate := strtodate(mskdatapesquisa.Text +'0001');
-            Qrycadastro.ParamByName('fone1').AsString := edttel1.Text;
-            Qrycadastro.ParamByName('fone2').AsString := edttel2.Text;
-            Qrycadastro.ParamByName('fone3').AsString := edtcel.Text;
-            if ckmensalista.Checked = true then
-            begin
-               Qrycadastro.ParamByName('mensa').AsString := 'SIM';
-            end
-            else
-            begin
-               Qrycadastro.ParamByName('mensa').AsString := 'NAO';
-            end;
-           if ckbloqueado.Checked = true then
-            begin
-               Qrycadastro.ParamByName('bloq').AsString := 'SIM';
-            end
-            else
-             begin
-               Qrycadastro.ParamByName('bloq').AsString := 'NAO';
-             end;
-            if ckmail.Checked = true then
-             begin
-                Qrycadastro.ParamByName('aut_email').AsString := 'SIM';
-             end
-             else
-             begin
-                Qrycadastro.ParamByName('aut_mail').AsString := 'NAO';
-             end;
-            if cksms.Checked = true then
-             begin
-                Qrycadastro.ParamByName('aut_sms').AsString := 'SIM';
-             end
-             else
-             begin
-                Qrycadastro.ParamByName('aut_sms').AsString := 'NAO';
-             end;
-            if cktel.Checked = true then
-             begin
-                Qrycadastro.ParamByName('aut_tel').AsString := 'SIM';
-             end
-             else
-             begin
-                Qrycadastro.ParamByName('aut_tel').AsString := 'NAO';
-             end;
-
-              if ckcartas.Checked = true then
-             begin
-                Qrycadastro.ParamByName('aut_carta').AsString := 'SIM';
-             end
-             else
-             begin
-                Qrycadastro.ParamByName('aut_carta').AsString := 'NAO';
-             end;
-             if ckcredito.Checked = true then
-             begin
-                Qrycadastro.ParamByName('cred').AsString := 'SIM';
-             end
-             else
-             begin
-                Qrycadastro.ParamByName('cred').AsString := 'NAO';
-             end;
-                qrycadastro.ExecSQL;
-         end;
-   Frmprincipal.TrBanco.Commit;
    Panel4.Enabled:= false;
    Panel5.Enabled:= false;
-   cbpessoa.ItemIndex :=-1;
-   cbsituacao.ItemIndex :=-1;
-   cbpessoa.Color := clScrollBar;
-   cbsituacao.Color := clScrollBar;
-   cbgrupo.Color := clWhite;
-   edtnome.Color := clScrollBar;
-   edtrazao.Color := clScrollBar;
-   mskcpf.Color := clScrollBar;
-   mskcnpj.Color := clScrollBar;
-   cbgrupo.Color := clScrollBar;
-   mskrg.Color := clScrollBar;
-   cbsexo.Color := clScrollBar;
-   mskidade.Color := clScrollBar;
-   mskcpf.Color := clScrollBar;
-   edtcargo.Color := clScrollBar;
-   edttel1.Color := clScrollBar;
-   edttel2.Color := clScrollBar;
-   edtcel.Color := clScrollBar;
-   edtemail.Color := clScrollBar;
-   edtendereco.Color := clScrollBar;
-   edtnumero.Color := clWhite;
-   edtcomplemento.Color := clScrollBar;
-   edtbairro.Color := clScrollBar;
-   cbuf.Color := clScrollBar;
-   cbcidade.Color := clScrollBar;
-   edtnumero.Color := clScrollBar;
-   edtcep.Color := clScrollBar;
-   edtrenda.Color := clScrollBar;
-   edtsubordinado.Color := clScrollBar;
-   edtfuncionario.Color := clScrollBar;
-   edtbase.Color := clScrollBar;
-   cbtabela.Color := clScrollBar;
-   MemoObsGeral.Color := clScrollBar;
-   edtdesrestricao.Color := clScrollBar;
-   edtinscestadual.Color := clScrollBar;
-   edtinscestadual.Clear;
-   cbgrupo.Clear;
-   edtnome.Clear;
-   edtrazao.Clear;
-   mskcpf.Clear;
-   mskrg.Clear;
-   cbsexo.Clear;
-   mskidade.Clear;
-   mskcpf.Clear;
-   edtcargo.Clear;
-   edttel1.Clear;
-   edttel2.Clear;
-   edtcel.Clear;
-   edtemail.Clear;
-   edtendereco.Clear;
-   edtnumero.Clear;
-   edtcomplemento.Clear;
-   edtbairro.Clear;
-   cbuf.Clear;
-   cbcidade.Clear;
-   edtcep.Clear;
-   edtrenda.Clear;
-   edtsubordinado.Clear;
-   edtfuncionario.Clear;
-   edtbase.Clear;
-   cbtabela.Clear;
-   MemoObsGeral.Clear;
-   edtdesrestricao.Clear;
-   ckmensalista.Checked := false;
-   ckbloqueado.Checked := false;
-   ckmail.Checked := false;
-   cksms.Checked := false;
-   cktel.Checked := false;
-   ckcredito.Checked := false;
-   ckcartas.Checked := false;
-   bbempresa.Enabled := False;
-   bbempresadel.Enabled := false;
+
    inherited
-   }
+
 end;
 
 procedure TFrmcliente.bbAnincluirClick(Sender: TObject);
@@ -880,17 +530,17 @@ end;
 procedure TFrmcliente.bbAgIncluirClick(Sender: TObject);
 begin
   inherited;
-  //FrmRetornoCliente:= TFrmRetornoCliente.Create(Self);
-  //FrmRetornoCliente.ShowModal;
-  //FrmRetornoCliente.Free;
+    FrmRetornoCliente:= TFrmRetornoCliente.Create(Self);
+    FrmRetornoCliente.ShowModal;
+    FrmRetornoCliente.Free;
 end;
 
 procedure TFrmcliente.bbAgEditarClick(Sender: TObject);
 begin
   inherited;
-  //FrmRetornoCliente:= TFrmRetornoCliente.Create(Self);
-  //FrmRetornoCliente.ShowModal;
-  //FrmRetornoCliente.Free;
+    FrmRetornoCliente:= TFrmRetornoCliente.Create(Self);
+    FrmRetornoCliente.ShowModal;
+    FrmRetornoCliente.Free;
 end;
 
 procedure TFrmcliente.bbanimalClick(Sender: TObject);
@@ -926,8 +576,7 @@ end;
 procedure TFrmcliente.cbgrupoDropDown(Sender: TObject);
 begin
   inherited;
-   cbgrupo.Clear;
-   Frmprincipal.MontaListagrupo(cbgrupo.Items);
+
 end;
 
 procedure TFrmcliente.DbgpesquisaCellClick(Column: TColumn);
@@ -947,173 +596,18 @@ procedure TFrmcliente.bbcancelarClick(Sender: TObject);
 begin
   if Application.MessageBox('Tem certeza que deseja cancelar?','Confirmação de Cancelamento',MB_ICONQUESTION+MB_YESNO) = id_yes then
   begin
-  if operacao = 'inserindo' then
-   begin
-  edtinscestadual.Clear;
-  cbgrupo.Clear;
-  edtnome.Clear;
-  edtrazao.Clear;
-  //mskcpf.Clear;
-  //mskrg.Clear;
-  cbsexo.Clear;
- // mskidade.Clear;
- // mskcpf.Clear;
-  edtcargo.Clear;
-  edttel1.Clear;
-  edttel2.Clear;
-  edtempresa.Clear;
-  edtcel.Clear;
-  edtemail.Clear;
-  edtendereco.Clear;
-  edtnumero.Clear;
-  edtcomplemento.Clear;
-  edtbairro.Clear;
-  cbuf.Clear;
-  cbcidade.Clear;
-  edtcep.Clear;
-  edtrenda.Clear;
-  edtsubordinado.Clear;
-  edtfuncionario.Clear;
-  edtbase.Clear;
-  cbtabela.Clear;
-  MemoObsGeral.Clear;
-  edtdesrestricao.Clear;
-  ckmensalista.Checked := false;
-  ckbloqueado.Checked := false;
-  ckmail.Checked := false;
-  cksms.Checked := false;
-  cktel.Checked := false;
-  ckcredito.Checked := false;
-  ckcartas.Checked := false;
-  bbempresa.Enabled := False;
-  bbempresadel.Enabled := false;
-  Panel4.Enabled:= false;
-  Panel5.Enabled:= false;
-  Panel21.Enabled :=false;
-  Panel22.Enabled :=false;
-  Panel23.Enabled :=false;
-  Panel24.Enabled :=false;
-  Panel25.Enabled :=false;
-  Panel26.Enabled :=false;
-  Panel27.Enabled :=false;
-  cbpessoa.ItemIndex :=-1;
-  cbsituacao.ItemIndex :=-1;
-  cbpessoa.Color := clScrollBar;
-  cbsituacao.Color := clScrollBar;
-  cbgrupo.Color := clWhite;
-  edtnome.Color := clScrollBar;
-  edtrazao.Color := clScrollBar;
-  //mskcpf.Color := clScrollBar;
-  //mskcnpj.Color := clScrollBar;
-  cbgrupo.Color := clScrollBar;
-  //mskrg.Color := clScrollBar;
-  cbsexo.Color := clScrollBar;
-  //mskidade.Color := clScrollBar;
-  edtempresa.Color := clScrollBar;
- // mskcpf.Color := clScrollBar;
-  edtcargo.Color := clScrollBar;
-  edttel1.Color := clScrollBar;
-  edttel2.Color := clScrollBar;
-  edtcel.Color := clScrollBar;
-  edtemail.Color := clScrollBar;
-  edtendereco.Color := clScrollBar;
-  edtnumero.Color := clWhite;
-  edtcomplemento.Color := clScrollBar;
-  edtbairro.Color := clScrollBar;
-  cbuf.Color := clScrollBar;
-  cbcidade.Color := clScrollBar;
-  edtnumero.Color := clScrollBar;
-  edtcep.Color := clScrollBar;
-  edtrenda.Color := clScrollBar;
-  edtsubordinado.Color := clScrollBar;
-  edtfuncionario.Color := clScrollBar;
-  edtbase.Color := clScrollBar;
-  cbtabela.Color := clScrollBar;
-  MemoObsGeral.Color := clScrollBar;
-  edtdesrestricao.Color := clScrollBar;
-  edtinscestadual.Color := clScrollBar;
-  Panel21.Enabled :=false;
-  Panel22.Enabled :=false;
-  Panel23.Enabled :=false;
-  Panel24.Enabled :=false;
-  Panel25.Enabled :=false;
-  Panel26.Enabled :=false;
-  Panel27.Enabled :=false;
-  bbsubopes.Enabled := false;
-  bbsubopesdel.Enabled:=false;
-  bbatenpes.Enabled := false;
-  bbatenpesdel.Enabled := false;
-
-  end
-  else
-  begin
-  Panel4.Enabled:= false;
-  Panel5.Enabled:= false;
-  cbpessoa.Color := clScrollBar;
-  cbsituacao.Color := clScrollBar;
-  cbgrupo.Color := clWhite;
-  edtnome.Color := clScrollBar;
-  edtrazao.Color := clScrollBar;
-  //mskcpf.Color := clScrollBar;
-  //mskcnpj.Color := clScrollBar;
-  cbgrupo.Color := clScrollBar;
-  //mskrg.Color := clScrollBar;
-  cbsexo.Color := clScrollBar;
- // mskidade.Color := clScrollBar;
- // mskcpf.Color := clScrollBar;
-  edtcargo.Color := clScrollBar;
-  edttel1.Color := clScrollBar;
-  edttel2.Color := clScrollBar;
-  edtcel.Color := clScrollBar;
-  edtemail.Color := clScrollBar;
-  edtempresa.Color := clScrollBar;
-  edtendereco.Color := clScrollBar;
-  edtnumero.Color := clWhite;
-  edtcomplemento.Color := clScrollBar;
-  edtbairro.Color := clScrollBar;
-  cbuf.Color := clScrollBar;
-  cbcidade.Color := clScrollBar;
-  edtnumero.Color := clScrollBar;
-  edtcep.Color := clScrollBar;
-  edtrenda.Color := clScrollBar;
-  edtsubordinado.Color := clScrollBar;
-  edtfuncionario.Color := clScrollBar;
-  edtbase.Color := clScrollBar;
-  cbtabela.Color := clScrollBar;
-  MemoObsGeral.Color := clScrollBar;
-  edtdesrestricao.Color := clScrollBar;
-  edtinscestadual.Color := clScrollBar;
-  bbempresa.Enabled := False;
-  bbempresadel.Enabled := false;
-  Panel21.Enabled :=false;
-  Panel22.Enabled :=false;
-  Panel23.Enabled :=false;
-  Panel24.Enabled :=false;
-  Panel25.Enabled :=false;
-  Panel26.Enabled :=false;
-  Panel27.Enabled :=false;
-  bbsubopes.Enabled := false;
-  bbsubopesdel.Enabled:=false;
-  bbatenpes.Enabled := false;
-  bbatenpesdel.Enabled := false;
-  end;
+  DataModule1.QueryClientes.Cancel;
   end;
   inherited;
 end;
 
 procedure TFrmcliente.cbufChange(Sender: TObject);
 begin
-  Frmprincipal.codigouf := Frmprincipal.RetornaCodigoFiltroEstado(cbuf.Text);
-  cbcidade.Clear;
-  Frmprincipal.MontaListaCidade(cbcidade.Items);
-  inherited;
 
 end;
 
 procedure TFrmcliente.cbufDropDown(Sender: TObject);
 begin
-  cbuf.Clear;
-  Frmprincipal.MontalistaFiltroEstado(cbuf.Items);
 
 end;
 
@@ -1138,10 +632,10 @@ end;
 procedure TFrmcliente.edtnomeChange(Sender: TObject);
 begin
   inherited;
-  edtclienteagenda.Text := edtnome.Text;
-  edtinfocliente.Text :=  edtnome.Text;
-  edtclienteanimal.Text := edtnome.Text;
-  edtclienteanotacao.Text := edtnome.Text;
+  //edtclienteagenda.Text := edtnome.Text;
+  //edtinfocliente.Text :=  edtnome.Text;
+  //edtclienteanimal.Text := edtnome.Text;
+  //edtclienteanotacao.Text := edtnome.Text;
 end;
 
 procedure TFrmcliente.mskidadeChange(Sender: TObject);
@@ -1161,7 +655,7 @@ end;
 procedure TFrmcliente.bbempresadelClick(Sender: TObject);
 begin
   inherited;
-  edtempresa.Clear; 
+  //edtempresa.Clear; 
 end;
 
 procedure TFrmcliente.edtfuncionarioChange(Sender: TObject);
@@ -1201,7 +695,7 @@ end;
 procedure TFrmcliente.cbgrupoChange(Sender: TObject);
 begin
   inherited;
-  codigogrupo := Frmprincipal.RetornaCodigoGrupo(cbgrupo.Text);
+//  codigogrupo := Frmprincipal.RetornaCodigoGrupo(cbgrupo.Text);
 end;
 
 end.

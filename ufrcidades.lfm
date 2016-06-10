@@ -16,7 +16,8 @@ inherited Frmcidades: TFrmcidades
     end
     inherited bbsair: TBitBtn
       Left = 487
-      Top = 14
+      Height = 47
+      Top = 4
       Width = 78
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -58,8 +59,10 @@ inherited Frmcidades: TFrmcidades
     end
     inherited bbnovo: TBitBtn
       Left = 7
-      Top = 14
+      Height = 47
+      Top = 4
       Width = 78
+      Caption = '&Novo'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         2000000000000004000064000000640000000000000000000000000000007E7E
@@ -96,11 +99,13 @@ inherited Frmcidades: TFrmcidades
         0000000000000000000000000000000000000000000000000000000000002D2D
         2D11D89C6ECFEBC1A1FFE9BC9AF9C28E637E0000000300000000
       }
+      OnClick = bbnovoClick
       TabOrder = 0
     end
     inherited bbgravar: TBitBtn
       Left = 87
-      Top = 14
+      Height = 47
+      Top = 4
       Width = 78
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -138,12 +143,14 @@ inherited Frmcidades: TFrmcidades
         00000000000000000000A4A4A40EB7B2B235BABABA6BBCBBBB8ABDBCBC8CB9B9
         B96EB4B4B43A9F9F9F1000000000000000000000000000000000
       }
+      OnClick = bbgravarClick
       TabOrder = 1
       Visible = True
     end
     inherited bbexcluir: TBitBtn
       Left = 327
-      Top = 14
+      Height = 47
+      Top = 4
       Width = 78
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -186,7 +193,8 @@ inherited Frmcidades: TFrmcidades
     end
     inherited bbcancelar: TBitBtn
       Left = 247
-      Top = 14
+      Height = 47
+      Top = 4
       Width = 78
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -229,7 +237,8 @@ inherited Frmcidades: TFrmcidades
     end
     inherited bbeditar: TBitBtn
       Left = 167
-      Top = 14
+      Height = 47
+      Top = 4
       Width = 78
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -271,8 +280,8 @@ inherited Frmcidades: TFrmcidades
     end
     object bbimprimir: TBitBtn[7]
       Left = 407
-      Height = 25
-      Top = 14
+      Height = 47
+      Top = 4
       Width = 78
       Caption = 'Imprimir'
       Font.CharSet = ANSI_CHARSET
@@ -361,7 +370,7 @@ inherited Frmcidades: TFrmcidades
         Top = 72
         Width = 529
         AutoEdit = False
-        DataSource = DataModule1.DataSource1
+        DataSource = dsCidade
         TabOrder = 0
       end
       inherited bbpesquisa: TBitBtn
@@ -462,31 +471,52 @@ inherited Frmcidades: TFrmcidades
         ParentFont = False
         OnClick = Label4Click
       end
-      object edtcodigo: TEdit[3]
+      object edtcodigo: TDBEdit[3]
         Left = 8
         Height = 21
-        Top = 32
-        Width = 85
+        Top = 33
+        Width = 80
+        DataField = 'cd_cidade'
+        DataSource = dsCidade
+        CharCase = ecNormal
+        MaxLength = 0
         TabOrder = 0
       end
-      object edtcidade: TEdit[4]
-        Left = 100
+      object edtcidade: TDBEdit[4]
+        Left = 96
         Height = 21
-        Top = 32
-        Width = 364
+        Top = 33
+        Width = 344
+        DataField = 'cidade'
+        DataSource = dsCidade
         CharCase = ecUppercase
+        MaxLength = 400
         TabOrder = 1
       end
-      object cbUF: TComboBox[5]
-        Left = 472
+      object cbUF: TDBLookupComboBox[5]
+        Left = 448
         Height = 21
-        Top = 32
-        Width = 65
-        CharCase = ecUppercase
-        ItemHeight = 13
-        OnChange = cbUFChange
+        Top = 33
+        Width = 100
+        DataField = 'cd_estado'
+        DataSource = dsCidade
+        KeyField = 'cd_estado'
+        ListField = 'estado'
+        ListFieldIndex = 0
+        ListSource = dsEstado
+        LookupCache = False
         TabOrder = 2
       end
     end
+  end
+  object dsEstado: TDataSource[2]
+    DataSet = DataModule1.QueryEstados
+    left = 391
+    top = 6
+  end
+  object dsCidade: TDataSource[3]
+    DataSet = DataModule1.QueryCidades
+    left = 336
+    top = 6
   end
 end

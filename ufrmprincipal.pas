@@ -7,7 +7,7 @@ interface
 uses
   LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, DB, sqldb, ComCtrls,
-  ExtCtrls, grids, StdCtrls, Buttons, UrlMon;
+  ExtCtrls, grids, StdCtrls, Buttons;
 
 type
 
@@ -16,7 +16,6 @@ type
   TFrmprincipal = class(TForm)
     MainMenu1: TMainMenu;
     Agendas1: TMenuItem;
-    suporte: TMenuItem;
     Movimentao1: TMenuItem;
     Cadastros1: TMenuItem;
     Acessos1: TMenuItem;
@@ -55,7 +54,7 @@ type
     Timer3: TTimer;
     procedure Clientes1Click(Sender: TObject);
     procedure Image1Click(Sender: TObject);
-    procedure suporteClick(Sender: TObject);
+    procedure Sairdosistema1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure Animais1Click(Sender: TObject);
@@ -145,9 +144,9 @@ begin
 
 end;
 
-procedure TFrmprincipal.suporteClick(Sender: TObject);
+procedure TFrmprincipal.Sairdosistema1Click(Sender: TObject);
 begin
-  HlinkNavigateString(nil,'http://www.freelive.com.br/suporte');
+  close;
 end;
 
 procedure TFrmprincipal.Timer1Timer(Sender: TObject);
@@ -326,7 +325,7 @@ end;
 procedure TFrmprincipal.FormCreate(Sender: TObject);
 begin
   DoubleBuffered:=True;
-  Frmprincipal.Caption := '  Freelive Pet - Módulo Consultório   '+datetostr(date);
+  Frmprincipal.Caption := '  PETSOFT   '+datetostr(date);
 
   Try
     FrmSenhaAcesso:= Tfrmsenhaacesso.create(nil);

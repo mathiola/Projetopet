@@ -1,12 +1,12 @@
 object DataModule1: TDataModule1
+  OnCreate = DataModuleCreate
   OldCreateOrder = False
   Height = 316
-  HorizontalOffset = 449
-  VerticalOffset = 201
+  HorizontalOffset = 497
+  VerticalOffset = 224
   Width = 441
   object ZConnection1: TZConnection
     ControlsCodePage = cCP_UTF8
-    UTF8StringsAsWideField = False
     AutoEncodeStrings = False
     ClientCodepage = 'UTF8'
     Catalog = 'public'
@@ -15,6 +15,7 @@ object DataModule1: TDataModule1
       'codepage=UTF8'
     )
     TransactIsolationLevel = tiReadCommitted
+    Connected = True
     HostName = 'localhost'
     Port = 0
     Database = 'sispet'
@@ -22,30 +23,61 @@ object DataModule1: TDataModule1
     Password = 'postgres'
     Protocol = 'postgresql-9'
     LibraryLocation = 'e:\neo\pgsql\bin\libpq.dll'
-    left = 64
-    top = 80
+    left = 72
+    top = 104
   end
-  object DataSource1: TDataSource
-    DataSet = ZQuery1
-    left = 144
-    top = 80
-  end
-  object ZQuery1: TZQuery
+  object QueryCidades: TZQuery
     Connection = ZConnection1
+    UpdateObject = UpCidade
+    Active = True
     SQL.Strings = (
-      ''
+      'select  *  from cidade'
     )
     Params = <>
+    Sequence = SeqCidade
+    SequenceField = 'cd_cidade'
     left = 195
     top = 112
+    object QueryCidadescd_cidade: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_cidade'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object QueryCidadescidade: TStringField
+      FieldKind = fkData
+      FieldName = 'cidade'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object QueryCidadescd_estado: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_estado'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
   end
   object QueryClientes: TZQuery
     Connection = ZConnection1
     UpdateObject = UpCliente
+    AfterPost = QueryClientesAfterPost
+    Active = True
     SQL.Strings = (
       'select * from cliente'
     )
     Params = <>
+    Sequence = SeqCliente
+    SequenceField = 'cd_cliente'
     left = 257
     top = 112
     object QueryClientescd_cliente: TLongintField
@@ -491,16 +523,443 @@ object DataModule1: TDataModule1
   end
   object UpCliente: TZUpdateSQL
     DeleteSQL.Strings = (
-      'delete from cliente where cd_cliente=:old.cd_cliente'
+      'DELETE FROM cliente'
+      'WHERE'
+      '  cliente.cd_cliente = :OLD_cd_cliente'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO cliente'
+      '  (cd_cliente, cd_cidade, cliente, razao_social, data_cadastro, tipo_pessoa, '
+      '   situacao, sexo, cargo, endereco, bairro, numero, complemento, cpf_cnpj, '
+      '   rg_inscrestadual, cep, uf, email, renda_anual, tabela_preco, dia_base, '
+      '   descricao, mensalista, bloqueado, auto_tel, auto_sms, auto_email, atualizacao_cadastro, '
+      '   data_nascimento, primeira_compra, ultima_compra, total_compras, volor_maior_compra, '
+      '   valor_total_compras, cd_grupo, data_pesquisa, fone1, fone2, fone3, restricao_descricao, '
+      '   auto_carta, restricao_cred, cd_subordinado, cd_empresa, cd_funcionario)'
+      'VALUES'
+      '  (:cd_cliente, :cd_cidade, :cliente, :razao_social, :data_cadastro, :tipo_pessoa, '
+      '   :situacao, :sexo, :cargo, :endereco, :bairro, :numero, :complemento, '
+      '   :cpf_cnpj, :rg_inscrestadual, :cep, :uf, :email, :renda_anual, :tabela_preco, '
+      '   :dia_base, :descricao, :mensalista, :bloqueado, :auto_tel, :auto_sms, '
+      '   :auto_email, :atualizacao_cadastro, :data_nascimento, :primeira_compra, '
+      '   :ultima_compra, :total_compras, :volor_maior_compra, :valor_total_compras, '
+      '   :cd_grupo, :data_pesquisa, :fone1, :fone2, :fone3, :restricao_descricao, '
+      '   :auto_carta, :restricao_cred, :cd_subordinado, :cd_empresa, :cd_funcionario)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE cliente SET'
+      '  cd_cliente = :cd_cliente,'
+      '  cd_cidade = :cd_cidade,'
+      '  cliente = :cliente,'
+      '  razao_social = :razao_social,'
+      '  data_cadastro = :data_cadastro,'
+      '  tipo_pessoa = :tipo_pessoa,'
+      '  situacao = :situacao,'
+      '  sexo = :sexo,'
+      '  cargo = :cargo,'
+      '  endereco = :endereco,'
+      '  bairro = :bairro,'
+      '  numero = :numero,'
+      '  complemento = :complemento,'
+      '  cpf_cnpj = :cpf_cnpj,'
+      '  rg_inscrestadual = :rg_inscrestadual,'
+      '  cep = :cep,'
+      '  uf = :uf,'
+      '  email = :email,'
+      '  renda_anual = :renda_anual,'
+      '  tabela_preco = :tabela_preco,'
+      '  dia_base = :dia_base,'
+      '  descricao = :descricao,'
+      '  mensalista = :mensalista,'
+      '  bloqueado = :bloqueado,'
+      '  auto_tel = :auto_tel,'
+      '  auto_sms = :auto_sms,'
+      '  auto_email = :auto_email,'
+      '  atualizacao_cadastro = :atualizacao_cadastro,'
+      '  data_nascimento = :data_nascimento,'
+      '  primeira_compra = :primeira_compra,'
+      '  ultima_compra = :ultima_compra,'
+      '  total_compras = :total_compras,'
+      '  volor_maior_compra = :volor_maior_compra,'
+      '  valor_total_compras = :valor_total_compras,'
+      '  cd_grupo = :cd_grupo,'
+      '  data_pesquisa = :data_pesquisa,'
+      '  fone1 = :fone1,'
+      '  fone2 = :fone2,'
+      '  fone3 = :fone3,'
+      '  restricao_descricao = :restricao_descricao,'
+      '  auto_carta = :auto_carta,'
+      '  restricao_cred = :restricao_cred,'
+      '  cd_subordinado = :cd_subordinado,'
+      '  cd_empresa = :cd_empresa,'
+      '  cd_funcionario = :cd_funcionario'
+      'WHERE'
+      '  cliente.cd_cliente = :OLD_cd_cliente'
     )
     UseSequenceFieldForRefreshSQL = False
-    left = 283
-    top = 198
+    left = 256
+    top = 176
     ParamData = <    
       item
         DataType = ftUnknown
-        Name = 'old'
+        Name = 'cd_cliente'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cd_cidade'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cliente'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'razao_social'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_cadastro'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tipo_pessoa'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'situacao'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'sexo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cargo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'endereco'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bairro'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'numero'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'complemento'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cpf_cnpj'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'rg_inscrestadual'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cep'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'uf'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'email'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'renda_anual'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'tabela_preco'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'dia_base'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'descricao'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'mensalista'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'bloqueado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'auto_tel'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'auto_sms'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'auto_email'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'atualizacao_cadastro'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_nascimento'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'primeira_compra'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'ultima_compra'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'total_compras'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'volor_maior_compra'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'valor_total_compras'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cd_grupo'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'data_pesquisa'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fone1'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fone2'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fone3'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'restricao_descricao'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'auto_carta'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'restricao_cred'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cd_subordinado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cd_empresa'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cd_funcionario'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_cd_cliente'
         ParamType = ptUnknown
       end>
+  end
+  object QueryGrupoCli: TZQuery
+    Connection = ZConnection1
+    Active = True
+    SQL.Strings = (
+      'select * from grupo_cliente'
+    )
+    Params = <>
+    left = 336
+    top = 112
+    object QueryGrupoClicd_grupo: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_grupo'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object QueryGrupoCligrupo: TStringField
+      FieldKind = fkData
+      FieldName = 'grupo'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+  end
+  object qryAux: TZQuery
+    Connection = ZConnection1
+    Params = <>
+    left = 353
+    top = 185
+  end
+  object QueryEstados: TZQuery
+    Connection = ZConnection1
+    Active = True
+    SQL.Strings = (
+      'select * from estado'
+    )
+    Params = <>
+    left = 200
+    top = 56
+    object QueryEstadoscd_estado: TLongintField
+      FieldKind = fkData
+      FieldName = 'cd_estado'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = True
+    end
+    object QueryEstadosestado: TStringField
+      FieldKind = fkData
+      FieldName = 'estado'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object QueryEstadossigla_estado: TStringField
+      FieldKind = fkData
+      FieldName = 'sigla_estado'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8
+    end
+  end
+  object UpCidade: TZUpdateSQL
+    DeleteSQL.Strings = (
+      'DELETE FROM cidade'
+      'WHERE'
+      '  cidade.cd_cidade = :OLD_cd_cidade'
+    )
+    InsertSQL.Strings = (
+      'INSERT INTO cidade'
+      '  (cd_cidade, cidade, cd_estado)'
+      'VALUES'
+      '  (:cd_cidade, :cidade, :cd_estado)'
+    )
+    ModifySQL.Strings = (
+      'UPDATE cidade SET'
+      '  cd_cidade = :cd_cidade,'
+      '  cidade = :cidade,'
+      '  cd_estado = :cd_estado'
+      'WHERE'
+      '  cidade.cd_cidade = :OLD_cd_cidade'
+    )
+    UseSequenceFieldForRefreshSQL = False
+    left = 195
+    top = 176
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'cd_cidade'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cidade'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'cd_estado'
+        ParamType = ptUnknown
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'OLD_cd_cidade'
+        ParamType = ptUnknown
+      end>
+  end
+  object SeqCidade: TZSequence
+    Connection = ZConnection1
+    SequenceName = 'public.seq_cidade'
+    left = 74
+    top = 203
+  end
+  object SeqCliente: TZSequence
+    Connection = ZConnection1
+    SequenceName = 'public.seq_cliente'
+    left = 136
+    top = 248
   end
 end

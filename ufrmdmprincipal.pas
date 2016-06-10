@@ -5,14 +5,20 @@ unit ufrmdmprincipal;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, ZSqlUpdate;
+  Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, ZSqlUpdate, ZSequence;
 
 type
 
   { TDataModule1 }
 
   TDataModule1 = class(TDataModule)
-    DataSource1: TDataSource;
+    QueryCidadescd_cidade: TLongintField;
+    QueryCidadescd_estado: TLongintField;
+    QueryCidadescidade: TStringField;
+    QueryEstadoscd_estado: TLongintField;
+    QueryEstadosestado: TStringField;
+    QueryEstadossigla_estado: TStringField;
+    QueryGrupoCli: TZQuery;
     QueryClientesatualizacao_cadastro: TDateTimeField;
     QueryClientesauto_carta: TStringField;
     QueryClientesauto_email: TStringField;
@@ -58,10 +64,19 @@ type
     QueryClientesultima_compra: TDateTimeField;
     QueryClientesvalor_total_compras: TFloatField;
     QueryClientesvolor_maior_compra: TFloatField;
+    QueryEstados: TZQuery;
+    QueryGrupoClicd_grupo: TLongintField;
+    QueryGrupoCligrupo: TStringField;
+    SeqCliente: TZSequence;
     ZConnection1: TZConnection;
-    ZQuery1: TZQuery;
+    QueryCidades: TZQuery;
     QueryClientes: TZQuery;
     UpCliente: TZUpdateSQL;
+    qryAux: TZQuery;
+    UpCidade: TZUpdateSQL;
+    SeqCidade: TZSequence;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure QueryClientesAfterPost(DataSet: TDataSet);
   private
     { private declarations }
   public
@@ -74,6 +89,25 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TDataModule1 }
+
+procedure TDataModule1.DataModuleCreate(Sender: TObject);
+begin
+  ZConnection1.Connected:=true;
+  QueryClientes.Active:=true;
+
+
+end;
+
+procedure TDataModule1.QueryClientesAfterPost(DataSet: TDataSet);
+begin
+  QueryClientes.ApplyUpdates;
+  QueryClientes.CommitUpdates;
+  QueryClientes.Refresh;
+  //QueryClientes.Close;
+
+end;
 
 end.
 

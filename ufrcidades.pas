@@ -5,9 +5,9 @@ unit UfrCidades;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UfrmModeloBasico, ZDataset, ZConnection, StdCtrls, DB,  Grids,
-  DBGrids, ExtCtrls, Buttons, DbCtrls;
+  LCLIntf, LCLType,  SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs,  StdCtrls, DB, sqldb, ExtCtrls,UfrmModeloBasico,
+ DBGrids,  Buttons, DBCtrls;
 
 type
 
@@ -15,11 +15,13 @@ type
 
   TFrmcidades = class(TFrmModeloBasico)
     bbimprimir: TBitBtn;
-    edtcodigo: TEdit;
+    cbUF: TDBLookupComboBox;
+    edtcodigo: TDBEdit;
+    dsEstado: TDataSource;
+    dsCidade: TDataSource;
+    edtcidade: TDBEdit;
     Label2: TLabel;
-    edtcidade: TEdit;
     Label3: TLabel;
-    cbUF: TComboBox;
     Label4: TLabel;
     procedure bbpesquisaClick(Sender: TObject);
     procedure bbgravarClick(Sender: TObject);
@@ -116,7 +118,7 @@ end;
 
 procedure TFrmcidades.bbgravarClick(Sender: TObject);
 begin
- {
+
  inherited;
  begin
    if (edtCidade.Text = '')  then
@@ -128,27 +130,13 @@ begin
 
    if operacao = 'inserindo' then
     begin
-       Frmprincipal.QRYAux.SQL.Clear;
-       Frmprincipal.QRYAux.SQL.Add('select max(cd_cidade) as maior from cidade');
-       Frmprincipal.QRYAux.Open;
-       QRYCADASTRO.SQL.Clear;
-       QRYCADASTRO.SQL.Add('insert into cidade(cd_cidade,cidade,cidade.cd_estado) values(:cod,:cid,:uf)');
-       QRYCADASTRO.ParamByName('cod').AsInteger := Frmprincipal.QRYAux.fieldbyname('maior').AsInteger + 1;
-       qrycadastro.ParamByName('cid').AsString  := edtCidade.Text;
-       QRYCADASTRO.ParamByName('uf').AsInteger := codigouf;
-       QRYCADASTRO.ExecSQL;
+       datamodule1.QueryCidades.Post;
     end
    else
     begin
-       QRYCADASTRO.SQL.Clear;
-       QRYCADASTRO.SQL.Add('update cidade set cidade = :cid,cd_estado = :uf');
-       QRYCADASTRO.SQL.Add('where cd_cidade = :cod');
-       QRYCADASTRO.ParamByName('cod').AsInteger := StrToInt(edtCodigo.Text);
-       QRYCADASTRO.ParamByName('cid').AsString := edtCidade.Text;
-       QRYCADASTRO.ParamByName('uf').AsInteger := codigouf;
-       QRYCADASTRO.ExecSQL;
+      datamodule1.QueryCidades.Post;
     end;
-   Frmprincipal.TRBANCO.Commit;
+
    edtcodigo.Clear;
    edtcidade.Clear;
    cbUF.Clear;
@@ -160,15 +148,15 @@ begin
    rgpesquisa.Enabled := true;
    Dbgpesquisa.Enabled := true; 
    bbpesquisa.Enabled:=true;
-   Frmprincipal.MontalistaEstado(cbUF.items);
-   QRYPesquisa.SQL.Clear;
-   QRYPesquisa.SQL.Add('select cidade.cd_cidade,cidade.cidade,estado.estado from estado,cidade where cidade.cd_estado = estado.cd_estado order by cidade');
-   QRYPesquisa.Open;
+  // Frmprincipal.MontalistaEstado(cbUF.items);
+   //QRYPesquisa.SQL.Clear;
+   //QRYPesquisa.SQL.Add('select cidade.cd_cidade,cidade.cidade,estado.estado from estado,cidade where cidade.cd_estado = estado.cd_estado order by cidade');
+  // QRYPesquisa.Open;
    inherited;
 
 end;
 
-  }
+
 end;
 
 procedure TFrmcidades.cbUFChange(Sender: TObject);
@@ -236,6 +224,7 @@ end;
 procedure TFrmcidades.bbnovoClick(Sender: TObject);
 begin
   inherited;
+  DataModule1.QueryCidades.Insert;
   edtcidade.Enabled := true;
   edtcidade.Color := clWhite;
   bbpesquisa.Enabled := False;
@@ -306,21 +295,17 @@ end;
 
 procedure TFrmcidades.bbexcluirClick(Sender: TObject);
 begin
-  {
-  if Application.MessageBox('Tem certeza que deseja excluir?','Confirmação de cancelamento',MB_ICONQUESTION+MB_YESNO)=id_yes then
+
+  //if Application.MessageBox('Tem certeza que deseja excluir?','Confirmação de cancelamento',MB_ICONQUESTION+MB_YESNO)=id_yes then
+
+
+   if  QuestionDlg ('Confirmação de Exclusão','Tem certeza que deseja excluir',mtCustom,[mrYes,'Sim', mrNo, 'Não', 'IsDefault'],'') =mrYes then
     begin
        inherited;
-       QRYCADASTRO.SQL.Clear;
-       QRYCADASTRO.SQL.Add('delete  from cidade where cd_estado = :cod');
-       QRYCADASTRO.ParamByName('cod').AsInteger:= QrypesquisaCD_CIDADE.AsInteger;
-       QRYCADASTRO.ExecSQL;
-       Frmprincipal.TRBANCO.Commit;
-       QRYPesquisa.SQL.Clear;
-       QRYPesquisa.SQL.Add('select cidade.cd_cidade,cidade.cidade,estado.estado from estado,cidade where cidade.cd_estado = estado.cd_estado order by cidade');
-       QRYPesquisa.Open;
+       DataModule1.QueryCidades.Delete;
        end;
   inherited;
-   }
+
 end;
 
 procedure TFrmcidades.BitBtn1Click(Sender: TObject);

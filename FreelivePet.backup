@@ -1,0 +1,1668 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.2.9
+-- Dumped by pg_dump version 9.4.0
+-- Started on 2016-06-09 22:27:56
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 200 (class 3079 OID 11727)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2187 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 168 (class 1259 OID 13183756)
+-- Name: acessos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE acessos (
+    cd_acesso integer NOT NULL,
+    usuario character varying(50),
+    senha1 character varying(50)
+);
+
+
+ALTER TABLE acessos OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 13183759)
+-- Name: agenda; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE agenda (
+    cd_agenda integer NOT NULL,
+    cd_funcionario integer NOT NULL,
+    cd_cliente integer,
+    cd_hora integer,
+    hora_agenda time without time zone,
+    data_agenda date,
+    cd_animal integer
+);
+
+
+ALTER TABLE agenda OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 13183762)
+-- Name: agenda_servico; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE agenda_servico (
+    preco numeric(15,2),
+    cd_servico integer NOT NULL,
+    cd_agenda integer NOT NULL,
+    valor numeric(15,2),
+    cd_venda integer
+);
+
+
+ALTER TABLE agenda_servico OWNER TO postgres;
+
+--
+-- TOC entry 171 (class 1259 OID 13183765)
+-- Name: animal; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE animal (
+    cd_animal integer NOT NULL,
+    data_cadastro timestamp without time zone,
+    data_nascimento timestamp without time zone,
+    animal character varying(100),
+    apelido character varying(100),
+    cor character varying(100),
+    sexo character varying(20),
+    descricao character varying(5000),
+    cd_raca integer NOT NULL,
+    cd_cliente integer NOT NULL,
+    foto character varying(100),
+    cd_pai integer,
+    cd_mae integer,
+    cd_especie integer,
+    pai character varying(100),
+    mae character varying(100),
+    cobertura character varying(3),
+    morto character varying(3),
+    pedigree character varying(3),
+    foto1 character varying(100),
+    foto2 character varying(100),
+    foto3 character varying(100),
+    foto4 character varying(100),
+    foto5 character varying(100),
+    foto6 character varying(100)
+);
+
+
+ALTER TABLE animal OWNER TO postgres;
+
+--
+-- TOC entry 172 (class 1259 OID 13183771)
+-- Name: anotacao_cliente; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE anotacao_cliente (
+    anotacao character varying(5000),
+    data_anotacao timestamp without time zone,
+    resumo character varying(100),
+    categoria character varying(50),
+    pendente character varying(3),
+    cd_cliente integer NOT NULL,
+    cd_anotacao integer NOT NULL
+);
+
+
+ALTER TABLE anotacao_cliente OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 13183777)
+-- Name: area_profissional; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE area_profissional (
+    cd_area integer NOT NULL,
+    area character varying(100)
+);
+
+
+ALTER TABLE area_profissional OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 13183780)
+-- Name: cidade; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cidade (
+    cd_cidade integer NOT NULL,
+    cidade character varying(100),
+    cd_estado integer NOT NULL
+);
+
+
+ALTER TABLE cidade OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 13183783)
+-- Name: cliente; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cliente (
+    cd_cliente integer NOT NULL,
+    cd_cidade integer NOT NULL,
+    cliente character varying(100),
+    razao_social character varying(100),
+    data_cadastro timestamp without time zone,
+    tipo_pessoa character varying(10),
+    situacao character varying(10),
+    sexo character varying(10),
+    cargo character varying(100),
+    endereco character varying(300),
+    bairro character varying(100),
+    numero integer,
+    complemento character varying(300),
+    cpf_cnpj character varying(30),
+    rg_inscrestadual character varying(30),
+    cep character varying(30),
+    uf character varying(2),
+    email character varying(100),
+    renda_anual numeric(15,2),
+    tabela_preco integer,
+    dia_base integer,
+    descricao character varying(3000),
+    mensalista character varying(3),
+    bloqueado character varying(3),
+    auto_tel character varying(3),
+    auto_sms character varying(3),
+    auto_email character varying(3),
+    atualizacao_cadastro timestamp without time zone,
+    data_nascimento timestamp without time zone,
+    primeira_compra timestamp without time zone,
+    ultima_compra timestamp without time zone,
+    total_compras integer,
+    volor_maior_compra numeric(15,2),
+    valor_total_compras numeric(15,2),
+    cd_grupo integer,
+    data_pesquisa date,
+    fone1 character varying(20),
+    fone2 character varying(20),
+    fone3 character varying(20),
+    restricao_descricao character varying(3000),
+    auto_carta character varying(3),
+    restricao_cred character varying(3),
+    cd_subordinado integer,
+    cd_empresa integer,
+    cd_funcionario integer
+);
+
+
+ALTER TABLE cliente OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 13183789)
+-- Name: compra; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE compra (
+    cd_compra integer NOT NULL,
+    data_compra timestamp without time zone,
+    numero_nota integer,
+    cd_fornecedor integer NOT NULL,
+    cd_funcionario integer NOT NULL,
+    entrada numeric(15,2),
+    cd_condicao integer,
+    subtotal numeric(15,2)
+);
+
+
+ALTER TABLE compra OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 13183792)
+-- Name: compra_produto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE compra_produto (
+    quantidade integer,
+    valor numeric(15,2),
+    subtotal numeric(15,2),
+    cd_compra integer NOT NULL,
+    cd_produto integer NOT NULL
+);
+
+
+ALTER TABLE compra_produto OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 13183795)
+-- Name: condicao; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE condicao (
+    cd_condicao integer NOT NULL,
+    condicao character varying(30),
+    desconto numeric(15,2),
+    dia_base integer,
+    acrescimo numeric(15,2),
+    quantidade_parcelas integer,
+    descricao character varying(500),
+    codnumparc integer,
+    coddiasparc integer
+);
+
+
+ALTER TABLE condicao OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 13183801)
+-- Name: contas_a_pagar; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE contas_a_pagar (
+    cd_compra integer NOT NULL,
+    cd_parcela integer NOT NULL,
+    valor_recebido numeric(15,2),
+    data_vencimento timestamp without time zone,
+    data_pagamento timestamp without time zone,
+    valor numeric(15,2),
+    situacao character varying(50)
+);
+
+
+ALTER TABLE contas_a_pagar OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 13183804)
+-- Name: contas_a_receber; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE contas_a_receber (
+    cd_venda integer NOT NULL,
+    cd_parcela integer NOT NULL,
+    valor_recebido numeric(15,2),
+    data_vencimento timestamp without time zone,
+    data_pagamento timestamp without time zone,
+    juros numeric(15,2),
+    multa numeric(15,2)
+);
+
+
+ALTER TABLE contas_a_receber OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 13183807)
+-- Name: especie; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE especie (
+    cd_especie integer NOT NULL,
+    especie character varying(100),
+    descricao character varying(5000)
+);
+
+
+ALTER TABLE especie OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 13183813)
+-- Name: estado; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE estado (
+    cd_estado integer NOT NULL,
+    estado character varying(100),
+    sigla_estado character varying(2)
+);
+
+
+ALTER TABLE estado OWNER TO postgres;
+
+--
+-- TOC entry 183 (class 1259 OID 13183816)
+-- Name: fornecedor; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE fornecedor (
+    cd_fornecedor integer NOT NULL,
+    data_cadastro timestamp without time zone,
+    razao_social character varying(100),
+    nome_fantasia character varying(100),
+    endereco character varying(300),
+    bairro character varying(100),
+    email character varying(100),
+    descricao character varying(5000),
+    cd_cidade integer NOT NULL,
+    cep character varying(20),
+    contato character varying(100),
+    cargo character varying(100),
+    numero integer,
+    complemento character varying(100),
+    banco character varying(100),
+    banco2 character varying(100),
+    descricao2 character varying(3000),
+    situacao character varying(10),
+    foto character varying(100),
+    agencia character varying(20),
+    agencia2 character varying(20),
+    conta character varying(20),
+    conta2 character varying(20),
+    fone1 character varying(20),
+    fone2 character varying(20),
+    fone3 character varying(20),
+    cnpj character varying(20),
+    inscricao_estadual character varying(20)
+);
+
+
+ALTER TABLE fornecedor OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 13183822)
+-- Name: funcionario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE funcionario (
+    cd_funcionario integer NOT NULL,
+    funcionario character varying(100),
+    data_cadastro timestamp without time zone,
+    cpf integer,
+    rg integer,
+    endereco character varying(300),
+    bairro character varying(100),
+    fone1 character varying(20),
+    fone2 character varying(20),
+    fone3 character varying(20),
+    aniversario timestamp without time zone,
+    descricao character varying(5000),
+    cd_cidade integer NOT NULL,
+    numero integer,
+    complemento character varying(300),
+    cd_area integer,
+    email character varying(100),
+    apelido character varying(100),
+    sexo character varying(10),
+    crmv character varying(100),
+    cep character varying(30),
+    situacao character varying(10)
+);
+
+
+ALTER TABLE funcionario OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 13183828)
+-- Name: grupo_cliente; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE grupo_cliente (
+    cd_grupo integer NOT NULL,
+    grupo character varying(100)
+);
+
+
+ALTER TABLE grupo_cliente OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 13183831)
+-- Name: grupo_produto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE grupo_produto (
+    cd_grupo integer NOT NULL,
+    grupo character varying(100)
+);
+
+
+ALTER TABLE grupo_produto OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 13183834)
+-- Name: horario; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE horario (
+    cd_hora integer NOT NULL,
+    hora character varying(100),
+    cliente character varying(100),
+    hora_real time without time zone,
+    cd_funcionario integer
+);
+
+
+ALTER TABLE horario OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 13183837)
+-- Name: marca; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE marca (
+    cd_marca integer NOT NULL,
+    marca character varying(100)
+);
+
+
+ALTER TABLE marca OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 13183840)
+-- Name: nota_agenda; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE nota_agenda (
+    cd_nota integer NOT NULL,
+    nota character varying(1000),
+    cd_funcionario integer,
+    data date
+);
+
+
+ALTER TABLE nota_agenda OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 13183846)
+-- Name: produto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE produto (
+    cd_produto integer NOT NULL,
+    produto character varying(100),
+    codigo_barras integer,
+    estoque integer,
+    estoque_minimo integer,
+    porcentagem numeric(15,2),
+    tabela_preco1 numeric(15,2),
+    tabela_preco2 numeric(15,2),
+    tabela_preco3 numeric(15,2),
+    tabela_preco4 numeric(15,2),
+    tipo character varying(10),
+    custo numeric(15,2),
+    cd_marca integer,
+    cd_fornecedor integer,
+    cd_grupo integer,
+    descricao character varying(1000)
+);
+
+
+ALTER TABLE produto OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 13183852)
+-- Name: produto_marca; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE produto_marca (
+    cd_produto integer NOT NULL,
+    cd_marca integer NOT NULL
+);
+
+
+ALTER TABLE produto_marca OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 13183855)
+-- Name: raca; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE raca (
+    cd_raca integer NOT NULL,
+    raca character varying(100),
+    descricao character varying(5000),
+    cd_especie integer NOT NULL,
+    porte character varying(50),
+    foto character varying(500)
+);
+
+
+ALTER TABLE raca OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 13200139)
+-- Name: seq_cidade; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE seq_cidade
+    START WITH 2
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE seq_cidade OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 13208331)
+-- Name: seq_cliente; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE seq_cliente
+    START WITH 2
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE seq_cliente OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 13183861)
+-- Name: servico; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE servico (
+    cd_servico integer NOT NULL,
+    servico character varying(100),
+    descricao character varying(1000),
+    custo numeric(15,2),
+    porcentagem integer,
+    tabela_preco1 numeric(15,2),
+    tabela_preco2 numeric(15,2),
+    tabela_preco3 numeric(15,2),
+    tabela_preco4 numeric(15,2),
+    cd_grupo integer
+);
+
+
+ALTER TABLE servico OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 13183867)
+-- Name: tabela_horas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tabela_horas (
+    cd_hora integer NOT NULL,
+    horario character varying(20),
+    hora time without time zone,
+    descricao character varying(200)
+);
+
+
+ALTER TABLE tabela_horas OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 13183870)
+-- Name: venda; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE venda (
+    cd_venda integer NOT NULL,
+    data_venda timestamp without time zone,
+    tipo_venda character varying(15),
+    volor_venda numeric(15,2),
+    desconto numeric(15,2),
+    quantidade integer,
+    cd_funcionario integer NOT NULL,
+    cd_condicao integer NOT NULL,
+    cd_cliente integer NOT NULL,
+    cd_agenda integer
+);
+
+
+ALTER TABLE venda OWNER TO postgres;
+
+--
+-- TOC entry 196 (class 1259 OID 13183873)
+-- Name: venda_produto; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE venda_produto (
+    quantidade integer,
+    valor numeric(15,2),
+    subtotal numeric(15,2),
+    cd_venda integer NOT NULL,
+    cd_produto integer NOT NULL
+);
+
+
+ALTER TABLE venda_produto OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 13183876)
+-- Name: venda_servico; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE venda_servico (
+    quantidade integer,
+    valor numeric(15,2),
+    subtotal numeric(15,2),
+    cd_venda integer NOT NULL,
+    cd_servico integer NOT NULL
+);
+
+
+ALTER TABLE venda_servico OWNER TO postgres;
+
+--
+-- TOC entry 2148 (class 0 OID 13183756)
+-- Dependencies: 168
+-- Data for Name: acessos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY acessos (cd_acesso, usuario, senha1) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2149 (class 0 OID 13183759)
+-- Dependencies: 169
+-- Data for Name: agenda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY agenda (cd_agenda, cd_funcionario, cd_cliente, cd_hora, hora_agenda, data_agenda, cd_animal) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2150 (class 0 OID 13183762)
+-- Dependencies: 170
+-- Data for Name: agenda_servico; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY agenda_servico (preco, cd_servico, cd_agenda, valor, cd_venda) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2151 (class 0 OID 13183765)
+-- Dependencies: 171
+-- Data for Name: animal; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY animal (cd_animal, data_cadastro, data_nascimento, animal, apelido, cor, sexo, descricao, cd_raca, cd_cliente, foto, cd_pai, cd_mae, cd_especie, pai, mae, cobertura, morto, pedigree, foto1, foto2, foto3, foto4, foto5, foto6) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2152 (class 0 OID 13183771)
+-- Dependencies: 172
+-- Data for Name: anotacao_cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY anotacao_cliente (anotacao, data_anotacao, resumo, categoria, pendente, cd_cliente, cd_anotacao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2153 (class 0 OID 13183777)
+-- Dependencies: 173
+-- Data for Name: area_profissional; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY area_profissional (cd_area, area) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2154 (class 0 OID 13183780)
+-- Dependencies: 174
+-- Data for Name: cidade; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cidade (cd_cidade, cidade, cd_estado) FROM stdin;
+1	TUBARÃO	1
+3	CRICIUMA	1
+4	FLORIANOPOLIS	1
+39	JAGUARUNA	1
+40	LAGUNA	1
+41	TESTE	1
+\.
+
+
+--
+-- TOC entry 2155 (class 0 OID 13183783)
+-- Dependencies: 175
+-- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY cliente (cd_cliente, cd_cidade, cliente, razao_social, data_cadastro, tipo_pessoa, situacao, sexo, cargo, endereco, bairro, numero, complemento, cpf_cnpj, rg_inscrestadual, cep, uf, email, renda_anual, tabela_preco, dia_base, descricao, mensalista, bloqueado, auto_tel, auto_sms, auto_email, atualizacao_cadastro, data_nascimento, primeira_compra, ultima_compra, total_compras, volor_maior_compra, valor_total_compras, cd_grupo, data_pesquisa, fone1, fone2, fone3, restricao_descricao, auto_carta, restricao_cred, cd_subordinado, cd_empresa, cd_funcionario) FROM stdin;
+1	1	CLIENTE PADRÃO	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+2	3	TESTE	\N	\N	FÍSICA	INATIVO	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+3	4	VLADMIR PINTO	\N	\N	FÍSICA	ATIVO	MASCULINO	\N	\N	\N	\N	\N	90997026987	2534226	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2016-01-01 00:00:00	\N	\N	\N	\N	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+4	3	JOAO	\N	\N	FÍSICA	ATIVO	MASCULINO	\N	\N	\N	\N	\N	123123123123	12312312313	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	2016-01-01 00:00:00	\N	\N	\N	\N	\N	1	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- TOC entry 2156 (class 0 OID 13183789)
+-- Dependencies: 176
+-- Data for Name: compra; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY compra (cd_compra, data_compra, numero_nota, cd_fornecedor, cd_funcionario, entrada, cd_condicao, subtotal) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2157 (class 0 OID 13183792)
+-- Dependencies: 177
+-- Data for Name: compra_produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY compra_produto (quantidade, valor, subtotal, cd_compra, cd_produto) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2158 (class 0 OID 13183795)
+-- Dependencies: 178
+-- Data for Name: condicao; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY condicao (cd_condicao, condicao, desconto, dia_base, acrescimo, quantidade_parcelas, descricao, codnumparc, coddiasparc) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2159 (class 0 OID 13183801)
+-- Dependencies: 179
+-- Data for Name: contas_a_pagar; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY contas_a_pagar (cd_compra, cd_parcela, valor_recebido, data_vencimento, data_pagamento, valor, situacao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2160 (class 0 OID 13183804)
+-- Dependencies: 180
+-- Data for Name: contas_a_receber; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY contas_a_receber (cd_venda, cd_parcela, valor_recebido, data_vencimento, data_pagamento, juros, multa) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2161 (class 0 OID 13183807)
+-- Dependencies: 181
+-- Data for Name: especie; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY especie (cd_especie, especie, descricao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2162 (class 0 OID 13183813)
+-- Dependencies: 182
+-- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY estado (cd_estado, estado, sigla_estado) FROM stdin;
+1	SANTA CATARINA	UF
+\.
+
+
+--
+-- TOC entry 2163 (class 0 OID 13183816)
+-- Dependencies: 183
+-- Data for Name: fornecedor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY fornecedor (cd_fornecedor, data_cadastro, razao_social, nome_fantasia, endereco, bairro, email, descricao, cd_cidade, cep, contato, cargo, numero, complemento, banco, banco2, descricao2, situacao, foto, agencia, agencia2, conta, conta2, fone1, fone2, fone3, cnpj, inscricao_estadual) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2164 (class 0 OID 13183822)
+-- Dependencies: 184
+-- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY funcionario (cd_funcionario, funcionario, data_cadastro, cpf, rg, endereco, bairro, fone1, fone2, fone3, aniversario, descricao, cd_cidade, numero, complemento, cd_area, email, apelido, sexo, crmv, cep, situacao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2165 (class 0 OID 13183828)
+-- Dependencies: 185
+-- Data for Name: grupo_cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY grupo_cliente (cd_grupo, grupo) FROM stdin;
+1	PADRAO
+\.
+
+
+--
+-- TOC entry 2166 (class 0 OID 13183831)
+-- Dependencies: 186
+-- Data for Name: grupo_produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY grupo_produto (cd_grupo, grupo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2167 (class 0 OID 13183834)
+-- Dependencies: 187
+-- Data for Name: horario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY horario (cd_hora, hora, cliente, hora_real, cd_funcionario) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2168 (class 0 OID 13183837)
+-- Dependencies: 188
+-- Data for Name: marca; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY marca (cd_marca, marca) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2169 (class 0 OID 13183840)
+-- Dependencies: 189
+-- Data for Name: nota_agenda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY nota_agenda (cd_nota, nota, cd_funcionario, data) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2170 (class 0 OID 13183846)
+-- Dependencies: 190
+-- Data for Name: produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY produto (cd_produto, produto, codigo_barras, estoque, estoque_minimo, porcentagem, tabela_preco1, tabela_preco2, tabela_preco3, tabela_preco4, tipo, custo, cd_marca, cd_fornecedor, cd_grupo, descricao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2171 (class 0 OID 13183852)
+-- Dependencies: 191
+-- Data for Name: produto_marca; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY produto_marca (cd_produto, cd_marca) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2172 (class 0 OID 13183855)
+-- Dependencies: 192
+-- Data for Name: raca; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY raca (cd_raca, raca, descricao, cd_especie, porte, foto) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2188 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: seq_cidade; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('seq_cidade', 41, true);
+
+
+--
+-- TOC entry 2189 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: seq_cliente; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('seq_cliente', 4, true);
+
+
+--
+-- TOC entry 2173 (class 0 OID 13183861)
+-- Dependencies: 193
+-- Data for Name: servico; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY servico (cd_servico, servico, descricao, custo, porcentagem, tabela_preco1, tabela_preco2, tabela_preco3, tabela_preco4, cd_grupo) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2174 (class 0 OID 13183867)
+-- Dependencies: 194
+-- Data for Name: tabela_horas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY tabela_horas (cd_hora, horario, hora, descricao) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2175 (class 0 OID 13183870)
+-- Dependencies: 195
+-- Data for Name: venda; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY venda (cd_venda, data_venda, tipo_venda, volor_venda, desconto, quantidade, cd_funcionario, cd_condicao, cd_cliente, cd_agenda) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2176 (class 0 OID 13183873)
+-- Dependencies: 196
+-- Data for Name: venda_produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY venda_produto (quantidade, valor, subtotal, cd_venda, cd_produto) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2177 (class 0 OID 13183876)
+-- Dependencies: 197
+-- Data for Name: venda_servico; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY venda_servico (quantidade, valor, subtotal, cd_venda, cd_servico) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1940 (class 2606 OID 13183880)
+-- Name: acessos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY acessos
+    ADD CONSTRAINT acessos_pkey PRIMARY KEY (cd_acesso);
+
+
+--
+-- TOC entry 1942 (class 2606 OID 13183882)
+-- Name: agenda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY agenda
+    ADD CONSTRAINT agenda_pkey PRIMARY KEY (cd_agenda);
+
+
+--
+-- TOC entry 1944 (class 2606 OID 13183884)
+-- Name: agenda_servico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY agenda_servico
+    ADD CONSTRAINT agenda_servico_pkey PRIMARY KEY (cd_servico, cd_agenda);
+
+
+--
+-- TOC entry 1947 (class 2606 OID 13183886)
+-- Name: animal_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY animal
+    ADD CONSTRAINT animal_pkey PRIMARY KEY (cd_animal);
+
+
+--
+-- TOC entry 1949 (class 2606 OID 13183888)
+-- Name: anotacao_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY anotacao_cliente
+    ADD CONSTRAINT anotacao_cliente_pkey PRIMARY KEY (cd_cliente, cd_anotacao);
+
+
+--
+-- TOC entry 1951 (class 2606 OID 13183890)
+-- Name: area_profissional_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY area_profissional
+    ADD CONSTRAINT area_profissional_pkey PRIMARY KEY (cd_area);
+
+
+--
+-- TOC entry 1954 (class 2606 OID 13183892)
+-- Name: cidade_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cidade
+    ADD CONSTRAINT cidade_pkey PRIMARY KEY (cd_cidade);
+
+
+--
+-- TOC entry 1957 (class 2606 OID 13183894)
+-- Name: cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cliente
+    ADD CONSTRAINT cliente_pkey PRIMARY KEY (cd_cliente);
+
+
+--
+-- TOC entry 1959 (class 2606 OID 13183896)
+-- Name: compra_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY compra
+    ADD CONSTRAINT compra_pkey PRIMARY KEY (cd_compra);
+
+
+--
+-- TOC entry 1961 (class 2606 OID 13183898)
+-- Name: compra_produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY compra_produto
+    ADD CONSTRAINT compra_produto_pkey PRIMARY KEY (cd_compra, cd_produto);
+
+
+--
+-- TOC entry 1963 (class 2606 OID 13183900)
+-- Name: condicao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY condicao
+    ADD CONSTRAINT condicao_pkey PRIMARY KEY (cd_condicao);
+
+
+--
+-- TOC entry 1965 (class 2606 OID 13183902)
+-- Name: contas_a_receber_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY contas_a_receber
+    ADD CONSTRAINT contas_a_receber_pkey PRIMARY KEY (cd_venda, cd_parcela);
+
+
+--
+-- TOC entry 1968 (class 2606 OID 13183904)
+-- Name: especie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY especie
+    ADD CONSTRAINT especie_pkey PRIMARY KEY (cd_especie);
+
+
+--
+-- TOC entry 1971 (class 2606 OID 13183906)
+-- Name: estado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY estado
+    ADD CONSTRAINT estado_pkey PRIMARY KEY (cd_estado);
+
+
+--
+-- TOC entry 1973 (class 2606 OID 13183908)
+-- Name: fornecedor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY fornecedor
+    ADD CONSTRAINT fornecedor_pkey PRIMARY KEY (cd_fornecedor);
+
+
+--
+-- TOC entry 1975 (class 2606 OID 13183910)
+-- Name: funcionario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY funcionario
+    ADD CONSTRAINT funcionario_pkey PRIMARY KEY (cd_funcionario);
+
+
+--
+-- TOC entry 1977 (class 2606 OID 13183912)
+-- Name: grupo_cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY grupo_cliente
+    ADD CONSTRAINT grupo_cliente_pkey PRIMARY KEY (cd_grupo);
+
+
+--
+-- TOC entry 1979 (class 2606 OID 13183914)
+-- Name: grupo_produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY grupo_produto
+    ADD CONSTRAINT grupo_produto_pkey PRIMARY KEY (cd_grupo);
+
+
+--
+-- TOC entry 1981 (class 2606 OID 13183916)
+-- Name: horario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY horario
+    ADD CONSTRAINT horario_pkey PRIMARY KEY (cd_hora);
+
+
+--
+-- TOC entry 1983 (class 2606 OID 13183918)
+-- Name: marca_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY marca
+    ADD CONSTRAINT marca_pkey PRIMARY KEY (cd_marca);
+
+
+--
+-- TOC entry 1985 (class 2606 OID 13183920)
+-- Name: nota_agenda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY nota_agenda
+    ADD CONSTRAINT nota_agenda_pkey PRIMARY KEY (cd_nota);
+
+
+--
+-- TOC entry 1989 (class 2606 OID 13183924)
+-- Name: produto_marca_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY produto_marca
+    ADD CONSTRAINT produto_marca_pkey PRIMARY KEY (cd_produto, cd_marca);
+
+
+--
+-- TOC entry 1987 (class 2606 OID 13183922)
+-- Name: produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY produto
+    ADD CONSTRAINT produto_pkey PRIMARY KEY (cd_produto);
+
+
+--
+-- TOC entry 1992 (class 2606 OID 13183926)
+-- Name: raca_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY raca
+    ADD CONSTRAINT raca_pkey PRIMARY KEY (cd_raca);
+
+
+--
+-- TOC entry 1994 (class 2606 OID 13183928)
+-- Name: servico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY servico
+    ADD CONSTRAINT servico_pkey PRIMARY KEY (cd_servico);
+
+
+--
+-- TOC entry 1996 (class 2606 OID 13183930)
+-- Name: tabela_horas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tabela_horas
+    ADD CONSTRAINT tabela_horas_pkey PRIMARY KEY (cd_hora);
+
+
+--
+-- TOC entry 1998 (class 2606 OID 13183932)
+-- Name: venda_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY venda
+    ADD CONSTRAINT venda_pkey PRIMARY KEY (cd_venda);
+
+
+--
+-- TOC entry 2000 (class 2606 OID 13183934)
+-- Name: venda_produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY venda_produto
+    ADD CONSTRAINT venda_produto_pkey PRIMARY KEY (cd_venda, cd_produto);
+
+
+--
+-- TOC entry 2002 (class 2606 OID 13183936)
+-- Name: venda_servico_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY venda_servico
+    ADD CONSTRAINT venda_servico_pkey PRIMARY KEY (cd_venda, cd_servico);
+
+
+--
+-- TOC entry 1945 (class 1259 OID 13184132)
+-- Name: animal_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX animal_index ON animal USING btree (cd_animal, animal);
+
+
+--
+-- TOC entry 1952 (class 1259 OID 13184133)
+-- Name: cidade_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cidade_index ON cidade USING btree (cd_cidade, cidade);
+
+
+--
+-- TOC entry 1955 (class 1259 OID 13184134)
+-- Name: cliente_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX cliente_index ON cliente USING btree (cd_cliente, cliente);
+
+
+--
+-- TOC entry 1966 (class 1259 OID 13184135)
+-- Name: especie_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX especie_index ON especie USING btree (cd_especie, especie);
+
+
+--
+-- TOC entry 1969 (class 1259 OID 13184136)
+-- Name: estado_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX estado_index ON estado USING btree (cd_estado, estado);
+
+
+--
+-- TOC entry 1990 (class 1259 OID 13184137)
+-- Name: raca_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX raca_index ON raca USING btree (cd_raca, raca);
+
+
+--
+-- TOC entry 2004 (class 2606 OID 13183942)
+-- Name: agenda_cd_funcionario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY agenda
+    ADD CONSTRAINT agenda_cd_funcionario_fkey FOREIGN KEY (cd_funcionario) REFERENCES funcionario(cd_funcionario);
+
+
+--
+-- TOC entry 2003 (class 2606 OID 13183937)
+-- Name: agenda_cd_hora_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY agenda
+    ADD CONSTRAINT agenda_cd_hora_fkey FOREIGN KEY (cd_hora) REFERENCES horario(cd_hora);
+
+
+--
+-- TOC entry 2006 (class 2606 OID 13183952)
+-- Name: agenda_servico_cd_agenda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY agenda_servico
+    ADD CONSTRAINT agenda_servico_cd_agenda_fkey FOREIGN KEY (cd_agenda) REFERENCES agenda(cd_agenda);
+
+
+--
+-- TOC entry 2007 (class 2606 OID 13183957)
+-- Name: agenda_servico_cd_servico_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY agenda_servico
+    ADD CONSTRAINT agenda_servico_cd_servico_fkey FOREIGN KEY (cd_servico) REFERENCES servico(cd_servico);
+
+
+--
+-- TOC entry 2005 (class 2606 OID 13183947)
+-- Name: agenda_servico_cd_venda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY agenda_servico
+    ADD CONSTRAINT agenda_servico_cd_venda_fkey FOREIGN KEY (cd_venda) REFERENCES venda(cd_venda);
+
+
+--
+-- TOC entry 2009 (class 2606 OID 13183967)
+-- Name: animal_cd_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY animal
+    ADD CONSTRAINT animal_cd_cliente_fkey FOREIGN KEY (cd_cliente) REFERENCES cliente(cd_cliente);
+
+
+--
+-- TOC entry 2008 (class 2606 OID 13183962)
+-- Name: animal_cd_especie_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY animal
+    ADD CONSTRAINT animal_cd_especie_fkey FOREIGN KEY (cd_especie) REFERENCES especie(cd_especie);
+
+
+--
+-- TOC entry 2010 (class 2606 OID 13183972)
+-- Name: animal_cd_raca_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY animal
+    ADD CONSTRAINT animal_cd_raca_fkey FOREIGN KEY (cd_raca) REFERENCES raca(cd_raca);
+
+
+--
+-- TOC entry 2011 (class 2606 OID 13183977)
+-- Name: anotacao_cliente_cd_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY anotacao_cliente
+    ADD CONSTRAINT anotacao_cliente_cd_cliente_fkey FOREIGN KEY (cd_cliente) REFERENCES cliente(cd_cliente);
+
+
+--
+-- TOC entry 2012 (class 2606 OID 13183982)
+-- Name: cidade_cd_estado_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cidade
+    ADD CONSTRAINT cidade_cd_estado_fkey FOREIGN KEY (cd_estado) REFERENCES estado(cd_estado);
+
+
+--
+-- TOC entry 2013 (class 2606 OID 13183987)
+-- Name: cliente_cd_cidade_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cliente
+    ADD CONSTRAINT cliente_cd_cidade_fkey FOREIGN KEY (cd_cidade) REFERENCES cidade(cd_cidade);
+
+
+--
+-- TOC entry 2014 (class 2606 OID 13183992)
+-- Name: cliente_cd_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cliente
+    ADD CONSTRAINT cliente_cd_grupo_fkey FOREIGN KEY (cd_grupo) REFERENCES grupo_cliente(cd_grupo);
+
+
+--
+-- TOC entry 2015 (class 2606 OID 13183997)
+-- Name: compra_cd_condicao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY compra
+    ADD CONSTRAINT compra_cd_condicao_fkey FOREIGN KEY (cd_condicao) REFERENCES condicao(cd_condicao);
+
+
+--
+-- TOC entry 2016 (class 2606 OID 13184002)
+-- Name: compra_produto_cd_compra_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY compra_produto
+    ADD CONSTRAINT compra_produto_cd_compra_fkey FOREIGN KEY (cd_compra) REFERENCES compra(cd_compra);
+
+
+--
+-- TOC entry 2017 (class 2606 OID 13184007)
+-- Name: compra_produto_cd_produto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY compra_produto
+    ADD CONSTRAINT compra_produto_cd_produto_fkey FOREIGN KEY (cd_produto) REFERENCES produto(cd_produto);
+
+
+--
+-- TOC entry 2018 (class 2606 OID 13184012)
+-- Name: contas_a_pagar_cd_compra_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY contas_a_pagar
+    ADD CONSTRAINT contas_a_pagar_cd_compra_fkey FOREIGN KEY (cd_compra) REFERENCES compra(cd_compra);
+
+
+--
+-- TOC entry 2019 (class 2606 OID 13184017)
+-- Name: contas_a_receber_cd_venda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY contas_a_receber
+    ADD CONSTRAINT contas_a_receber_cd_venda_fkey FOREIGN KEY (cd_venda) REFERENCES venda(cd_venda);
+
+
+--
+-- TOC entry 2021 (class 2606 OID 13184027)
+-- Name: fornecedor_cd_cidade_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY fornecedor
+    ADD CONSTRAINT fornecedor_cd_cidade_fkey FOREIGN KEY (cd_cidade) REFERENCES cidade(cd_cidade);
+
+
+--
+-- TOC entry 2020 (class 2606 OID 13184022)
+-- Name: fornecedor_cd_fornecedor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY fornecedor
+    ADD CONSTRAINT fornecedor_cd_fornecedor_fkey FOREIGN KEY (cd_fornecedor) REFERENCES fornecedor(cd_fornecedor);
+
+
+--
+-- TOC entry 2023 (class 2606 OID 13184037)
+-- Name: funcionario_cd_area_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY funcionario
+    ADD CONSTRAINT funcionario_cd_area_fkey FOREIGN KEY (cd_area) REFERENCES area_profissional(cd_area);
+
+
+--
+-- TOC entry 2024 (class 2606 OID 13184042)
+-- Name: funcionario_cd_area_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY funcionario
+    ADD CONSTRAINT funcionario_cd_area_fkey1 FOREIGN KEY (cd_area) REFERENCES area_profissional(cd_area);
+
+
+--
+-- TOC entry 2025 (class 2606 OID 13184047)
+-- Name: funcionario_cd_cidade_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY funcionario
+    ADD CONSTRAINT funcionario_cd_cidade_fkey FOREIGN KEY (cd_cidade) REFERENCES cidade(cd_cidade);
+
+
+--
+-- TOC entry 2022 (class 2606 OID 13184032)
+-- Name: funcionario_cd_funcionario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY funcionario
+    ADD CONSTRAINT funcionario_cd_funcionario_fkey FOREIGN KEY (cd_funcionario) REFERENCES funcionario(cd_funcionario);
+
+
+--
+-- TOC entry 2027 (class 2606 OID 13184057)
+-- Name: produto_cd_fornecedor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY produto
+    ADD CONSTRAINT produto_cd_fornecedor_fkey FOREIGN KEY (cd_fornecedor) REFERENCES fornecedor(cd_fornecedor);
+
+
+--
+-- TOC entry 2028 (class 2606 OID 13184062)
+-- Name: produto_cd_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY produto
+    ADD CONSTRAINT produto_cd_grupo_fkey FOREIGN KEY (cd_grupo) REFERENCES grupo_produto(cd_grupo);
+
+
+--
+-- TOC entry 2026 (class 2606 OID 13184052)
+-- Name: produto_cd_marca_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY produto
+    ADD CONSTRAINT produto_cd_marca_fkey FOREIGN KEY (cd_marca) REFERENCES marca(cd_marca);
+
+
+--
+-- TOC entry 2030 (class 2606 OID 13184072)
+-- Name: produto_marca_cd_marca_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY produto_marca
+    ADD CONSTRAINT produto_marca_cd_marca_fkey FOREIGN KEY (cd_marca) REFERENCES marca(cd_marca);
+
+
+--
+-- TOC entry 2029 (class 2606 OID 13184067)
+-- Name: produto_marca_cd_produto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY produto_marca
+    ADD CONSTRAINT produto_marca_cd_produto_fkey FOREIGN KEY (cd_produto) REFERENCES produto(cd_produto);
+
+
+--
+-- TOC entry 2031 (class 2606 OID 13184077)
+-- Name: raca_cd_especie_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY raca
+    ADD CONSTRAINT raca_cd_especie_fkey FOREIGN KEY (cd_especie) REFERENCES especie(cd_especie);
+
+
+--
+-- TOC entry 2032 (class 2606 OID 13184082)
+-- Name: servico_cd_grupo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY servico
+    ADD CONSTRAINT servico_cd_grupo_fkey FOREIGN KEY (cd_grupo) REFERENCES grupo_produto(cd_grupo);
+
+
+--
+-- TOC entry 2036 (class 2606 OID 13184102)
+-- Name: venda_cd_agenda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda
+    ADD CONSTRAINT venda_cd_agenda_fkey FOREIGN KEY (cd_agenda) REFERENCES agenda(cd_agenda);
+
+
+--
+-- TOC entry 2035 (class 2606 OID 13184097)
+-- Name: venda_cd_cliente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda
+    ADD CONSTRAINT venda_cd_cliente_fkey FOREIGN KEY (cd_cliente) REFERENCES cliente(cd_cliente);
+
+
+--
+-- TOC entry 2034 (class 2606 OID 13184092)
+-- Name: venda_cd_condicao_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda
+    ADD CONSTRAINT venda_cd_condicao_fkey FOREIGN KEY (cd_condicao) REFERENCES condicao(cd_condicao);
+
+
+--
+-- TOC entry 2033 (class 2606 OID 13184087)
+-- Name: venda_cd_funcionario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda
+    ADD CONSTRAINT venda_cd_funcionario_fkey FOREIGN KEY (cd_funcionario) REFERENCES funcionario(cd_funcionario);
+
+
+--
+-- TOC entry 2038 (class 2606 OID 13184112)
+-- Name: venda_produto_cd_produto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda_produto
+    ADD CONSTRAINT venda_produto_cd_produto_fkey FOREIGN KEY (cd_produto) REFERENCES produto(cd_produto);
+
+
+--
+-- TOC entry 2037 (class 2606 OID 13184107)
+-- Name: venda_produto_cd_venda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda_produto
+    ADD CONSTRAINT venda_produto_cd_venda_fkey FOREIGN KEY (cd_venda) REFERENCES venda(cd_venda);
+
+
+--
+-- TOC entry 2039 (class 2606 OID 13184117)
+-- Name: venda_produto_cd_venda_fkey1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda_produto
+    ADD CONSTRAINT venda_produto_cd_venda_fkey1 FOREIGN KEY (cd_venda) REFERENCES venda(cd_venda);
+
+
+--
+-- TOC entry 2041 (class 2606 OID 13184127)
+-- Name: venda_servico_cd_servico_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda_servico
+    ADD CONSTRAINT venda_servico_cd_servico_fkey FOREIGN KEY (cd_servico) REFERENCES produto(cd_produto);
+
+
+--
+-- TOC entry 2040 (class 2606 OID 13184122)
+-- Name: venda_servico_cd_venda_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY venda_servico
+    ADD CONSTRAINT venda_servico_cd_venda_fkey FOREIGN KEY (cd_venda) REFERENCES venda(cd_venda);
+
+
+--
+-- TOC entry 2186 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-06-09 22:27:58
+
+--
+-- PostgreSQL database dump complete
+--
+

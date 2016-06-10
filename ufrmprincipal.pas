@@ -7,7 +7,7 @@ interface
 uses
   LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, DB, sqldb, ComCtrls,
-  ExtCtrls, grids, StdCtrls, Buttons;
+  ExtCtrls, grids, StdCtrls, Buttons, urlmon;
 
 type
 
@@ -16,6 +16,7 @@ type
   TFrmprincipal = class(TForm)
     MainMenu1: TMainMenu;
     Agendas1: TMenuItem;
+    Suporte: TMenuItem;
     Movimentao1: TMenuItem;
     Cadastros1: TMenuItem;
     Acessos1: TMenuItem;
@@ -55,6 +56,7 @@ type
     procedure Clientes1Click(Sender: TObject);
     procedure Image1Click(Sender: TObject);
     procedure Sairdosistema1Click(Sender: TObject);
+    procedure SuporteClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure Animais1Click(Sender: TObject);
@@ -147,6 +149,11 @@ end;
 procedure TFrmprincipal.Sairdosistema1Click(Sender: TObject);
 begin
   close;
+end;
+
+procedure TFrmprincipal.SuporteClick(Sender: TObject);
+begin
+  HlinkNavigateString(nil,'http://www.freelive.com.br/suporte');
 end;
 
 procedure TFrmprincipal.Timer1Timer(Sender: TObject);

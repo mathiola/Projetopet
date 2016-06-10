@@ -1,9 +1,9 @@
 object Frmprincipal: TFrmprincipal
-  Left = 362
+  Left = 348
   Height = 555
-  Top = 178
+  Top = 161
   Width = 835
-  Caption = '   PetSoft'
+  Caption = '   Freelive Pet'
   ClientHeight = 536
   ClientWidth = 835
   Color = clWhite
@@ -848,6 +848,10 @@ object Frmprincipal: TFrmprincipal
       object Sobreosistema1: TMenuItem
         Caption = 'Sobre o sistema'
         OnClick = Sobreosistema1Click
+      end
+      object Suporte: TMenuItem
+        Caption = 'Solicitar Suporte'
+        OnClick = SuporteClick
       end
     end
   end

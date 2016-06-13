@@ -5,7 +5,7 @@ unit ufrmdmprincipal;
 interface
 
 uses
-  Classes, SysUtils, db, FileUtil, ZConnection, ZDataset, ZSqlUpdate, ZSequence;
+  Classes, SysUtils,Dialogs, db, FileUtil, ZConnection, ZDataset, ZSqlUpdate, ZSequence,IniFiles;
 
 type
 
@@ -77,6 +77,7 @@ type
     SeqCidade: TZSequence;
     procedure DataModuleCreate(Sender: TObject);
     procedure QueryClientesAfterPost(DataSet: TDataSet);
+    procedure ZConnection1BeforeConnect(Sender: TObject);
   private
     { private declarations }
   public
@@ -107,6 +108,28 @@ begin
   QueryClientes.Refresh;
   //QueryClientes.Close;
 
+end;
+
+procedure TDataModule1.ZConnection1BeforeConnect(Sender: TObject);
+var
+  Ini: TIniFile;
+begin
+    Ini := TIniFile.Create(ExtractFilePath(ApplicationName) + 'freelive.ini');
+    try
+        ZConnection1.Connected       := False;
+        ZConnection1.HostName        := Ini.ReadString('Conexao_ZEOS', 'Hostname', '');
+        ZConnection1.Port            := Ini.ReadInteger('Conexao_ZEOS', 'Port', 0);
+        ZConnection1.Protocol        := Ini.ReadString('Conexao_ZEOS', 'Protocol', '');
+        ZConnection1.LibraryLocation := Ini.ReadString('Conexao_ZEOS', 'LibraryLocation', '');
+        ZConnection1.User            := Ini.ReadString('Conexao_ZEOS', 'User', '');
+        ZConnection1.Password        := Ini.ReadString('Conexao_ZEOS', 'Password', '');
+        ZConnection1.Database        := Ini.ReadString('Conexao_ZEOS', 'Database', '');
+        ZConnection1.ClientCodepage  := Ini.ReadString('Conexao_ZEOS', 'Charset', '');
+
+    except
+         on E:Exception do
+         MessageDlg('Erro ao conectar!'#13'Erro: ' + e.Message, mtError, [mbOK], 0);
+    end;
 end;
 
 end.

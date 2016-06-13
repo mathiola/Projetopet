@@ -1,7 +1,7 @@
 inherited Frmcliente: TFrmcliente
-  Left = 434
+  Left = 521
   Height = 490
-  Top = 115
+  Top = 89
   Caption = 'Cadastro de cilentes'
   ClientHeight = 490
   OnCreate = FormCreate
@@ -17,6 +17,7 @@ inherited Frmcliente: TFrmcliente
       Height = 47
       Top = 1
       Width = 75
+      OnClick = bbcancelarClick
     end
     inherited bbgravar: TBitBtn
       Left = 611
@@ -111,6 +112,7 @@ inherited Frmcliente: TFrmcliente
         00020000000D0000000D0000000D0000000D0000000D0000000D0000000D0000
         000D0000000D0000000D056C911F4D56D4DA3535CDB04242CF11
       }
+      OnClick = bbeditarRegistroClick
     end
     inherited bbexcluir: TBitBtn
       Left = 332
@@ -154,6 +156,7 @@ inherited Frmcliente: TFrmcliente
         00000000000000000000000000000C0C0C18767677876363635B3A3A3A133A3A
         3A1A2323230D0000000000000000000000000000000000000000
       }
+      OnClick = bbexcluirClick
     end
     inherited bbsair: TBitBtn
       Left = 272
@@ -213,6 +216,7 @@ inherited Frmcliente: TFrmcliente
     inherited TabSheet1: TTabSheet
       Caption = 'Pesquisa'
       ClientHeight = 407
+      ClientWidth = 736
       Font.CharSet = ANSI_CHARSET
       Font.Height = -13
       Font.Name = 'Arial'
@@ -222,8 +226,14 @@ inherited Frmcliente: TFrmcliente
         Font.Name = 'Arial'
         Font.Style = [fsBold]
         ParentFont = False
+        TabOrder = 1
+        inherited Label3: TLabel
+          Left = 274
+        end
         inherited edtpesquisa: TEdit
+          Left = 272
           Height = 24
+          Width = 323
           Font.CharSet = ANSI_CHARSET
           Font.Height = -13
           Font.Name = 'Arial'
@@ -241,7 +251,7 @@ inherited Frmcliente: TFrmcliente
         Font.Height = -13
         Font.Name = 'Arial'
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
         inherited Dbgpesquisa: TDBGrid
           Columns = <          
             item
@@ -323,15 +333,6 @@ inherited Frmcliente: TFrmcliente
           'RG'
         )
         OnClick = rgpesquisaClick
-      end
-      object Panel2: TPanel[3]
-        Left = 8
-        Height = 81
-        Top = 8
-        Width = 721
-        BevelInner = bvRaised
-        BevelOuter = bvLowered
-        TabOrder = 1
       end
     end
     inherited TabSheet2: TTabSheet
@@ -500,7 +501,7 @@ inherited Frmcliente: TFrmcliente
           ListFieldIndex = 0
           ListSource = DSCidades
           LookupCache = False
-          TabOrder = 0
+          TabOrder = 8
         end
         object edfone1: TDBEdit
           Left = 14
@@ -510,8 +511,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'fone1'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 80
-          TabOrder = 1
+          MaxLength = 0
+          TabOrder = 0
         end
         object edfone2: TDBEdit
           Left = 141
@@ -521,8 +522,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'fone2'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 80
-          TabOrder = 2
+          MaxLength = 0
+          TabOrder = 1
         end
         object edcelular: TDBEdit
           Left = 276
@@ -532,8 +533,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'fone3'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 80
-          TabOrder = 3
+          MaxLength = 0
+          TabOrder = 2
         end
         object edemail: TDBEdit
           Left = 420
@@ -543,8 +544,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'email'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 400
-          TabOrder = 4
+          MaxLength = 0
+          TabOrder = 3
           OnChange = edemailChange
         end
         object edendereco: TDBEdit
@@ -555,8 +556,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'endereco'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 1200
-          TabOrder = 5
+          MaxLength = 0
+          TabOrder = 4
         end
         object edbairro: TDBEdit
           Left = 17
@@ -566,8 +567,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'bairro'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 400
-          TabOrder = 6
+          MaxLength = 0
+          TabOrder = 7
         end
         object ednumero: TDBEdit
           Left = 279
@@ -578,7 +579,7 @@ inherited Frmcliente: TFrmcliente
           DataSource = DSClientes
           CharCase = ecNormal
           MaxLength = 0
-          TabOrder = 7
+          TabOrder = 5
         end
         object edcomplemento: TDBEdit
           Left = 421
@@ -588,10 +589,10 @@ inherited Frmcliente: TFrmcliente
           DataField = 'complemento'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 1200
-          TabOrder = 8
+          MaxLength = 0
+          TabOrder = 6
         end
-        object DBEdit16: TDBEdit
+        object edcep: TDBEdit
           Left = 544
           Height = 21
           Top = 176
@@ -599,7 +600,7 @@ inherited Frmcliente: TFrmcliente
           DataField = 'cep'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 120
+          MaxLength = 0
           TabOrder = 9
         end
       end
@@ -646,7 +647,7 @@ inherited Frmcliente: TFrmcliente
           ParentFont = False
         end
         object lbrg: TLabel
-          Left = 586
+          Left = 555
           Height = 13
           Top = 54
           Width = 19
@@ -672,7 +673,7 @@ inherited Frmcliente: TFrmcliente
           ParentFont = False
         end
         object lbempresa: TLabel
-          Left = 190
+          Left = 207
           Height = 13
           Top = 104
           Width = 49
@@ -711,7 +712,7 @@ inherited Frmcliente: TFrmcliente
           ParentFont = False
         end
         object lbrazao: TLabel
-          Left = 445
+          Left = 408
           Height = 13
           Top = 54
           Width = 24
@@ -776,7 +777,7 @@ inherited Frmcliente: TFrmcliente
           Font.Style = [fsBold]
           OnClick = btngrupoClick
           ParentFont = False
-          TabOrder = 0
+          TabOrder = 4
           TabStop = False
         end
         object bbempresa: TBitBtn
@@ -793,17 +794,7 @@ inherited Frmcliente: TFrmcliente
           Font.Style = [fsBold]
           OnClick = bbempresaClick
           ParentFont = False
-          TabOrder = 1
-        end
-        object Panel29: TPanel
-          Left = 190
-          Height = 27
-          Top = 117
-          Width = 241
-          BevelOuter = bvNone
-          Caption = 'Panel29'
-          Enabled = False
-          TabOrder = 2
+          TabOrder = 10
         end
         object bbempresadel: TBitBtn
           Left = 459
@@ -819,7 +810,7 @@ inherited Frmcliente: TFrmcliente
           Font.Style = [fsBold]
           OnClick = bbempresadelClick
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 11
         end
         object edcodigo: TDBEdit
           Left = 14
@@ -830,7 +821,7 @@ inherited Frmcliente: TFrmcliente
           DataSource = DSClientes
           CharCase = ecNormal
           MaxLength = 0
-          TabOrder = 4
+          TabOrder = 0
         end
         object ednome: TDBEdit
           Left = 14
@@ -840,7 +831,7 @@ inherited Frmcliente: TFrmcliente
           DataField = 'cliente'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 400
+          MaxLength = 0
           TabOrder = 5
         end
         object cbpessoa: TDBComboBox
@@ -857,7 +848,7 @@ inherited Frmcliente: TFrmcliente
           )
           MaxLength = 0
           OnChange = cbpessoaChange
-          TabOrder = 6
+          TabOrder = 1
         end
         object edsituacao: TDBComboBox
           Left = 283
@@ -873,7 +864,7 @@ inherited Frmcliente: TFrmcliente
             'BLOQUEADO'
           )
           MaxLength = 0
-          TabOrder = 7
+          TabOrder = 2
         end
         object edsexo: TDBComboBox
           Left = 14
@@ -903,7 +894,7 @@ inherited Frmcliente: TFrmcliente
           ListSource = DSGrupoCli
           LookupCache = False
           OnChange = edgrupocliChange
-          TabOrder = 9
+          TabOrder = 3
         end
         object eddtnasc: TDBEdit
           Left = 112
@@ -914,7 +905,7 @@ inherited Frmcliente: TFrmcliente
           DataSource = DSClientes
           CharCase = ecNormal
           MaxLength = 0
-          TabOrder = 10
+          TabOrder = 9
         end
         object edcpf: TDBEdit
           Left = 408
@@ -924,8 +915,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'cpf_cnpj'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 120
-          TabOrder = 11
+          MaxLength = 0
+          TabOrder = 6
         end
         object edrg: TDBEdit
           Left = 552
@@ -935,8 +926,8 @@ inherited Frmcliente: TFrmcliente
           DataField = 'rg_inscrestadual'
           DataSource = DSClientes
           CharCase = ecNormal
-          MaxLength = 120
-          TabOrder = 12
+          MaxLength = 0
+          TabOrder = 7
         end
       end
     end

@@ -15,7 +15,7 @@ type
 
   TFrmcliente = class(TFrmmodelo)
     cbcidade: TDBLookupComboBox;
-    DBEdit16: TDBEdit;
+    edcep: TDBEdit;
     DSGrupoCli: TDataSource;
     DSClientes: TDataSource;
     DSCidades: TDataSource;
@@ -36,7 +36,6 @@ type
     edcodigo: TDBEdit;
     ednome: TDBEdit;
     edgrupocli: TDBLookupComboBox;
-    Panel2: TPanel;
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
@@ -150,7 +149,6 @@ type
     Label22: TLabel;
     Panel28: TPanel;
     bbempresa: TBitBtn;
-    Panel29: TPanel;
     bbempresadel: TBitBtn;
     bbsubopesdel: TButton;
     bbatenpes: TButton;
@@ -158,14 +156,20 @@ type
     edtfuncionario: TEdit;
     Panel30: TPanel;
     Panel31: TPanel;
+    procedure bbeditarRegistroClick(Sender: TObject);
+    procedure bbexcluirClick(Sender: TObject);
     procedure bbsairClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure cbpessoaChange(Sender: TObject);
+    procedure DSClientesStateChange(Sender: TObject);
+    procedure EdBuscaClienteChange(Sender: TObject);
     procedure edemailChange(Sender: TObject);
     procedure edgrupocliChange(Sender: TObject);
     procedure DSClientesDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure Panel5Click(Sender: TObject);
+    procedure RadioGroup2Click(Sender: TObject);
     procedure rgpesquisaClick(Sender: TObject);
     procedure bbpesquisaClick(Sender: TObject);
     procedure bbnovoClick(Sender: TObject);
@@ -214,15 +218,41 @@ var
 
 implementation
 
-uses UfrmPrincipal,ufrmDmPrincipal,UfrmRetornoCliente;
+uses UfrmPrincipal,ufrmDmPrincipal,UfrmRetornoCliente,UfrmGrupos;
 
 {$R *.lfm}
+
+procedure TFrmcliente.bbeditarRegistroClick  (Sender: TObject);
+begin
+  DataModule1.QueryClientes.Edit;
+  Panel4.Enabled:=true;
+  Panel5.Enabled:=true;
+  botoes(False);
+
+end;
+
 
 procedure TFrmcliente.bbsairClick(Sender: TObject);
 begin
   close;
 
 end;
+
+procedure TFrmcliente.Button1Click(Sender: TObject);
+begin
+   DataModule1.QueryClientes.Post;
+end;
+
+procedure TFrmcliente.bbexcluirClick(Sender: TObject);
+begin
+  if Application.MessageBox('Tem certeza que deseja excluir?','Confirmação de Cancelamento',MB_ICONQUESTION+MB_YESNO) = id_yes then
+  begin
+  DataModule1.QueryClientes.Delete;
+  end;
+  inherited;
+
+end;
+
 
 procedure TFrmcliente.cbpessoaChange(Sender: TObject);
 begin
@@ -238,7 +268,7 @@ begin
   //  mskrg.Visible := true;
     //cbsexo.Visible := true;
   //  mskidade.Visible := true;
-    Panel29.Visible := true;
+    //Panel29.Visible := true;
     //edtrazao.Visible := false;
     //edtinscestadual.Visible := false;
     //mskcnpj.Visible:= false;
@@ -265,13 +295,24 @@ begin
    // mskcnpj.Visible:= true;
     lbnascimento.Visible := false;
     lbrg.Visible := false;
-    Panel29.Visible := false;
+    //Panel29.Visible := false;
     bbempresa.Enabled := false;
     bbempresadel.Enabled := false;
 
 
 
    end;
+
+end;
+
+procedure TFrmcliente.DSClientesStateChange(Sender: TObject);
+begin
+  //DataModule1.QueryCidades.Active:=TRUE;
+  //DataModule1.QueryGrupoCli.Active:=TRUE;
+end;
+
+procedure TFrmcliente.EdBuscaClienteChange(Sender: TObject);
+begin
 
 end;
 
@@ -297,7 +338,7 @@ begin
   inherited;
    //Frmprincipal.pesquisafun := 2;
    //AbaAnterior:= 1;
-   DataModule1.QueryClientes.Active:=true;
+   //DataModule1.QueryClientes.Active:=true;
 
 
 
@@ -365,6 +406,11 @@ begin
 
 end;
 
+procedure TFrmcliente.RadioGroup2Click(Sender: TObject);
+begin
+
+end;
+
 procedure TFrmcliente.rgpesquisaClick(Sender: TObject);
 begin
    case rgpesquisa.ItemIndex of
@@ -384,24 +430,27 @@ end;
 procedure TFrmcliente.bbpesquisaClick(Sender: TObject);
 begin
   inherited;
-
+  DataModule1.QueryClientes.Active:=true;
+  DataModule1.QueryCidades.Active:=true;
+  DataModule1.QueryGrupoCli.Active:=true;
         case rgpesquisa.ItemIndex of
          0: begin
-           {
-           qrypesquisa.SQL.Clear;
-           qrypesquisa.SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
-           qrypesquisa.SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
-           qrypesquisa.SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
-           qrypesquisa.SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
-           qrypesquisa.SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
-           qrypesquisa.SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
-           qrypesquisa.SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
-           qrypesquisa.SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
-           qrypesquisa.SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
-           qrypesquisa.SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
-           qrypesquisa.SQL.Add(' cidade.cidade from cliente,cidade,grupo_cliente');
-           qrypesquisa.SQL.Add(' where cliente.cd_cidade = cidade.cd_cidade and cliente.cd_grupo = grupo_cliente.cd_grupo ');
-           qrypesquisa.Open;
+
+           DataModule1.QueryClientes.SQL.Clear;
+           DataModule1.QueryClientes .SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
+           DataModule1.QueryClientes .SQL.Add(' cidade.cidade from cliente');
+           DataModule1.QueryClientes .SQL.Add(' left join cidade on cliente.cd_cidade = cidade.cd_cidade ');
+           DataModule1.QueryClientes .SQL.Add(' left join grupo_cliente on cliente.cd_grupo = grupo_cliente.cd_grupo');
+           DataModule1.QueryClientes .Open;
 
            end;
          1:begin
@@ -412,63 +461,63 @@ begin
             edtpesquisa.SetFocus;
             Exit;
           end;
-           qrypesquisa.SQL.Clear;
-           qrypesquisa.SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
-           qrypesquisa.SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
-           qrypesquisa.SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
-           qrypesquisa.SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
-           qrypesquisa.SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
-           qrypesquisa.SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
-           qrypesquisa.SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
-           qrypesquisa.SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
-           qrypesquisa.SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
-           qrypesquisa.SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
-           qrypesquisa.SQL.Add(' cidade.cidade from cliente,cidade,grupo_cliente');
-           qrypesquisa.SQL.Add(' where cliente.cd_cidade = cidade.cd_cidade and cliente.cd_grupo = grupo_cliente.cd_grupo and cd_cliente = :cod');
-           qrypesquisa.ParamByName('cod').AsInteger := StrToInt(Edtpesquisa.Text);
-           qrypesquisa.Open;
+           DataModule1.QueryClientes .SQL.Clear;
+           DataModule1.QueryClientes .SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
+           DataModule1.QueryClientes .SQL.Add(' cidade.cidade from cliente,cidade,grupo_cliente');
+           DataModule1.QueryClientes .SQL.Add(' where cliente.cd_cidade = cidade.cd_cidade and cliente.cd_grupo = grupo_cliente.cd_grupo and cd_cliente = :cod');
+           DataModule1.QueryClientes .ParamByName('cod').AsInteger := StrToInt(Edtpesquisa.Text);
+           DataModule1.QueryClientes .Open;
           end;
         2:Begin
-           qrypesquisa.SQL.Clear;
-           qrypesquisa.SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
-           qrypesquisa.SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
-           qrypesquisa.SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
-           qrypesquisa.SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
-           qrypesquisa.SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
-           qrypesquisa.SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
-           qrypesquisa.SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
-           qrypesquisa.SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
-           qrypesquisa.SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
-           qrypesquisa.SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
-           qrypesquisa.SQL.Add(' cidade.cidade from cliente,cidade,grupo_cliente');
-           qrypesquisa.SQL.Add(' where cliente.cd_cidade = cidade.cd_cidade and cliente.cd_grupo = grupo_cliente.cd_grupo and cliente.cliente like :nm');
-          qrypesquisa.parambyname('nm').AsString := uppercase(EDTPesquisa.text) + '%';
-          qrypesquisa.open;
+           DataModule1.QueryClientes .SQL.Clear;
+           DataModule1.QueryClientes .SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
+           DataModule1.QueryClientes .SQL.Add(' cidade.cidade from cliente,cidade,grupo_cliente');
+           DataModule1.QueryClientes .SQL.Add(' where cliente.cd_cidade = cidade.cd_cidade and cliente.cd_grupo = grupo_cliente.cd_grupo and cliente.cliente like :nm');
+          DataModule1.QueryClientes .parambyname('nm').AsString := uppercase(EDTPesquisa.text) + '%';
+          DataModule1.QueryClientes .open;
           end;
         3:Begin
-           qrypesquisa.SQL.Clear;
-           qrypesquisa.SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
-           qrypesquisa.SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
-           qrypesquisa.SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
-           qrypesquisa.SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
-           qrypesquisa.SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
-           qrypesquisa.SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
-           qrypesquisa.SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
-           qrypesquisa.SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
-           qrypesquisa.SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
-           qrypesquisa.SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
-           qrypesquisa.SQL.Add(' cidade.cidade from cliente,cidade,grupo_cliente');
-           qrypesquisa.SQL.Add(' where cliente.cd_cidade = cidade.cd_cidade and cliente.cd_grupo = grupo_cliente.cd_grupo cidade.cidade like :nmcid');
-          qrypesquisa.parambyname('nmcid').asString := uppercase(edtpesquisa.text)+'%';
-          qrypesquisa.open;
-       end;
-       }
+           DataModule1.QueryClientes .SQL.Clear;
+           DataModule1.QueryClientes .SQL.Add('select cliente.cd_cliente, cliente.cd_cidade, cliente.cd_funcionario, cliente.cliente,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.razao_social, cliente.data_cadastro, cliente.tipo_pessoa, cliente.situacao, cliente.sexo,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_empresa, cliente.cargo, cliente.endereco, cliente.bairro, cliente.numero,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.complemento, cliente.cpf_cnpj, cliente.rg_inscrestadual, cliente.cep,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.uf, cliente.fone1, cliente.fone2, cliente.fone3, cliente.email, cliente.renda_anual,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.cd_subordinado, cliente.tabela_preco, cliente.dia_base, cliente.descricao,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.restricao_descricao, cliente.mensalista, cliente.bloqueado, cliente.auto_tel,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.auto_sms,restricao_cred, cliente.auto_email,cliente.auto_carta, cliente.atualizacao_cadastro, cliente.data_nascimento,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.primeira_compra, cliente.ultima_compra, cliente.total_compras,');
+           DataModule1.QueryClientes .SQL.Add(' cliente.volor_maior_compra, cliente.valor_total_compras, grupo_cliente.grupo,');
+           DataModule1.QueryClientes .SQL.Add(' cidade.cidade from cliente,cidade,grupo_cliente');
+           DataModule1.QueryClientes .SQL.Add(' where cliente.cd_cidade = cidade.cd_cidade and cliente.cd_grupo = grupo_cliente.cd_grupo cidade.cidade like :nmcid');
+          DataModule1.QueryClientes .parambyname('nmcid').asString := uppercase(edtpesquisa.text)+'%';
+          DataModule1.QueryClientes .open;
        end;
 
-       //if QRYPesquisa.RecordCount <= 0 then
-      // begin
-      // application.MessageBox ('Nenhum cliente foi encorntrado.','Atenção',MB_ICONINFORMATION);
-      // Exit;
+       end;
+
+       if DataModule1.QueryClientes .RecordCount <= 0 then
+       begin
+       application.MessageBox ('Nenhum cliente foi encorntrado.','Atenção',MB_ICONINFORMATION);
+       Exit;
 
        end;
 end;
@@ -477,6 +526,9 @@ begin
   PageControl1.TabIndex := 1;
   Panel4.Enabled:=true;
   Panel5.Enabled:=true;
+  DataModule1.QueryClientes.Active:=true;
+  DataModule1.QueryCidades.Active:=true;
+  DataModule1.QueryGrupoCli.Active:=true;
   DataModule1.QueryClientes.Insert;
   inherited;
 
@@ -495,14 +547,14 @@ begin
        Application.MessageBox('Falta informar a cidade do cliente','aviso',MB_ICONWARNING);
        Exit;
     end;
-   if operacao = 'inserindo' then
-        begin
-        DataModule1.QueryClientes.Post;
-        end
-        else
-         begin
-               DataModule1.QueryClientes.Post;
-         end;
+ //  ShowMessage('1');
+   Try
+   DataModule1.QueryClientes.Post;
+   datamodule1.QueryCidades.Open;
+   finally
+   end;
+   //   ShowMessage('2');
+
 
    Panel4.Enabled:= false;
    Panel5.Enabled:= false;
@@ -568,9 +620,9 @@ end;
 procedure TFrmcliente.btngrupoClick(Sender: TObject);
 begin
   inherited;
-      //FrmGrupos := TFrmGrupos.Create(Self);
-      //FrmGrupos.ShowModal;
-      //FrmGrupos.Free;
+      FrmGrupos := TFrmGrupos.Create(Self);
+      FrmGrupos.ShowModal;
+      FrmGrupos.Free;
 end;
 
 procedure TFrmcliente.cbgrupoDropDown(Sender: TObject);
@@ -590,6 +642,9 @@ begin
   inherited;
   PageControl1.TabIndex := 1;
   selecionadb;
+  Panel4.Enabled:=true;
+  Panel5.Enabled:=true;
+  DataModule1.QueryClientes.edit;
 end;
 
 procedure TFrmcliente.bbcancelarClick(Sender: TObject);

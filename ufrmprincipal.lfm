@@ -1,10 +1,10 @@
 object Frmprincipal: TFrmprincipal
-  Left = 339
+  Left = 772
   Height = 555
-  Top = 101
+  Top = 147
   Width = 835
   Caption = '   Freelive Pet'
-  ClientHeight = 536
+  ClientHeight = 535
   ClientWidth = 835
   Color = clWhite
   Font.Color = clWindowText
@@ -722,8 +722,8 @@ object Frmprincipal: TFrmprincipal
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 20
-    Top = 516
+    Height = 23
+    Top = 512
     Width = 835
     Panels = <    
       item

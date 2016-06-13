@@ -15,13 +15,14 @@ object DataModule1: TDataModule1
       'codepage=UTF8'
     )
     TransactIsolationLevel = tiReadCommitted
+    Connected = True
     HostName = 'localhost'
     Port = 0
     Database = 'freelivepet'
     User = 'postgres'
     Password = 'postgres'
     Protocol = 'postgresql-9'
-    LibraryLocation = 'D:\postgre\bin\libpq.dll'
+    LibraryLocation = 'E:\neo\pgsql\bin\libpq.dll'
     left = 72
     top = 104
   end
@@ -830,6 +831,7 @@ object DataModule1: TDataModule1
   end
   object QueryGrupoCli: TZQuery
     Connection = ZConnection1
+    Active = True
     SQL.Strings = (
       'select * from grupo_cliente'
     )
@@ -864,6 +866,7 @@ object DataModule1: TDataModule1
   end
   object QueryEstados: TZQuery
     Connection = ZConnection1
+    Active = True
     SQL.Strings = (
       'select * from estado'
     )

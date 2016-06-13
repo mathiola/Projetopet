@@ -59,6 +59,7 @@ uses UfrmPrincipal;
 
 procedure Tfrmmodelo.botoes(aux: boolean);
 begin
+
    bbnovo.enabled:= aux;
    bbgravar.enabled:= not(aux);
    bbcancelar.enabled:= not(aux);
@@ -67,10 +68,10 @@ begin
    bbsair.enabled:= aux;
    bbimprimir.Enabled:= aux;
 
-{  bbnovo.Visible:= aux;
+   bbnovo.Visible:= aux;
    bbgravar.Visible:= not(aux);
    bbcancelar.visible:= not(aux);
-   bbeditar.visible:= aux;  }
+   bbeditar.visible:= aux;
 
 
 end;
@@ -99,8 +100,8 @@ end;
 
 procedure TFrmmodelo.bbeditarClick(Sender: TObject);
 begin
-   operacao := 'alterando';
-   botoes(False);
+     operacao := 'alterando';
+     botoes(False);
 end;
 
 procedure TFrmmodelo.bbsairClick(Sender: TObject);

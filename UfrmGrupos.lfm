@@ -1,0 +1,157 @@
+inherited FrmGrupos: TFrmGrupos
+  Left = 408
+  Height = 409
+  Top = 206
+  Width = 504
+  Caption = 'Cadastro de grupos'
+  ClientHeight = 409
+  ClientWidth = 504
+  inherited Panel1: TPanel
+    Height = 55
+    Top = 354
+    Width = 504
+    ClientHeight = 55
+    ClientWidth = 504
+    inherited bbsair: TBitBtn
+      Left = 413
+    end
+    inherited bbnovo: TBitBtn
+      Left = 149
+    end
+    inherited bbgravar: TBitBtn
+      Left = 148
+    end
+    inherited bbexcluir: TBitBtn
+      Left = 325
+    end
+    inherited bbcancelar: TBitBtn
+      Left = 237
+    end
+    inherited bbeditar: TBitBtn
+      Left = 237
+    end
+  end
+  inherited Panel2: TPanel
+    Height = 354
+    Width = 504
+    ClientHeight = 354
+    ClientWidth = 504
+    inherited Panel3: TPanel
+      Left = 8
+      Height = 193
+      Top = 120
+      Width = 481
+      ClientHeight = 193
+      ClientWidth = 481
+      inherited Label1: TLabel
+        Left = 212
+        Top = 10
+      end
+      inherited rgpesquisa: TRadioGroup
+        Height = 33
+        Top = 15
+        Width = 175
+        ClientHeight = 15
+        ClientWidth = 171
+        ItemIndex = 0
+        Items.Strings = (
+          'Todos'
+          'Grupo'
+        )
+        OnClick = rgpesquisaClick
+      end
+      inherited Dbgpesquisa: TDBGrid
+        Height = 129
+        Top = 56
+        Width = 449
+        Columns = <        
+          item
+            PickList.Strings = (            )
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'MS Sans Serif'
+            Title.Font.Style = [fsBold]
+            Title.Caption = 'Código'
+            FieldName = 'CD_GRUPO'
+          end        
+          item
+            PickList.Strings = (            )
+            Title.Font.Color = clWindowText
+            Title.Font.Height = -11
+            Title.Font.Name = 'MS Sans Serif'
+            Title.Font.Style = [fsBold]
+            Title.Caption = 'Grupo de cliente'
+            Width = 328
+            FieldName = 'GRUPO'
+          end>
+      end
+      inherited bbpesquisa: TBitBtn
+        Left = 389
+        Top = 24
+        OnClick = bbpesquisaClick
+      end
+      inherited Edtpesquisa: TEdit
+        Left = 212
+        Top = 28
+        Width = 160
+        CharCase = ecUppercase
+        Color = clScrollBar
+        Enabled = False
+      end
+    end
+    inherited Panel4: TPanel
+      Left = 8
+      Height = 105
+      Top = 8
+      Width = 481
+      ClientHeight = 105
+      ClientWidth = 481
+      Enabled = False
+      object Label2: TLabel[0]
+        Left = 16
+        Height = 13
+        Top = 8
+        Width = 44
+        Caption = 'Código:'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label3: TLabel[1]
+        Left = 16
+        Height = 13
+        Top = 56
+        Width = 39
+        Caption = 'Grupo:'
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+      end
+      object edtgrupo: TEdit[2]
+        Left = 16
+        Height = 21
+        Top = 72
+        Width = 449
+        CharCase = ecUppercase
+        Color = clScrollBar
+        TabOrder = 0
+      end
+      object edtcodigo: TEdit[3]
+        Left = 16
+        Height = 21
+        Top = 24
+        Width = 73
+        CharCase = ecUppercase
+        Color = clScrollBar
+        Enabled = False
+        TabOrder = 1
+      end
+    end
+  end
+end

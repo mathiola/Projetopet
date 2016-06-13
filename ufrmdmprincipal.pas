@@ -95,7 +95,7 @@ implementation
 procedure TDataModule1.DataModuleCreate(Sender: TObject);
 begin
   ZConnection1.Connected:=true;
-  QueryClientes.Active:=true;
+
 
 
 end;

@@ -280,7 +280,7 @@ inherited Frmcliente: TFrmcliente
               Title.Font.Height = -13
               Title.Font.Name = 'Arial'
               Title.Font.Style = [fsBold]
-              Title.Caption = 'CLIENTE'
+              Title.Caption = 'Cliente'
               Width = 270
               FieldName = 'cliente'
             end          
@@ -300,8 +300,15 @@ inherited Frmcliente: TFrmcliente
               FieldName = 'fone1'
             end          
             item
+              MaxSize = 200
               PickList.Strings = (              )
-              Title.Caption = 'cpf_cnpj'
+              Title.Font.CharSet = ANSI_CHARSET
+              Title.Font.Color = clWindowText
+              Title.Font.Height = -13
+              Title.Font.Name = 'Arial'
+              Title.Font.Style = [fsBold]
+              Title.Caption = 'CNPJ/CPF'
+              Width = 100
               FieldName = 'cpf_cnpj'
             end>
           DataSource = DSClientes
@@ -314,6 +321,7 @@ inherited Frmcliente: TFrmcliente
           TitleFont.Name = 'Arial'
           OnCellClick = DbgpesquisaCellClick
           OnDblClick = DbgpesquisaDblClick
+          OnTitleClick = DbgpesquisaTitleClick
         end
       end
       inherited rgpesquisa: TRadioGroup

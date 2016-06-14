@@ -5,9 +5,10 @@ unit Ufrmcliente;
 interface
 
 uses
-  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UfrmModelo, StdCtrls, DB, sqldb, ExtCtrls,
-  Grids, DBGrids, ComCtrls, Buttons, DBCtrls;
+  LCLIntf, LCLType,  SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, UfrmModelo, StdCtrls, DB, sqldb, ExtCtrls,ZAbstractRODataset,
+  ZDataset,
+   DBGrids, ComCtrls, Buttons, DBCtrls;
 
 type
 
@@ -161,6 +162,7 @@ type
     procedure bbsairClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure cbpessoaChange(Sender: TObject);
+    procedure DbgpesquisaTitleClick(Column: TColumn);
     procedure DSClientesStateChange(Sender: TObject);
     procedure EdBuscaClienteChange(Sender: TObject);
     procedure edemailChange(Sender: TObject);
@@ -304,6 +306,27 @@ begin
    end;
 
 end;
+
+procedure TFrmcliente.DbgpesquisaTitleClick(Column: TColumn);
+var
+  tTemp : ZAbstractRODataset.TSortType;
+  I: Integer;
+begin
+
+  for I := 0 to Dbgpesquisa.Columns.Count - 1 do
+  Dbgpesquisa.Columns[i].Title.Font.Style := [];
+
+  tTemp := DataModule1.QueryClientes.SortType;
+  DataModule1.QueryClientes.SortedFields := Column.FieldName;
+  if tTemp = stAscending then
+    DataModule1.QueryClientes.SortType := stDescending
+  else
+    DataModule1.QueryClientes.SortType := stAscending;
+
+  Column.Title.Font.Style := [fsBold];
+
+end;
+
 
 procedure TFrmcliente.DSClientesStateChange(Sender: TObject);
 begin

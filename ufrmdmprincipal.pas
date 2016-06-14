@@ -127,7 +127,7 @@ begin
         ZConnection1.ClientCodepage  := Ini.ReadString('Conexao_ZEOS', 'Charset', '');
 
     except
-         on E:Exception do
+         on e:Exception do
          MessageDlg('Erro ao conectar!'#13'Erro: ' + e.Message, mtError, [mbOK], 0);
     end;
 end;
